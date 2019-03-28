@@ -1,6 +1,7 @@
 package View;
 
 import ViewModel.LoginViewModel;
+import ViewModel.MainViewModel;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import viewmodel.MainViewModel;
 
 public class Login {
     @FXML
@@ -21,7 +21,7 @@ public class Login {
     private Scene scene;
     private String title;
     private MainView parent;
-    private LoginViewModel model;
+    private MainViewModel model;
 
     public Login() {
     }
@@ -33,13 +33,13 @@ public class Login {
         this.title = title;
 
         userField.textProperty().bindBidirectional(model.usernameProperty());
+        passwordField.textProperty().bindBidirectional(model.passwordProperty());
         errorLabel.textProperty().bindBidirectional(model.errorProperty());
     }
 
-
     @FXML
     public void LoginButtonPressed() {
-        model.getViewModelLogin().sendUsername();
+        model.sendUsername();
     }
 
     @FXML
@@ -48,7 +48,7 @@ public class Login {
     }
 
     public void onEnter(Event event) {
-        if (event.getSource() == user) {
+        if (event.getSource() == userField) {
             LoginButtonPressed();
         }
     }
