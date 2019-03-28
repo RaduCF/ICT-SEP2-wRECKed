@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.Login">
+    <children>
+        <Label alignment="CENTER" prefHeight="104.0" prefWidth="600.0" text="Chat System">
+            <font>
+                <Font size="53.0"/>
+            </font>
+        </Label>
+        <HBox prefHeight="132.0" prefWidth="600.0">
+            <children>
+                <Pane prefHeight="130.0" prefWidth="600.0">
+                    <children>
+                        <TextField fx:id="user" layoutX="176.0" layoutY="34.0" onAction="#onEnter" prefHeight="64.0"
+                                   prefWidth="405.0"/>
+                        <Label layoutY="28.0" prefHeight="77.0" prefWidth="176.0" text="Username:">
+                            <font>
+                                <Font size="33.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </children>
+        </HBox>
+        <HBox prefHeight="49.0" prefWidth="600.0">
+            <children>
+                <Pane prefHeight="49.0" prefWidth="599.0">
+                    <children>
+                        <Label fx:id="errorLabel" layoutX="5.0" layoutY="3.0" prefHeight="44.0" prefWidth="590.0"/>
+                    </children>
+                </Pane>
+            </children>
+        </HBox>
+        <HBox alignment="BOTTOM_CENTER" prefHeight="93.0" prefWidth="600.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#LoginButtonPressed" prefHeight="48.0" prefWidth="113.0"
+                        text="Login">
+                    <font>
+                        <Font size="23.0"/>
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="50.0" prefWidth="114.0"
+                        text="Cancel">
+                    <font>
+                        <Font size="23.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="100.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>
