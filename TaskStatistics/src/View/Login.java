@@ -1,7 +1,6 @@
 package View;
 
 import ViewModel.LoginViewModel;
-import ViewModel.MainViewModel;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -21,12 +20,12 @@ public class Login {
     private Scene scene;
     private String title;
     private MainView parent;
-    private MainViewModel model;
+    private LoginViewModel model;
 
     public Login() {
     }
 
-    public void init(MainView parent, MainViewModel model, Scene scene, String title) {
+    public void init(MainView parent, LoginViewModel model, Scene scene, String title) {
         this.parent = parent;
         this.model = model;
         this.scene = scene;

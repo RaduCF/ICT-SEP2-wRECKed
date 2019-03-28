@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainViewModel implements PropertyChangeListener {
+public class LoginViewModel implements PropertyChangeListener {
     private ViewModelChat viewModelChat;
     private LoginViewModel viewModelLogin;
     private ObservableModel model;
