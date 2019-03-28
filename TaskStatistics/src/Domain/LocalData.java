@@ -2,6 +2,7 @@ package Domain;
 
 import java.util.ArrayList;
 
+
 public class LocalData {
 	private ArrayList<String> data;
 	private ArrayList<String> _new;
@@ -15,18 +16,19 @@ public class LocalData {
 		/*Get TaskSpy data*/
 	}
 	
+	/**
+	 * uploads all data and get's fresh data from DB
+	 */
 	public void uploadLocal() {
 		
+		/*Magic upload code*/
+		
+		this.data.clear();
 	}
 	
-	public void updateFromDatabase() {
-		/*Imagine this is from the database*/ ArrayList<String> dbData = new ArrayList<String>();
+	public ArrayList<String> updateFromDatabase() {
 		
-		uploadLocal();
-		for (int i = 0; i < dbData.size(); i++) {
-			
-		}
-	
+		
 	}
 	
 }
