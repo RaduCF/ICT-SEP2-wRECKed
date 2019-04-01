@@ -28,7 +28,7 @@ public class LocalData {
 	
 	public ArrayList<String> updateFromDatabase() {
 		
-		
+		return null;
 	}
 	
 }
