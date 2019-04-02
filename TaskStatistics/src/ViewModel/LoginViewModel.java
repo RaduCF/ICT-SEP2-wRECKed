@@ -1,5 +1,6 @@
 package ViewModel;
 
+import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -10,17 +11,18 @@ public class LoginViewModel {
     private ObservableModel model;
 
     public LoginViewModel(ObservableModel model) {
-        this.username = new SimpleStringProperty();
-        this.error = new SimpleStringProperty();
         this.model = model;
+        this.username = new SimpleStringProperty();
+        this.password = new SimpleStringProperty();
+        this.error = new SimpleStringProperty();
     }
 
     public void setError(String error) {
         this.error.set(error);
     }
 
-    public void sendUsername() {
-        model.attemptLogin(username.getValue());
+    public void attemptLogin() {
+       // model.attemptLogin(username.getValue(), password.getValue());
     }
 
     public StringProperty usernameProperty() {

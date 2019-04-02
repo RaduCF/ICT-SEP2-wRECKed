@@ -38,7 +38,11 @@ public class Login {
 
     @FXML
     public void LoginButtonPressed() {
-        model.sendUsername();
+        model.attemptLogin();
+        /*if()
+        {
+            parent.                             //Change view
+        }*/
     }
 
     @FXML
@@ -48,6 +52,10 @@ public class Login {
 
     public void onEnter(Event event) {
         if (event.getSource() == userField) {
+            passwordField.requestFocus();
+        }
+        else
+        {
             LoginButtonPressed();
         }
     }

@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainView {
     private Stage primaryStage;
     private Login loginView;
@@ -19,19 +21,19 @@ public class MainView {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         openLoginView();
-        Platform.setImplicitExit(false);
     }
 
     public void openLoginView() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("WindowLogin.fxml"));
+            loader.setLocation(getClass().getResource("LoginWindow.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 300);
+            Scene scene = new Scene(root, 600, 360);
             loginView = loader.getController();
-            loginView.init(this,mainViewModel, scene, "Login");
-        } catch (Exception e) {
-            e.getStackTrace();
+            loginView.init(this, mainViewModel.getViewModelLogin(), scene, "Login");
+        }
+        catch(IOException e){
+            e.printStackTrace();
         }
         primaryStage.setScene(loginView.getScene());
         primaryStage.setTitle(loginView.getTitle());

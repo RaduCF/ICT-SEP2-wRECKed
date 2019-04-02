@@ -61,14 +61,14 @@
             <children>
             <Pane prefHeight="59.0" prefWidth="611.0">
                <children>
-                      <Button layoutX="403.0" layoutY="5.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="50.0" prefWidth="114.0" style="-fx-border-color: #1F1007;" text="Cancel">
+                      <Button layoutX="403.0" layoutY="5.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="48.0" prefWidth="114.0" style="-fx-border-color: #1F1007;" text="Cancel">
                           <font>
-                              <Font name="Bauhaus 93" size="24.0" />
+                              <Font name="Impact" size="24.0" />
                           </font>
                       </Button>
                       <Button layoutX="126.0" layoutY="5.0" mnemonicParsing="false" onAction="#LoginButtonPressed" prefHeight="48.0" prefWidth="113.0" style="-fx-border-color: #1F1007;" text="Login">
                           <font>
-                              <Font name="Bauhaus 93" size="23.0" />
+                              <Font name="Impact" size="23.0" />
                           </font>
                       </Button>
                </children>

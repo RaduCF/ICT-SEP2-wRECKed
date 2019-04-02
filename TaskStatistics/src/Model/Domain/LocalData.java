@@ -1,4 +1,4 @@
-package Domain;
+package Model.Domain;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class LocalData {
 	}
 	
 	public ArrayList<String> updateFromDatabase() {
-		
+		return null;
 		
 	}
 	
