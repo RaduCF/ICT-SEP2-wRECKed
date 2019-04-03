@@ -16,17 +16,12 @@ public class DataPoint {
 		this.user = user;
 	}
 	
-	public void update(boolean isActive, Calendar timeStamp) {
+	public void update() {
+		Calendar now = Calendar.getInstance();
+		isActive = true;
+		LastUpdated = now;
+		
 
-		if ( isActive == false) {
-			this.isActive = false;
-		}
-		else {
-			if (this.isActive != isActive)
-				this.isActive = true;
-			
-			this.hoursActive += (timeStamp.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000;
-		}
 	}
 	
 	public float getHours() {
@@ -35,5 +30,13 @@ public class DataPoint {
 	
 	public String getId() {
 		return this.id;
+	}
+	
+	public void deActivate() {
+		Calendar now = Calendar.getInstance();
+		this.hoursActive += (now.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000;	
+		LastUpdated = now;
+		this.isActive = false;
+		
 	}
 }
