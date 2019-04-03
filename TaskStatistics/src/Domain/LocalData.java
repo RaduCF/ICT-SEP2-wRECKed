@@ -23,11 +23,12 @@ public class LocalData {
 	public void updateLocal(String CurrentActiveAPP) {
 		for (int i = 0; i < data.size(); i++) {
 			if (CurrentActiveAPP.equals(data.get(i).getId())) {
-				data.get(LastActiveIndex).deActivate();
-				data.get(i).update();
-				LastActiveIndex = i;
-				return;
+				continue;
 			}
+			data.get(LastActiveIndex).deActivate();
+			data.get(i).update();
+			LastActiveIndex = i;
+			return;
 		}
 		data.get(LastActiveIndex).deActivate();
 		data.add(new DataPoint(CurrentActiveAPP, user));
