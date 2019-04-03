@@ -17,7 +17,7 @@ public class TaskSpy {
     	try {
             socket.close();	
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO: handle exceptio
 		}
     }
      
