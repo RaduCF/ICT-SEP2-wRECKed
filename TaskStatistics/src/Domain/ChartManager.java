@@ -7,7 +7,8 @@ public class ChartManager {
 	
 	public enum SORTTYPE{
 		BYHOURS,
-		ALPHABETICAL
+		ALPHABETICAL,
+		RAW
 	}
 	
 	
@@ -35,6 +36,9 @@ public class ChartManager {
 			//and here
 			
 			break;
+			
+		case RAW :
+			return localData.getData();
 		}
 		
 		return null;
