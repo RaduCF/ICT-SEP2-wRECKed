@@ -1,6 +1,7 @@
 package Mediator;
 
 import com.google.gson.Gson;
+import Domain.*;
 
 import Domain.LocalData;
 
@@ -27,7 +28,7 @@ public class Client implements Runnable, ClientModel {
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream(), true);
         this.gson = new Gson();
-        this.receiver= new Receiver(out, this);
+        this.receiver= new Receiver(in, this, localData);
 
         Thread thread = new Thread(receiver);
         thread.start();
@@ -40,7 +41,5 @@ public class Client implements Runnable, ClientModel {
 		
 	}
 	
-	public LocalData getLocalData() {
-		return localData;
-	}
+
 }

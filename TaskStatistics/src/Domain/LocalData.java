@@ -25,15 +25,15 @@ public class LocalData {
 			if (CurrentActiveAPP.equals(data.get(i).getId())) {
 				continue;
 			}
-			data.get(LastActiveIndex).deActivate();
-			data.get(i).update();
+			data.get(LastActiveIndex).DeFocused();
+			data.get(i).Focused();
 			LastActiveIndex = i;
 			return;
 		}
-		data.get(LastActiveIndex).deActivate();
+		data.get(LastActiveIndex).DeFocused();
 		data.add(new DataPoint(CurrentActiveAPP, user));
 		LastActiveIndex = data.size()-1;
-		data.get(LastActiveIndex).update();
+		data.get(LastActiveIndex).Focused();
 	}
 	
 	/**
@@ -50,6 +50,10 @@ public class LocalData {
 	 */
 	public void publish() {
 		
+	}
+	
+	public ArrayList<DataPoint> getData(){
+		return this.data;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class DataPoint {
 		this.user = user;
 	}
 	
-	public void update() {
+	public void Focused() {
 		Calendar now = Calendar.getInstance();
 		isActive = true;
 		LastUpdated = now;
@@ -32,7 +32,7 @@ public class DataPoint {
 		return this.id;
 	}
 	
-	public void deActivate() {
+	public void DeFocused() {
 		Calendar now = Calendar.getInstance();
 		this.hoursActive += (now.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000;	
 		LastUpdated = now;
