@@ -1,6 +1,8 @@
-package Mediator;
+package Model.Mediator;
 
 import com.google.gson.Gson;
+
+import Model.Domain.LocalData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,13 +19,15 @@ public class Client implements Runnable, ClientModel {
     private Receiver receiver;
     private static final String host = "10.152.220.75";
     private static final int port = 1337;
+    
+    private LocalData localData = new LocalData("temporary");
 
     public Client() throws IOException {
         this.socket = new Socket(host, port);
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream(), true);
         this.gson = new Gson();
-        this.receiver= new Receiver(in,this);
+        this.receiver= new Receiver(in, this, localData);
 
         Thread thread = new Thread(receiver);
         thread.start();
@@ -35,4 +39,6 @@ public class Client implements Runnable, ClientModel {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
 }

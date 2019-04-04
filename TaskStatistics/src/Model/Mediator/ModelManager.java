@@ -1,4 +1,4 @@
-package Mediator;
+package Model.Mediator;
 
 public class ModelManager {
 

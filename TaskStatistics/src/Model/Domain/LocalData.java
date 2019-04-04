@@ -1,14 +1,12 @@
-package Domain;
+package Model.Domain;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 
 public class LocalData {
 	private ArrayList<DataPoint> data;
-	private int lastActiveIndex = 0;
 	private String user;
+	private int LastActiveIndex = 0;
 
 	public LocalData(String user) {
 		this.data = new ArrayList<DataPoint>();
@@ -20,22 +18,20 @@ public class LocalData {
 	 * @param CurrentActiveAPP
 	 * @param isActive
 	 */
-	public void updateLocal(String CurrentActiveAPP, Boolean isActive) {
-		Calendar now = Calendar.getInstance();
- 		if (data.get(lastActiveIndex).getId().equals(CurrentActiveAPP)) {
-			data.get(lastActiveIndex).update(isActive, now);
-			return;
-		}
+	public void updateLocal(String CurrentActiveAPP) {
 		for (int i = 0; i < data.size(); i++) {
 			if (CurrentActiveAPP.equals(data.get(i).getId())) {
-				data.get(i).update(isActive, now);
-				lastActiveIndex = i;
-				return;
+				continue;
 			}
+			data.get(LastActiveIndex).DeFocused();
+			data.get(i).Focused();
+			LastActiveIndex = i;
+			return;
 		}
+		data.get(LastActiveIndex).DeFocused();
 		data.add(new DataPoint(CurrentActiveAPP, user));
-		lastActiveIndex = data.size()-1;
-		data.get(lastActiveIndex).update(isActive, now);
+		LastActiveIndex = data.size()-1;
+		data.get(LastActiveIndex).Focused();
 	}
 	
 	/**
@@ -52,6 +48,10 @@ public class LocalData {
 	 */
 	public void publish() {
 		
+	}
+	
+	public ArrayList<DataPoint> getData(){
+		return this.data;
 	}
 	
 	

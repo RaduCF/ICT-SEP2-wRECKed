@@ -38,11 +38,18 @@ public class MainView {
         Scene scene = new Scene(root,900,500);
         userView= loader.getController();
         userView.init(this,scene, "UserViewPack");
+<<<<<<< HEAD
         //userView.getScene();
+=======
+        userView.getScene();
+>>>>>>> master
         primaryStage.setScene(userView.getScene());
         //primaryStage.setScene();
         primaryStage.setTitle(userView.getTitle());
         primaryStage.show();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }
