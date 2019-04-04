@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dce85acc-2804-45d7-b344-75121ad1e626" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/View/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/LoginWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/LoginWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewModel/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewModel/LoginViewModel.java" afterDir="false" />
-    </list>
+    <list default="true" id="dce85acc-2804-45d7-b344-75121ad1e626" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ModelManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+            <state relative-caret-position="255">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#674#675#0" expanded="true" />
@@ -109,7 +105,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Model/Mediator/ObservableModel.java" />
-        <option value="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/MainViewModel.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Model/Domain/LocalData.java" />
@@ -118,6 +113,7 @@
         <option value="$PROJECT_DIR$/src/View/Login.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/LoginViewModel.java" />
         <option value="$PROJECT_DIR$/src/View/LoginWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" />
       </list>
     </option>
   </component>
@@ -252,12 +248,12 @@
       <workItem from="1554103091110" duration="1894000" />
       <workItem from="1554109339880" duration="2222000" />
       <workItem from="1554187999207" duration="262000" />
-      <workItem from="1554380502099" duration="1665000" />
+      <workItem from="1554380502099" duration="2483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12537000" />
+    <option name="totallyTimeSpent" value="13355000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -272,7 +268,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -387,8 +383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ModelManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#674#675#0" expanded="true" />
