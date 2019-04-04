@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="720.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserViewPack.UserView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserViewPack.UserView">
    <children>
-      <BarChart fx:id="barChart" layoutX="119.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0BA4B0;">
+      <BarChart fx:id="barChart" layoutX="109.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0BA4B0;">
           <yAxis>
               <CategoryAxis prefHeight="347.0" prefWidth="27.0" side="BOTTOM" style="-fx-background-color: #0BA4B0;" fx:id="xAxis" />
           </yAxis>
@@ -16,8 +16,8 @@
           <NumberAxis fx:id="yAxis" side="LEFT" style="-fx-background-color: #0BA4B0;" />
         </xAxis>
       </BarChart>
-      <Button layoutX="14.0" layoutY="50.0" mnemonicParsing="false" style="-fx-background-color: #0BA4B0;" text="Button" />
-      <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" style="-fx-background-color: #0BA4B0;" text="Button" />
-      <Button layoutX="14.0" layoutY="155.0" mnemonicParsing="false" style="-fx-background-color: #0BA4B0;" text="Button" />
+      <Button layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #0BA4B0;" text="Login" />
+      <Button layoutX="657.0" layoutY="440.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #0BA4B0;" text="Next" />
+      <Button layoutX="109.0" layoutY="440.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
    </children>
 </Pane>

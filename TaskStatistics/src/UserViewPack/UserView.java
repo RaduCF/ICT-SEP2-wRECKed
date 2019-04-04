@@ -1,5 +1,6 @@
 package UserViewPack;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -9,7 +10,7 @@ import javafx.scene.chart.XYChart;
 
 public class UserView {
     private MainView parent;
-    private UserViewModel model;
+    //private UserViewModel model;
     private Scene scene;
     private String title;
     private Package data;
@@ -22,14 +23,14 @@ public class UserView {
     private CategoryAxis xAxis;
 
 
-    public void init(MainView parent , UserViewModel model , Scene scene, String title/*  Package data */) {
+    public void init(MainView parent /*, UserViewModel model */, Scene scene, String title/*  Package data */) {
         this.parent = parent;
        // this.model = model;
         this.title = title;
         this.data = data;
         this.scene = scene;
 
-        handleInfo();
+        loadFirstPage();
 
     }
 
@@ -37,7 +38,7 @@ public class UserView {
 
     }
 
-    public void handleInfo() {
+    public void loadFirstPage() {
 
         yAxis.setLabel("Time");
         yAxis.setTickLabelRotation(90);
@@ -47,19 +48,20 @@ public class UserView {
 
 
 
-        for(int i=0;i<data.getList().size();i++)
+       /* for(int i=0;i<data.getList().size();i++)
         {
             displaySet.getData().add(new XYChart.Data(data.getList().timeToInt(), data.getList().getName()));
         }
 
             System.out.println("Adding info!");
-            /*  DUMMY DATA
-        displaySet.getData().add( new XYChart.Data("austria", 25601.34 ) );
-        displaySet.getData().add( new XYChart.Data("austria2", 25601.34 ) );
-        displaySet.getData().add( new XYChart.Data("austria3", 25601.34 ) );
+         */
+
+
         displaySet.getData().add( new XYChart.Data(68.34, "kelan") );
+        displaySet.getData().add( new XYChart.Data(8000, "kelan5") );
+        displaySet.getData().add( new XYChart.Data(6000, "kelan64") );
         displaySet.getData().add( new XYChart.Data(9847, "rasasine") );
-            */
+
         barChart.getData().addAll(displaySet);
 
 
@@ -75,4 +77,31 @@ public class UserView {
     {
         return title;
     }
+
+    @FXML
+    public void login(ActionEvent event)
+    {
+        System.out.println("Login button pressed.");
+    }
+
+    @FXML
+    public void nextPage(ActionEvent event)
+    {
+        System.out.println("next button pressed.");
+        barChart.getData().clear();
+        XYChart.Series displaySet = new XYChart.Series();
+        //displaySet.getData().add(new XYChart.Data(data.getList().timeToInt(), data.getList().getName()));
+        barChart.getData().addAll(displaySet);
+    }
+
+    @FXML
+    public void previousPage(ActionEvent event)
+    {
+        System.out.println("previous button pressed.");
+        barChart.getData().clear();
+        XYChart.Series displaySet = new XYChart.Series();
+        //displaySet.getData().add(new XYChart.Data(data.getList().timeToInt(), data.getList().getName()));
+        barChart.getData().addAll(displaySet);
+    }
+
 }
