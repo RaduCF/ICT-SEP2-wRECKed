@@ -7,11 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 public class Login {
-    @FXML
-    private TextField userField;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -31,7 +28,6 @@ public class Login {
         this.scene = scene;
         this.title = title;
 
-        userField.textProperty().bindBidirectional(model.usernameProperty());
         passwordField.textProperty().bindBidirectional(model.passwordProperty());
         errorLabel.textProperty().bindBidirectional(model.errorProperty());
     }
@@ -51,7 +47,7 @@ public class Login {
     }
 
     public void onEnter(Event event) {
-        if (event.getSource() == userField) {
+        if (event.getSource() != passwordField) {
             passwordField.requestFocus();
         }
         else
