@@ -1,10 +1,10 @@
-package Mediator;
+package Model.Mediator;
 
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import Domain.*;
+
+import Model.Domain.*;
 
 public class Receiver implements Runnable {
 

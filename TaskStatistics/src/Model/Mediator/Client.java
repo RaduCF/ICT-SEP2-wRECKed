@@ -1,9 +1,8 @@
-package Mediator;
+package Model.Mediator;
 
 import com.google.gson.Gson;
-import Domain.*;
 
-import Domain.LocalData;
+import Model.Domain.LocalData;
 
 import java.io.BufferedReader;
 import java.io.IOException;

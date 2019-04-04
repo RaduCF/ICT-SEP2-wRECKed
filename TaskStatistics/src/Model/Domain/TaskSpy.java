@@ -1,4 +1,4 @@
-package Domain;
+package Model.Domain;
 
 import java.net.ServerSocket;
 import java.net.Socket;
