@@ -1,7 +1,10 @@
 package Model.Mediator;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
+import Model.Domain.ChartManager.SORTTYPE;
+import Model.Domain.DataPoint;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeAction;
 import utility.observer.subject.PropertyChangeProxy;
@@ -39,5 +42,11 @@ public class ModelManager implements ObservableModel, ClientModel {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
+		return this.getLocalData(type);
+	}
+
 	
 }
