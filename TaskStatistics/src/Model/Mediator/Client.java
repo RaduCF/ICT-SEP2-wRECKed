@@ -20,7 +20,7 @@ public class Client implements Runnable, ClientModel {
     private Gson gson;
     private ClientModel clientModel;
     private Receiver receiver;
-    private static final String host = "10.152.220.75";
+    private static final String host = "localhost";
     private static final int port = 1337;
     
     private LocalData localData = new LocalData("temporary");
@@ -46,5 +46,10 @@ public class Client implements Runnable, ClientModel {
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
 		return this.localData.getData(type);
 	}
+
+    @Override
+    public boolean attemptLogin(String password) {
+        return true;
+    }
 
 }

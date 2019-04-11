@@ -47,24 +47,22 @@ public class MainView {
     
     public void openUserView() throws IOException {
         try {
-
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("userViewFXML.fxml"));
+            System.out.println("works!");
+            Parent root = loader.load();
+            System.out.println("works!");
+            Scene scene = new Scene(root,900,500);
+            userView= loader.getController();
+            userView.init(this,mainViewModel.getUserViewModel(),scene, "UserViewPack");
         }
         catch (Exception e){
             e.getStackTrace();
         }
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("userViewFXML.fxml"));
-        System.out.println("works!");
-        Parent root = loader.load();
-        System.out.println("works!");
-        Scene scene = new Scene(root,900,500);
-        userView= loader.getController();
-        userView.init(this,mainViewModel.getUserViewModel(),scene, "UserViewPack");
-        
-        userView.getScene();
-        
+        if (primaryStage.getScene() != null){
+            primaryStage.getScene().getWindow().hide();
+        }
         primaryStage.setScene(userView.getScene());
-        //primaryStage.setScene();
         primaryStage.setTitle(userView.getTitle());
         primaryStage.show();
     }
