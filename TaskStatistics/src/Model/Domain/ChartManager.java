@@ -3,7 +3,6 @@ package Model.Domain;
 import java.util.ArrayList;
 
 public class ChartManager {
-	private LocalData localData;
 	
 	public enum SORTTYPE{
 		BYHOURS,
@@ -12,16 +11,11 @@ public class ChartManager {
 	}
 	
 	
-	public ChartManager(LocalData localData) {
-		this.localData = localData;
+	public ChartManager() {
 	}
 	
-	public ArrayList<DataPoint> getRawData(){
-		return localData.getData();
-	}
-	
-	public ArrayList<DataPoint> getData(SORTTYPE sorttype){
-		ArrayList<DataPoint> data = localData.getData();
+	public ArrayList<DataPoint> getData(SORTTYPE sorttype, ArrayList<DataPoint> data){
+		ArrayList<DataPoint> Data = data;
 		ArrayList<DataPoint> out = new ArrayList<DataPoint>();
 		
 		switch (sorttype) {
@@ -38,7 +32,7 @@ public class ChartManager {
 			break;
 			
 		case RAW :
-			return localData.getData();
+			return data;
 		}
 		
 		return null;

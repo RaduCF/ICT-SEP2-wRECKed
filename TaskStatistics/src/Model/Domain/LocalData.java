@@ -3,14 +3,17 @@ package Model.Domain;
 import java.util.ArrayList;
 
 
-public class LocalData {
+public class LocalData extends ChartManager {
 	private ArrayList<DataPoint> data;
 	private String user;
 	private int LastActiveIndex = 0;
+	private ChartManager chartManager;
 
 	public LocalData(String user) {
 		this.data = new ArrayList<DataPoint>();
 		this.user = user;
+		this.chartManager = new ChartManager();
+		
 	}
 	
 	/**
@@ -50,8 +53,8 @@ public class LocalData {
 		
 	}
 	
-	public ArrayList<DataPoint> getData(){
-		return this.data;
+	public ArrayList<DataPoint> getData(SORTTYPE type){
+		return this.getData(type, data);
 	}
 	
 	

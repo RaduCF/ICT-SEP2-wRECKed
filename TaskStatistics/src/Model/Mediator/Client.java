@@ -2,6 +2,8 @@ package Model.Mediator;
 
 import com.google.gson.Gson;
 
+import Model.Domain.ChartManager.SORTTYPE;
+import Model.Domain.DataPoint;
 import Model.Domain.LocalData;
 
 import java.io.BufferedReader;
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Client implements Runnable, ClientModel {
     private BufferedReader in;
@@ -40,5 +43,8 @@ public class Client implements Runnable, ClientModel {
 		
 	}
 	
+	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
+		return this.localData.getData(type);
+	}
 
 }
