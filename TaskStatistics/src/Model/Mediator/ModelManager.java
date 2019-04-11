@@ -1,6 +1,7 @@
 package Model.Mediator;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 import Model.Domain.ChartManager.SORTTYPE;
 import Model.Domain.DataPoint;

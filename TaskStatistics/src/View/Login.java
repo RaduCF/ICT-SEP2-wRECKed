@@ -34,10 +34,12 @@ public class Login {
     @FXML
     public void LoginButtonPressed() {
         model.attemptLogin();
+        /*
         if(){
 
         }
         //parent.openAdminView();                           //Change view
+        */
     }
 
     @FXML
