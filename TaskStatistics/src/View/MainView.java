@@ -35,8 +35,17 @@ public class MainView {
         catch(IOException e){
             e.printStackTrace();
         }
+        if (primaryStage.getScene() != null){
+            primaryStage.getScene().getWindow().hide();
+        }
         primaryStage.setScene(loginView.getScene());
         primaryStage.setTitle(loginView.getTitle());
+        System.out.println("Opening login window...");
         primaryStage.show();
     }
+
+    public void close(){
+        Platform.exit();
+    }
+
 }
