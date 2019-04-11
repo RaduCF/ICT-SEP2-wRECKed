@@ -1,7 +1,6 @@
 package View;
 
 import ViewModel.LoginViewModel;
-import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -35,15 +34,15 @@ public class Login {
     @FXML
     public void LoginButtonPressed() {
         model.attemptLogin();
-        /*if()
-        {
-            parent.                             //Change view
-        }*/
+        if(){
+
+        }
+        //parent.openAdminView();                           //Change view
     }
 
     @FXML
     public void cancelButtonPressed() {
-        Platform.exit();
+        //parent.openUserView();                            //needs the classes
     }
 
     public void onEnter(Event event) {
