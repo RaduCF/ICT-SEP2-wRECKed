@@ -9,12 +9,14 @@ import java.beans.PropertyChangeListener;
 public class MainViewModel implements PropertyChangeListener {
 
     private LoginViewModel viewModelLogin;
+    private UserViewModel userViewModel;
     private ObservableModel model;
     private MainView mainView;
 
     public MainViewModel(ObservableModel model) {
         this.model = model;
-
+        
+        userViewModel = new UserViewModel();
         viewModelLogin = new LoginViewModel(model);
         model.addListener(this);
     }
@@ -28,5 +30,9 @@ public class MainViewModel implements PropertyChangeListener {
 
     public LoginViewModel getViewModelLogin() {
         return viewModelLogin;
+    }
+    
+    public UserViewModel getUserViewModel() {
+    return userViewModel;
     }
 }

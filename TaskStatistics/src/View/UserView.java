@@ -1,5 +1,6 @@
-package UserViewPack;
+package View;
 
+import ViewModel.UserViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -14,7 +15,6 @@ public class UserView {
     private UserViewModel model;
     private Scene scene;
     private String title;
-    private Package data;
 
     @FXML
     private BarChart barChart;
@@ -24,11 +24,11 @@ public class UserView {
     private CategoryAxis xAxis;
 
 
-    public void init(MainView parent , UserViewModel model , Scene scene, String title/*  Package data */) {
+    public void init(MainView parent , UserViewModel model , Scene scene, String title) {
         this.parent = parent;
-       // this.model = model;
+        this.model = model;
         this.title = title;
-        this.data = data;
+       // this.data = data;
         this.scene = scene;
 
         handleInfo();
@@ -46,15 +46,14 @@ public class UserView {
         xAxis.setLabel("Program");
 
         XYChart.Series displaySet = new XYChart.Series();
-
-
-
-
+        
+        
+        /*
         for(int i=0;i<data.getList().size();i++)
         {
-            displaySet.getData().add(new XYChart.Data(data.getList().timeToInt(), data.getList().getName()));
+         //   displaySet.getData().add(new XYChart.Data(data.getList().timeToInt(), data.getList().getName()) );
         }
-
+*/
             System.out.println("Adding info!");
 
         displaySet.getData().add( new XYChart.Data(68.34, "kelan") );
@@ -78,11 +77,13 @@ public class UserView {
     {
         return title;
     }
+    
+
 
     @FXML
     public void login(ActionEvent event)
     {
-        System.out.println("Login button pressed.");
+        parent.openLoginView();
     }
 
     @FXML
