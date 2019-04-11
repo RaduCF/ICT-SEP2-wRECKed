@@ -20,7 +20,7 @@ public class LoginViewModel {
     }
 
     public void attemptLogin() {
-       // model.attemptLogin(password.getValue());
+       model.attemptLogin(password.getValue());
     }
 
 

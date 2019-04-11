@@ -29,5 +29,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="MyObserver-1.0" level="application" />
+    <orderEntry type="library" name="gson-2.8.5" level="application" />
   </component>
 </module>

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
+import java.io.IOException;
+
 public class Login {
     @FXML
     private PasswordField passwordField;
@@ -34,17 +36,15 @@ public class Login {
     @FXML
     public void LoginButtonPressed() {
         model.attemptLogin();
-        /*
-        if(){
 
-        }
-        //parent.openAdminView();                           //Change view
-        */
+
+        //parent.openAdminView();
+
     }
 
     @FXML
-    public void cancelButtonPressed() {
-        //parent.openUserView();                            //needs the classes
+    public void cancelButtonPressed() throws IOException {
+        parent.openUserView();
     }
 
     public void onEnter(Event event) {
