@@ -12,10 +12,10 @@ import Model.Domain.DataPoint;
 public class ModelManager implements ObservableModel, ClientModel {
 
     private PropertyChangeSupport property;
-    //private Client client;
+    private Client client;
 
-    public ModelManager(/*Client client*/) {
-        //this.client = client;
+    public ModelManager(Client client) {
+        this.client = client;
         this.property = new PropertyChangeSupport(this);
     }
 

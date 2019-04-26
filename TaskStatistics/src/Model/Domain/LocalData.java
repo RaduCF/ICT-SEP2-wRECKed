@@ -13,7 +13,6 @@ public class LocalData extends ChartManager {
 		this.data = new ArrayList<DataPoint>();
 		this.user = user;
 		this.chartManager = new ChartManager();
-		
 	}
 	
 	/**

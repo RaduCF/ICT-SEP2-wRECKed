@@ -49,9 +49,7 @@ public class MainView {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userViewFXML.fxml"));
-            System.out.println("works!");
             Parent root = loader.load();
-            System.out.println("works!");
             Scene scene = new Scene(root,900,500);
             userView= loader.getController();
             userView.init(this,mainViewModel.getUserViewModel(),scene, "UserViewPack");
