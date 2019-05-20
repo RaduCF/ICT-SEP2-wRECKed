@@ -2,7 +2,7 @@ package Model.Domain;
 
 import java.util.Calendar;
 
-public class DataPoint {
+public class DataPoint implements Comparable {
 	private String id;
 	private boolean isActive;
 	private float hoursActive;
@@ -39,4 +39,9 @@ public class DataPoint {
 		this.isActive = false;
 		
 	}
+
+	public int compareTo(DataPoint DP) {
+		return (int)(DP.getHours()-this.getHours());
+	}
+
 }
