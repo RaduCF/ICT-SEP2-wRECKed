@@ -44,4 +44,8 @@ public class DataPoint implements Comparable {
 		return (int)(DP.getHours()-this.getHours());
 	}
 
+	@Override
+	public int compareTo(Object o) {
+		return 0;
+	}
 }
