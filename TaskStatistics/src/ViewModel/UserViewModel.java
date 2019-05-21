@@ -29,9 +29,18 @@ public class UserViewModel {
 
         for(int i=0;i<5;i++)
         {
-            dataValueProperties.get(i).set( (double) observableModel.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getHours());
-            dataNameProperties.get(i).set(observableModel.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getId());
+            dataValueProperties.add(new SimpleDoubleProperty());
+            dataNameProperties.add(new SimpleStringProperty());
         }
+        for(int i=0;i<5;i++)
+        {
+          //  dataValueProperties.get(i).set( (double) observableModel.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getHours());
+         //   dataNameProperties.get(i).set(observableModel.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getId());
+
+            dataValueProperties.get(i).set(15.6+1*25);
+            dataNameProperties.get(i).set("Name"+i);
+        }
+        System.out.println("loadLocalData ended...");
     }
 
     public SimpleDoubleProperty getDataValueProperty(int index)

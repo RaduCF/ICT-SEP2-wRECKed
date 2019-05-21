@@ -16,7 +16,7 @@ public class MainViewModel implements PropertyChangeListener {
     public MainViewModel(ObservableModel model) {
         this.model = model;
         
-        userViewModel = new UserViewModel();
+        userViewModel = new UserViewModel(model);
         viewModelLogin = new LoginViewModel(model);
         model.addListener(this);
     }

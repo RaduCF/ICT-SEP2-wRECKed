@@ -41,15 +41,15 @@ public class UserView {
 
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
-
         for(int i=0;i<5;i++)
         {
             dataValueProperties.add(new SimpleDoubleProperty());
             dataValueProperties.get(i).bindBidirectional(model.getDataValueProperty(1));
         }
-
+        System.out.println("Starting info handling..");
         for(int i=0;i<5;i++)
         {
+            dataNameProperties.add(new SimpleStringProperty());
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperty(1));
         }
 
@@ -71,11 +71,10 @@ public class UserView {
 
             System.out.println("Loading data..");
             model.loadLocalData();
-        displaySet.getData().add( new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(0).getValue()));
-        //displaySet.getData().add( new XYChart.Data(dataValueProperty2.doubleValue(), dataNameProperty2.getValue()));
-        //displaySet.getData().add( new XYChart.Data(dataValueProperty3.doubleValue(), dataNameProperty3.getValue()));
-        //displaySet.getData().add( new XYChart.Data(dataValueProperty4.doubleValue(), dataNameProperty4.getValue()));
-        //displaySet.getData().add( new XYChart.Data(dataValueProperty5.doubleValue(), dataNameProperty5.getValue()));
+        for(int i=0;i<5;i++)
+        {
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(i).doubleValue(), dataNameProperties.get(i).getValue()) );
+        }
 
         barChart.getData().addAll(displaySet);
         System.out.println("Data loaded.");
