@@ -18,8 +18,9 @@
           <NumberAxis fx:id="yAxis" side="LEFT" style="-fx-background-color: #0BA4B0;" />
         </xAxis>
       </BarChart>
-      <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Login" />
-      <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Next" />
-      <Button layoutX="14.0" layoutY="137.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
+      <Button layoutX="26.0" layoutY="61.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Login" />
+      <Button layoutX="26.0" layoutY="99.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Next" />
+      <Button layoutX="26.0" layoutY="137.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
+      <Button layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#comparison" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Comparison" />
    </children>
 </Pane>

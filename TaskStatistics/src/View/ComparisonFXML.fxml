@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ComparisonView">
+   <children>
+      <SplitPane dividerPositions="0.15853658536585366" layoutX="1.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="494.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ToggleButton fx:id="global" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Global" />
+                  <Button layoutX="130.0" layoutY="26.0" mnemonicParsing="false" onAction="#selectPrograms" text="Select" />
+                  <Button layoutX="209.0" layoutY="26.0" mnemonicParsing="false" onAction="#setInterval" text="Interval" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <BarChart fx:id="barChart" layoutY="6.0" prefHeight="412.0" prefWidth="600.0">
+                    <xAxis>
+                      <CategoryAxis fx:id="yAxis" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" fx:id="xAxis" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</Pane>

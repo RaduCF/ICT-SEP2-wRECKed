@@ -132,4 +132,8 @@ public class UserView {
         System.out.println("Data loaded.");
     }
 
+    @FXML
+    public void comparison(ActionEvent event){
+        parent.openComparisonView();
+    }
 }

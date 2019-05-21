@@ -1,7 +1,6 @@
 package Model.Mediator;
 
 import Model.Domain.ChartManager;
-import com.google.gson.Gson;
 
 import Model.Domain.ChartManager.SORTTYPE;
 import Model.Domain.DataPoint;
