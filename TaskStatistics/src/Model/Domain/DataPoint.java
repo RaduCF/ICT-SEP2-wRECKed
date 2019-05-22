@@ -2,13 +2,13 @@ package Model.Domain;
 
 import java.util.Calendar;
 
-public class DataPoint implements Comparable {
+public class DataPoint implements Comparable<DataPoint> {
 	private String id;
 	private boolean isActive;
 	private float hoursActive;
 	private Calendar LastUpdated;
 	private String user;
-	
+
 	public DataPoint(String id, String user) {
 		this.id = id;
 		this.isActive = false;
