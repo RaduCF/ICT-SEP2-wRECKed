@@ -56,5 +56,9 @@ public class LocalData extends ChartManager {
 		return this.getData(type, data);
 	}
 	
+	public ArrayList<DataPoint> getSpecific(String[] apps){
+		return this.getSpecific(apps);
+	}
+	
 	
 }

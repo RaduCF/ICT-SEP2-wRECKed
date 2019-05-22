@@ -15,6 +15,19 @@ public class ChartManager {
 	public ChartManager() {
 	}
 	
+	public ArrayList<DataPoint> getSpecific(SORTTYPE sorttype, String[] apps, ArrayList<DataPoint> data){
+		ArrayList<DataPoint> out = new ArrayList<>();
+		for (DataPoint dataPoint : data) {
+			for (String app : apps) {
+				if (dataPoint.getId().equals(app)) {
+					out.add(dataPoint);
+				}	
+			}
+		}
+		Collections.sort(out);
+		return out;
+	}
+	
 	public ArrayList<DataPoint> getData(SORTTYPE sorttype, ArrayList<DataPoint> data){
 		ArrayList<DataPoint> Data = data;
 		switch (sorttype) {
