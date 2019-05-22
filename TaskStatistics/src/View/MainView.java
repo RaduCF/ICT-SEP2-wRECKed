@@ -89,6 +89,7 @@ public class MainView {
 
     public void openProgramListView()
     {
+        Stage secondaryStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
@@ -100,14 +101,10 @@ public class MainView {
         catch (Exception e){
             e.printStackTrace();
         }
-        /*
-        if (primaryStage.getScene() != null){
-            primaryStage.getScene().getWindow().hide();
-        }
-        */
-        primaryStage.setScene(programListView.getScene());
-        primaryStage.setTitle(programListView.getTitle());
-        primaryStage.show();
+
+        secondaryStage.setScene(programListView.getScene());
+        secondaryStage.setTitle(programListView.getTitle());
+        secondaryStage.show();
     }
 
     public void close(){

@@ -43,7 +43,6 @@ public class ComparisonView {
         this.parent = parent;
         this.model = model;
         this.scene = scene;
-        System.out.println("Scene has been set!");
         this.title = title;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
