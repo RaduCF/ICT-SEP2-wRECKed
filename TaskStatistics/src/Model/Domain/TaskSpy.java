@@ -23,6 +23,7 @@ public class TaskSpy {
      
     public String run()
     {
+        System.out.print("TaskSpy run method starting.");
 
     	if(!init)
     	{
@@ -35,7 +36,7 @@ public class TaskSpy {
     	
     		init = true;
     	}
-    	
+        System.out.print("TaskSpy initializing complete...");
         try
         {
 

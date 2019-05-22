@@ -14,7 +14,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //needs all the model classes to be initiated here before the view...
         Client client = new Client();
+        Thread clientThread = new Thread(client);
+        clientThread.start();
+
     	ObservableModel model = new ModelManager(client);
+
     	MainViewModel viewModel = new MainViewModel(model);
         MainView view = new MainView(viewModel);
         view.start(primaryStage);

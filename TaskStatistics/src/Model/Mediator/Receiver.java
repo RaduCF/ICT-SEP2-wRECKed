@@ -8,28 +8,19 @@ import Model.Domain.*;
 
 public class Receiver implements Runnable {
 
-    private BufferedReader in;
-    private boolean connected;
     private Client client;
     private TaskSpy taskSpy;
     private LocalData localData;
 
-    public Receiver(BufferedReader in, Client chat, LocalData localdata) {
-        this.client = chat;
-        this.in = in;
-        this.connected = true;
+    public Receiver(LocalData localdata) {
         this.localData = localdata;
+        taskSpy = new TaskSpy();
     }
 
     @Override
     public void run() {
-        Gson gson = new Gson();
-        String reply = "";
-
         while (true) {
         	localData.updateLocal(taskSpy.run());
-
-
         }
     }
 }

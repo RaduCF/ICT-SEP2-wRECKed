@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
 
    <children>
       <BarChart fx:id="barChart" layoutX="109.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0BA4B0;">
@@ -18,8 +18,9 @@
           <NumberAxis fx:id="yAxis" side="LEFT" style="-fx-background-color: #0BA4B0;" />
         </xAxis>
       </BarChart>
-      <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Login" />
-      <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Next" />
-      <Button layoutX="14.0" layoutY="137.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
+      <Button layoutX="26.0" layoutY="61.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Login" />
+      <Button layoutX="26.0" layoutY="99.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Next" />
+      <Button layoutX="26.0" layoutY="137.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
+      <Button layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#comparison" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Comparison" />
    </children>
 </Pane>

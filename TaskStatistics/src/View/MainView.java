@@ -14,6 +14,8 @@ public class MainView {
     private Login loginView;
     private UserView userView;
     private MainViewModel mainViewModel;
+    private ComparisonView comparisonView;
+    private ProgramListView programListView;
 
     public MainView(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
@@ -45,14 +47,14 @@ public class MainView {
         primaryStage.show();
     }
     
-    public void openUserView() throws IOException {
+    public void openUserView()  {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userViewFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root,900,500);
             userView= loader.getController();
-            userView.init(this,mainViewModel.getUserViewModel(),scene, "UserViewPack");
+            userView.init(this,mainViewModel.getUserViewModel(),scene, "UserView");
         }
         catch (Exception e){
             e.getStackTrace();
@@ -65,8 +67,50 @@ public class MainView {
         primaryStage.show();
     }
 
+    public void openComparisonView(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ComparisonFXML.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root,900,500);
+            comparisonView = loader.getController();
+            comparisonView.init(this, mainViewModel.getComparisonViewModel(),scene,"ComparisonView");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        if (primaryStage.getScene() != null){
+            primaryStage.getScene().getWindow().hide();
+        }
+        primaryStage.setScene(comparisonView.getScene());
+        primaryStage.setTitle(comparisonView.getTitle());
+        primaryStage.show();
+    }
+
+    public void openProgramListView()
+    {
+        Stage secondaryStage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root,900,500);
+            programListView = loader.getController();
+            programListView.init( mainViewModel.getProgramListViewModel(),this,scene,"SelectPrograms");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        secondaryStage.setScene(programListView.getScene());
+        secondaryStage.setTitle(programListView.getTitle());
+        secondaryStage.show();
+    }
+
     public void close(){
         Platform.exit();
     }
+
+    public ComparisonView getComparisonView(){return comparisonView;}
 
 }
