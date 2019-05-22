@@ -26,8 +26,7 @@ public class ModelManager implements ObservableModel, ClientModel {
 
     @Override
     public boolean attemptLogin(String password) {
-        //return client.attemptLogin(password);
-        return true;
+        return client.attemptLogin(password);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package View;
+package Model.Mediator;
 
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
