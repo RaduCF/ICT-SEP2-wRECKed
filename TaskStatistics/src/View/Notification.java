@@ -13,17 +13,14 @@ public class Notification {
             SystemTray tray = SystemTray.getSystemTray();
 
             //If the icon is a file
-            Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\raduc\\OneDrive\\Desktop\\ICT-SEP2-wRECKed\\TaskStatistics\\src\\Notification.jpg");
-            //Alternative (if the icon is on the classpath):
-            //Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
-
+            Image image = Toolkit.getDefaultToolkit().getImage("Notification.jpg");
             TrayIcon trayIcon = new TrayIcon(image,"Tray");
             //Let the system resize the image if needed
             trayIcon.setImageAutoSize(true);
             //Set tooltip text for the tray icon
             trayIcon.setToolTip("Task Statistics");
             tray.add(trayIcon);
-            trayIcon.displayMessage("You are stupid!", "I'm joking, you're awesome!", TrayIcon.MessageType.INFO);
+            trayIcon.displayMessage("You are stupid!", "I'm joking, you're awesome!", MessageType.INFO);
         } else {
             System.err.println("System tray not supported!");
         }
