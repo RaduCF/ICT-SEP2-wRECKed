@@ -46,7 +46,7 @@ public class ComparisonView {
         this.title = title;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
-        count = new SimpleIntegerProperty();
+
 
     }
 
@@ -58,18 +58,53 @@ public class ComparisonView {
 
     public void loadData(ObservableList<String> dataNames)
     {
+        count = new SimpleIntegerProperty();
+
+
         count.bindBidirectional(model.getCountProperty());
         count.set(dataNames.size());
-        model.initializeProperties();
-        for(int i=0;i<count.intValue();i++) {
-            dataNameProperties.add(new SimpleStringProperty());
-            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
-            dataValueProperties.get(i).bindBidirectional(model.getDataValueProperties().get(i));
-        }
+
+        model.loadData();
+        bindProperties();
 
         // implement request to receive EXACT data objects
 
-        handleData();
+        handleBarChartData();
+    }
+
+
+    public void bindProperties() // creates and binds this class properties to the existing model properties
+    {
+
+
+        dataNameProperties.clear();
+        dataValueProperties.clear();
+
+        for(int i=0;i<count.intValue();i++)
+        {
+            dataNameProperties.add(new SimpleStringProperty());
+            dataValueProperties.add(new SimpleDoubleProperty());
+            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
+            dataValueProperties.get(i).bindBidirectional(model.getDataValueProperties().get(i));
+        }
+    }
+
+    public void handleBarChartData()
+    {
+        barChart.getData().clear();
+
+        XYChart.Series displaySet = new XYChart.Series();
+
+        System.out.println("Loading dataComparison barChart data..");
+
+        model.loadData();
+
+        for(int i=0;i<count.intValue();i++)
+        {
+            displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue() ) );
+        }
+        barChart.getData().addAll(displaySet);
+        System.out.println("Data loaded.");
     }
 
     @FXML
@@ -78,22 +113,29 @@ public class ComparisonView {
 
     }
 
+    @FXML
+    public void clearAllPrograms(ActionEvent event)
+    {
+        for(int i=0;i<count.getValue();i++)
+        {
+            dataValueProperties.clear();
+            dataNameProperties.clear();
+            model.getDataNameProperties().clear();
+            model.getDataValueProperties().clear();
+        }
+        barChart.getData().clear();
+    }
+
+    @FXML
+    public void clearSpecificPrograms(ActionEvent event)
+    {
+
+    }
+
     public Scene getScene() { return scene; }
 
     public String getTitle() {return title;}
 
-    public void handleData()
-    {
-        XYChart.Series displaySet = new XYChart.Series();
 
-        System.out.println("Loading data..");
-        model.loadData();
-        for(int i=0;i<count.intValue();i++)
-        {
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(i).doubleValue(), dataNameProperties.get(i).getValue()) );
-        }
-        barChart.getData().addAll(displaySet);
-        System.out.println("Data loaded.");
-    }
 
 }

@@ -36,22 +36,13 @@ public class ProgramListView {
 
     }
 
-    public void bindProperties()
-    {
-        count.bindBidirectional(model.getCountProperty());
 
-        for(int i=0;i<count.intValue();i++)
-        {
-            dataNameProperties.add(new SimpleStringProperty());
-            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
-        }
-    }
 
     public Scene getScene(){return scene;}
     public String getTitle(){return title;}
 
     @FXML
-    public void submit(ActionEvent evt)
+    public void submit(ActionEvent evt) // sends data names to the comparisonView
     {
         ObservableList<String> programs;
         programs = listView.getSelectionModel().getSelectedItems();
@@ -59,12 +50,25 @@ public class ProgramListView {
     }
 
     public void loadData() {
+
         model.loadData();
         bindProperties();
+
         for(int i=0;i<count.intValue();i++)
         {
             listView.getItems().add(dataNameProperties.get(i).getValue());
         }
     }
 
+    public void bindProperties() // creates and binds this class properties to the existing model properties
+    {
+        count.bindBidirectional(model.getCountProperty());
+        dataNameProperties.clear();
+
+        for(int i=0;i<count.intValue();i++)
+        {
+            dataNameProperties.add(new SimpleStringProperty());
+            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
+        }
+    }
 }

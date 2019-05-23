@@ -16,6 +16,7 @@ public class MainView {
     private MainViewModel mainViewModel;
     private ComparisonView comparisonView;
     private ProgramListView programListView;
+    private Stage secondaryStage;
 
     public MainView(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
@@ -89,7 +90,7 @@ public class MainView {
 
     public void openProgramListView()
     {
-        Stage secondaryStage = new Stage();
+        secondaryStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
@@ -112,5 +113,12 @@ public class MainView {
     }
 
     public ComparisonView getComparisonView(){return comparisonView;}
+
+    public void closeComparisonView()
+    {
+        if (secondaryStage.getScene() != null){
+            secondaryStage.getScene().getWindow().hide();
+        }
+    }
 
 }
