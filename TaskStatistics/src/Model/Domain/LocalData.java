@@ -6,13 +6,17 @@ import java.util.ArrayList;
 public class LocalData extends ChartManager {
 	private ArrayList<DataPoint> data;
 	private String user;
-	private int LastActiveIndex = 0;
+	private int LastActiveIndex = -1;
 	private ChartManager chartManager;
+    private TaskSpy taskSpy = new TaskSpy(); 
 
 	public LocalData(String user) {
 		this.data = new ArrayList<DataPoint>();
 		this.user = user;
 		this.chartManager = new ChartManager();
+		
+		Thread taskspy = new Thread(taskSpy);
+		taskspy.start();
 	}
 	
 	/**
@@ -20,9 +24,17 @@ public class LocalData extends ChartManager {
 	 * @param CurrentActiveAPP
 	 * @param isActive
 	 */
-	public void updateLocal(String CurrentActiveAPP) {
+	public void updateLocal() {
+		String currentActiveAPP = taskSpy.incoming;
+		taskSpy.incoming = "";
+		if (taskSpy.incoming == "") {
+			return;
+		}
+		if (LastActiveIndex == -1) {
+			return;
+		}
 		for (int i = 0; i < data.size(); i++) {
-			if (CurrentActiveAPP.equals(data.get(i).getId())) {
+			if (currentActiveAPP.equals(data.get(i).getId())) {
 				continue;
 			}
 			data.get(LastActiveIndex).DeFocused();
@@ -31,7 +43,7 @@ public class LocalData extends ChartManager {
 			return;
 		}
 		data.get(LastActiveIndex).DeFocused();
-		data.add(new DataPoint(CurrentActiveAPP, user));
+		data.add(new DataPoint(currentActiveAPP, user));
 		LastActiveIndex = data.size()-1;
 		data.get(LastActiveIndex).Focused();
 	}

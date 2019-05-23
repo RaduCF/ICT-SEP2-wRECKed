@@ -20,7 +20,6 @@ public class Client implements Runnable, ClientModel {
     private Receiver receiver;
     
     //Domain init:
-    private TaskSpy taskSpy = new TaskSpy(); 
     private LocalData localData = new LocalData(getUserID());
     
     public Client(){
@@ -34,17 +33,12 @@ public class Client implements Runnable, ClientModel {
 
 	@Override
 	public void run() {
-        System.out.println("Running the client...");
+		System.out.println("Running the client...");
         if(!connect())
         {
             System.out.println("Not connected!!");
         }
-        while (true) {
-        	
-        	//Domain update
-        	
-            localData.updateLocal(taskSpy.run());
-		}
+        localData.updateLocal();
 	}
 	
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
@@ -89,6 +83,7 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Connected!");
         } catch (Exception e)
         {
+        	System.out.println(e);
             return false;
         }
 
