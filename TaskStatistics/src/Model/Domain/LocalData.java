@@ -25,11 +25,11 @@ public class LocalData extends ChartManager {
 	 * @param isActive
 	 */
 	public void updateLocal() {
-		String currentActiveAPP = taskSpy.incoming;
-		taskSpy.incoming = "";
 		if (taskSpy.incoming == "") {
 			return;
 		}
+		String currentActiveAPP = taskSpy.incoming;
+		taskSpy.incoming = "";
 		if (LastActiveIndex == -1) {
 			return;
 		}
@@ -62,6 +62,14 @@ public class LocalData extends ChartManager {
 	 */
 	public void publish() {
 		
+	}
+	
+	public String toString() {
+		String out = "";
+		for (int i = 0; i < data.size(); i++) {
+			out += data.get(i).toString() + " \n ";
+		}
+		return out;
 	}
 	
 	public ArrayList<DataPoint> getData(SORTTYPE type){

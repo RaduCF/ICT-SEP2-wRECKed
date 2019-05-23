@@ -39,6 +39,10 @@ public class DataPoint implements Comparable<DataPoint> {
 		this.isActive = false;
 		
 	}
+	
+	public String toString() {
+		return user + ": " + hoursActive + ", " + id;
+	}
 
 	public int compareTo(DataPoint DP) {
 		return (int)(DP.getHours()-this.getHours());

@@ -2,7 +2,6 @@ package Model.Domain;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.io.*;
 
 public class TaskSpy implements Runnable{
@@ -57,6 +56,7 @@ public class TaskSpy implements Runnable{
 
 
             } catch (Exception e){
+               	System.out.println(e);
             	socket = null;
             	serverSocket = null;
             	in = null;
