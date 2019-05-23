@@ -4,7 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
 
-public class TaskSpy {
+public class TaskSpy{
 
 	ServerSocket serverSocket;
     Socket socket;
@@ -61,11 +61,7 @@ public class TaskSpy {
         } catch (Exception e){
         	timeOutTries++;
         	if (timeOutTries > 5) {
-                try {
-					Process process = new ProcessBuilder(
-							"C:\\Users\\chris\\Documents\\GitHub\\ICT-SEP2-wRECKed\\TaskSpy\\TaskSpy\\bin\\Release\taskSpy.exe"
-							).start();
-				} catch (IOException e1) {System.out.println("TaskSpy didn't start. Did someone delete something?");}
+                init = false;
 			}
         }
 

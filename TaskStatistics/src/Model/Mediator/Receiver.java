@@ -9,18 +9,11 @@ import Model.Domain.*;
 public class Receiver implements Runnable {
 
     private Client client;
-    private TaskSpy taskSpy;
-    private LocalData localData;
 
-    public Receiver(LocalData localdata) {
-        this.localData = localdata;
-        taskSpy = new TaskSpy();
+    public Receiver() {
     }
 
     @Override
     public void run() {
-        while (true) {
-        	localData.updateLocal(taskSpy.run());
-        }
     }
 }
