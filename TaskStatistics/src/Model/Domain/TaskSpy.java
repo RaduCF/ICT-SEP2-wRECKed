@@ -11,14 +11,13 @@ public class TaskSpy {
     InputStream in; 
 	
     boolean init = false;
+    int timeOutTries = 0;
      
     public void close()
     {
     	try {
             socket.close();	
-		} catch (Exception e) {
-			// TODO: handle exceptio
-		}
+		} catch (Exception e) {}
     }
      
     public String run()
@@ -27,16 +26,22 @@ public class TaskSpy {
 
     	if(!init)
     	{
+
     		try
     		{
+
+                Process process = new ProcessBuilder(
+                		"C:\\Users\\chris\\Documents\\GitHub\\ICT-SEP2-wRECKed\\TaskSpy\\TaskSpy\\bin\\Release\taskSpy.exe"
+                		).start();
+                wait(1000);
                 serverSocket = new ServerSocket(5000, 10);
                 socket = serverSocket.accept();
                 in = socket.getInputStream();
-    		} catch (Exception e){}
+    		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful");}
     	
     		init = true;
+            System.out.print("TaskSpy initializing complete...");
     	}
-        System.out.print("TaskSpy initializing complete...");
         try
         {
 
@@ -53,7 +58,16 @@ public class TaskSpy {
             return received;
 
 
-        } catch (Exception e){}
+        } catch (Exception e){
+        	timeOutTries++;
+        	if (timeOutTries > 5) {
+                try {
+					Process process = new ProcessBuilder(
+							"C:\\Users\\chris\\Documents\\GitHub\\ICT-SEP2-wRECKed\\TaskSpy\\TaskSpy\\bin\\Release\taskSpy.exe"
+							).start();
+				} catch (IOException e1) {System.out.println("TaskSpy didn't start. Did someone delete something?");}
+			}
+        }
 
         return null;
     }

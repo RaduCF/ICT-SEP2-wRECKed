@@ -32,7 +32,6 @@ public class Client implements Runnable, ClientModel {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
         System.out.println("Running the client...");
         if(!connect())
         {
