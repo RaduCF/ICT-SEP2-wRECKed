@@ -33,12 +33,16 @@ public class Client implements Runnable, ClientModel {
 
 	@Override
 	public void run() {
+		/*
 		System.out.println("Running the client...");
         if(!connect())
         {
             System.out.println("Not connected!!");
         }
-        localData.updateLocal();
+        */
+		while (true) {
+	        localData.updateLocal();
+		}
 	}
 	
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {

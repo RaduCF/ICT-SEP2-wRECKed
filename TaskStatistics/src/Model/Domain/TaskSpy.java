@@ -6,13 +6,14 @@ import java.io.*;
 
 public class TaskSpy implements Runnable{
 
-	ServerSocket serverSocket;
-    Socket socket;
-    InputStream in; 
+	private ServerSocket serverSocket;
+    private Socket socket;
+    private InputStream in; 
+    private Process process;
     
-    String incoming = "";
+    private String incoming = "";
 	
-    boolean init = false;
+    private boolean init = false;
      
     public void close()
     {
@@ -20,7 +21,17 @@ public class TaskSpy implements Runnable{
             socket.close();	
 		} catch (Exception e) {}
     }
-    int i = 0;
+    
+    public String getIncoming() {
+    	return incoming;
+    }
+    
+    public void nullIncoming() { 
+    	synchronized (incoming) {
+        	incoming = "";	
+		}
+    }
+    
     public void run()
     {
         System.out.println("TaskSpy run method starting.");
@@ -29,7 +40,7 @@ public class TaskSpy implements Runnable{
         	{
         		try
         		{
-                    Process process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
+                    process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
                     serverSocket = new ServerSocket(5000, 10);
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
@@ -51,12 +62,13 @@ public class TaskSpy implements Runnable{
                 received = new String(receivedBytes, 0, len);
 
                 System.out.println("Changed application " + received);
-                i++;
                 incoming = received;
 
 
             } catch (Exception e){
+            	//If it fucked up. we're fucked
                	System.out.println(e);
+               	process.destroy();
             	socket = null;
             	serverSocket = null;
             	in = null;
