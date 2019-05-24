@@ -1,6 +1,8 @@
 package Model.Domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class LocalData extends ChartManager {
@@ -73,8 +75,10 @@ public class LocalData extends ChartManager {
 	
 	public String toString() {
 		String out = user + " \n";
-		for (int i = 0; i < data.size(); i++) {
-			out += data.get(i).toString() + " \n";
+		ArrayList<DataPoint> outData = data;
+		Collections.sort(outData);
+		for (int i = 0; i < outData.size(); i++) {
+			out += outData.get(i).toString() + " \n";
 		}
 		return out;
 	}
