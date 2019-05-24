@@ -20,9 +20,10 @@ public class Client implements Runnable, ClientModel {
     private Receiver receiver;
     
     //Domain init:
-    private LocalData localData = new LocalData(getUserID());
+    private LocalData localData;
     
     public Client(){
+    	localData = new LocalData(getUserID());
     	/* Receiver is not used?!?!
         this.receiver= new Receiver();
 
