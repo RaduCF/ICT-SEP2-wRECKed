@@ -36,22 +36,22 @@ public class LocalData extends ChartManager {
 			System.out.println("Data added: " + currentActiveAPP);
 			for (int i = 0; i < data.size(); i++) {
 				if (currentActiveAPP.equals(data.get(i).getId())) {
-					continue;
+					if (LastActiveIndex != -1) {
+						data.get(LastActiveIndex).DeFocused();	
+					}
+					data.get(i).Focused();
+					LastActiveIndex = i;
+					return;
 				}
-				if (LastActiveIndex != -1) {
-					data.get(LastActiveIndex).DeFocused();	
-				}
-				data.get(i).Focused();
-				LastActiveIndex = i;
-				return;
 			}
-			DataPoint point = new DataPoint(currentActiveAPP, user);
+			DataPoint point = new DataPoint(currentActiveAPP);
 			point.Focused();
 			data.add(point);
 			if (LastActiveIndex != -1) {
 				data.get(LastActiveIndex).DeFocused();
 			}
 			LastActiveIndex = data.indexOf(point);	
+			System.out.println(this.toString());
 		}
 	}
 	
@@ -72,9 +72,9 @@ public class LocalData extends ChartManager {
 	}
 	
 	public String toString() {
-		String out = "";
+		String out = user + " \n";
 		for (int i = 0; i < data.size(); i++) {
-			out += data.get(i).toString() + " \n ";
+			out += data.get(i).toString() + " \n";
 		}
 		return out;
 	}
