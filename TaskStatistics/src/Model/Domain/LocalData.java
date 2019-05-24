@@ -8,13 +8,14 @@ public class LocalData extends ChartManager {
 	private String user;
 	private int LastActiveIndex = -1;
 	private ChartManager chartManager;
-    private TaskSpy taskSpy = new TaskSpy(); 
+    private TaskSpy taskSpy; 
     private Thread thread;
 
 	public LocalData(String user) {
 		this.data = new ArrayList<DataPoint>();
 		this.user = user;
 		this.chartManager = new ChartManager();
+		taskSpy = new TaskSpy();
 		
 		thread = new Thread(taskSpy);
 		thread.start();
@@ -26,12 +27,13 @@ public class LocalData extends ChartManager {
 	 * @param isActive
 	 */
 	public void updateLocal() {
-		if (taskSpy.getIncoming() == "") {
+		System.out.print(taskSpy.getIncoming());
+		if (taskSpy.getIncoming().equals("")){
 			return;
 		}
 		String currentActiveAPP = taskSpy.getIncoming();
 		taskSpy.nullIncoming();
-		System.out.println("Data added");
+		System.out.println("Data added: " + currentActiveAPP);
 		for (int i = 0; i < data.size(); i++) {
 			if (currentActiveAPP.equals(data.get(i).getId())) {
 				continue;

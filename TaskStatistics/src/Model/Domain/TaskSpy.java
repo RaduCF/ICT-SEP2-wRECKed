@@ -66,7 +66,6 @@ public class TaskSpy implements Runnable{
 
 
             } catch (Exception e){
-            	//If it fucked up. we're fucked
                	System.out.println(e);
                	process.destroy();
             	socket = null;
