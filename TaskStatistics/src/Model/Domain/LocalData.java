@@ -27,31 +27,32 @@ public class LocalData extends ChartManager {
 	 * @param isActive
 	 */
 	public void updateLocal() {
-		System.out.print(taskSpy.getIncoming());
-		if (taskSpy.getIncoming().equals("")){
-			return;
-		}
-		String currentActiveAPP = taskSpy.getIncoming();
-		taskSpy.nullIncoming();
-		System.out.println("Data added: " + currentActiveAPP);
-		for (int i = 0; i < data.size(); i++) {
-			if (currentActiveAPP.equals(data.get(i).getId())) {
-				continue;
+		synchronized (chartManager) {
+			if (taskSpy.getIncoming().equals("")){
+				return;
 			}
+			String currentActiveAPP = taskSpy.getIncoming();
+			taskSpy.nullIncoming();
+			System.out.println("Data added: " + currentActiveAPP);
+			for (int i = 0; i < data.size(); i++) {
+				if (currentActiveAPP.equals(data.get(i).getId())) {
+					continue;
+				}
+				if (LastActiveIndex != -1) {
+					data.get(LastActiveIndex).DeFocused();	
+				}
+				data.get(i).Focused();
+				LastActiveIndex = i;
+				return;
+			}
+			DataPoint point = new DataPoint(currentActiveAPP, user);
+			point.Focused();
+			data.add(point);
 			if (LastActiveIndex != -1) {
-				data.get(LastActiveIndex).DeFocused();	
+				data.get(LastActiveIndex).DeFocused();
 			}
-			data.get(i).Focused();
-			LastActiveIndex = i;
-			return;
+			LastActiveIndex = data.indexOf(point);	
 		}
-		DataPoint point = new DataPoint(currentActiveAPP, user);
-		point.Focused();
-		data.add(point);
-		if (LastActiveIndex != -1) {
-			data.get(LastActiveIndex).DeFocused();
-		}
-		LastActiveIndex = data.indexOf(point);
 	}
 	
 	/**

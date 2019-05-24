@@ -11,10 +11,14 @@ public class TaskSpy implements Runnable{
     private InputStream in; 
     private Process process;
     
-    private String incoming = "";
+    private String incoming;
 	
     private boolean init = false;
      
+    public TaskSpy() {
+    	incoming = "";
+    }
+    
     public void close()
     {
     	try {
