@@ -7,26 +7,40 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Windows.Forms;
+
 namespace TaskSpy
 {
     class Program
     {
+
         [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
+
         [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        static extern Int32 GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
-        static string GetActiveWindowTitle()
+        static string GetForegroundProcessName()
         {
-            const int nChars = 256;
-            StringBuilder Buff = new StringBuilder(nChars);
-            IntPtr handle = GetForegroundWindow();
+            IntPtr hwnd = GetForegroundWindow();
 
-            if (GetWindowText(handle, Buff, nChars) > 0)
+            if (hwnd == null)
+                return "Unknown";
+
+
+            uint pid;
+            GetWindowThreadProcessId(hwnd, out pid);
+
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
             {
-                return Buff.ToString();
+                if (p.Id == pid)
+                    return p.ProcessName;
             }
-            return null;
+
+            return "Unknown";
         }
 
         static ASCIIEncoding encoder = new ASCIIEncoding();
@@ -51,11 +65,8 @@ namespace TaskSpy
         {
             try
             {
-                int toSendLen = System.Text.Encoding.ASCII.GetByteCount(str);
-                byte[] toSendBytes = System.Text.Encoding.ASCII.GetBytes(str);
-                byte[] toSendLenBytes = System.BitConverter.GetBytes(toSendLen);
-                clientSocket.Send(toSendLenBytes);
-                clientSocket.Send(toSendBytes);
+                clientSocket.Send(BitConverter.GetBytes(Encoding.ASCII.GetByteCount(str)));
+                clientSocket.Send(Encoding.ASCII.GetBytes(str));
             }
             catch (Exception)
             {
@@ -84,16 +95,40 @@ namespace TaskSpy
 
             string oldTitle = " ";
             string title = "";
+
+            int x, y;
+            x = y = 0;
+
+            int time = 0;
+
             while (true)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
 
-                title = GetActiveWindowTitle();
+                title = GetForegroundProcessName();
+
+                //Check if user is idle, by reading mouse movement
+                if (x == Cursor.Position.X && y == Cursor.Position.Y)
+                {
+                    time++;
+                }
+                else
+                {
+                    time = 0;
+                    x = Cursor.Position.X;
+                    y = Cursor.Position.Y;
+                }
+
+                if (time >= 30)
+                {
+                    title = "AFK";
+                }
 
                 if (oldTitle == title)
                     continue;
 
                 oldTitle = title;
+
                 //Only send data when Focus has changed
                 if (!sendString(title))
                     return;

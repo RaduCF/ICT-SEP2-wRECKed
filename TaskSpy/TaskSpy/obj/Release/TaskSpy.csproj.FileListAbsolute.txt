@@ -1,0 +1,6 @@
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Release\TaskSpy.exe.config
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Release\TaskSpy.exe
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Release\TaskSpy.pdb
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Release\TaskSpy.csproj.CoreCompileInputs.cache
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Release\TaskSpy.exe
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Release\TaskSpy.pdb
