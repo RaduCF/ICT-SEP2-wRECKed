@@ -58,8 +58,6 @@ public class LocalData extends ChartManager {
 				data.get(LastActiveIndex).DeFocused();
 			}
 			LastActiveIndex = data.indexOf(point);
-			//debug
-			System.out.println(this.toString());
 		}
 	}
 	
