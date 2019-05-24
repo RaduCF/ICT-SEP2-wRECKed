@@ -30,12 +30,16 @@ public class LocalData extends ChartManager {
 	 */
 	public void updateLocal() {
 		synchronized (chartManager) {
+			//Check for new data
 			if (taskSpy.getIncoming().equals("")){
 				return;
 			}
+			//update init
 			String currentActiveAPP = taskSpy.getIncoming();
-			taskSpy.nullIncoming();
-			System.out.println("Data added: " + currentActiveAPP);
+			taskSpy.resetIncoming();
+			//debug
+			System.out.println("Changed application: " + currentActiveAPP);
+			//update DataPoint
 			for (int i = 0; i < data.size(); i++) {
 				if (currentActiveAPP.equals(data.get(i).getId())) {
 					if (LastActiveIndex != -1) {
@@ -46,13 +50,15 @@ public class LocalData extends ChartManager {
 					return;
 				}
 			}
+			//Datapoint does not exist
 			DataPoint point = new DataPoint(currentActiveAPP);
 			point.Focused();
 			data.add(point);
 			if (LastActiveIndex != -1) {
 				data.get(LastActiveIndex).DeFocused();
 			}
-			LastActiveIndex = data.indexOf(point);	
+			LastActiveIndex = data.indexOf(point);
+			//debug
 			System.out.println(this.toString());
 		}
 	}

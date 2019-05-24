@@ -30,7 +30,7 @@ public class TaskSpy implements Runnable{
     	return incoming;
     }
     
-    public void nullIncoming() { 
+    public void resetIncoming() { 
     	synchronized (incoming) {
         	incoming = "";	
 		}
@@ -48,7 +48,7 @@ public class TaskSpy implements Runnable{
                     serverSocket = new ServerSocket(5000, 10);
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
-            		init = true;
+                    init = true;
         		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
         	
                 System.out.println("TaskSpy initializing complete...");
@@ -65,16 +65,14 @@ public class TaskSpy implements Runnable{
                 in.read(receivedBytes, 0, len);
                 received = new String(receivedBytes, 0, len);
 
-                System.out.println("Changed application " + received);
                 incoming = received;
 
 
             } catch (Exception e){
                	System.out.println(e);
-               	process.destroy();
-            	socket = null;
-            	serverSocket = null;
-            	in = null;
+               	try {
+					serverSocket.close();
+				} catch (IOException e1) {}
             	init = false;
             }
 		}
