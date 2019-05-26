@@ -17,21 +17,22 @@ public class ProgramListView {
     private MainView parent;
     private Scene scene;
     private String title;
-    private SimpleIntegerProperty count;
+    private SimpleIntegerProperty countProperty;
     private ArrayList<SimpleStringProperty> dataNameProperties;
+    private ArrayList<SimpleStringProperty> usedDataNameProperties;
     @FXML
     private ListView<String> listView;
 
-    public void init(ProgramListViewModel model, MainView parent, Scene scene, String title)
+    public void init(ArrayList<SimpleStringProperty> usedDataNameProperties, ProgramListViewModel model, MainView parent, Scene scene, String title)
     {
         this.model = model;
         this.parent = parent;
         this.scene = scene;
         this.title = title;
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        count = new SimpleIntegerProperty();
-        dataNameProperties = new ArrayList<>();
-
+        countProperty = new SimpleIntegerProperty();
+        this.dataNameProperties = new ArrayList<>();
+        this.usedDataNameProperties = usedDataNameProperties;
         loadData();
 
     }
@@ -45,28 +46,50 @@ public class ProgramListView {
     public void submit(ActionEvent evt) // sends data names to the comparisonView
     {
         ObservableList<String> programs;
+        ArrayList<String> sendablePrograms = new ArrayList<>();
         programs = listView.getSelectionModel().getSelectedItems();
-        parent.getComparisonView().loadData(programs);
+        System.out.println("ProgramListView: submit: Selected program ammount: "+ programs.size());
+        for(int i=0;i<programs.size();i++)
+        {
+            sendablePrograms.add(programs.get(i));
+        }
+
+        parent.getComparisonView().loadData(sendablePrograms);
+        listView.getSelectionModel().clearSelection();
+        parent.closeProgramListView();
     }
 
     public void loadData() {
 
         model.loadData();
         bindProperties();
-
-        for(int i=0;i<count.intValue();i++)
+        boolean add;
+        for(int i = 0; i< countProperty.intValue(); i++)
         {
-            listView.getItems().add(dataNameProperties.get(i).getValue());
+            add=true;
+            if(usedDataNameProperties.size()!=0) {
+                for(int j=0;j<usedDataNameProperties.size();j++) {
+                    if(dataNameProperties.get(i).getValue().equals(usedDataNameProperties.get(j).getValue()))
+                    {
+                       add=false;
+                    }
+                }
+                if(add==true) {
+                     listView.getItems().add(dataNameProperties.get(i).getValue());
+                }
+            }
+            else {
+                listView.getItems().add(dataNameProperties.get(i).getValue());
+            }
         }
     }
 
     public void bindProperties() // creates and binds this class properties to the existing model properties
     {
-        count.bindBidirectional(model.getCountProperty());
+        countProperty.bindBidirectional(model.getCountProperty());
         dataNameProperties.clear();
 
-        for(int i=0;i<count.intValue();i++)
-        {
+        for(int i = 0; i< countProperty.intValue(); i++) {
             dataNameProperties.add(new SimpleStringProperty());
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
         }

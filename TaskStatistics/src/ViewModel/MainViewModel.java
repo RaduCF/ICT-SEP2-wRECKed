@@ -43,4 +43,6 @@ public class MainViewModel implements PropertyChangeListener {
     public ComparisonViewModel getComparisonViewModel() {return comparisonViewModel;}
 
     public ProgramListViewModel getProgramListViewModel(){return programListViewModel;}
+
+
 }

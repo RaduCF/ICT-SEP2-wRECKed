@@ -2,12 +2,14 @@ package View;
 
 import ViewModel.MainViewModel;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainView {
     private Stage primaryStage;
@@ -16,7 +18,9 @@ public class MainView {
     private MainViewModel mainViewModel;
     private ComparisonView comparisonView;
     private ProgramListView programListView;
-    private Stage secondaryStage;
+    private RemoveProgamListView removeProgramListView;
+    private Stage programListViewStage;
+    private Stage programRemoveListStage;
 
     public MainView(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
@@ -88,24 +92,24 @@ public class MainView {
         primaryStage.show();
     }
 
-    public void openProgramListView()
+    public void openProgramListView(ArrayList<SimpleStringProperty> dataNameProperties)
     {
-        secondaryStage = new Stage();
+        programListViewStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root,900,500);
             programListView = loader.getController();
-            programListView.init( mainViewModel.getProgramListViewModel(),this,scene,"SelectPrograms");
+            programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(),this,scene,"SelectPrograms");
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        secondaryStage.setScene(programListView.getScene());
-        secondaryStage.setTitle(programListView.getTitle());
-        secondaryStage.show();
+        programListViewStage.setScene(programListView.getScene());
+        programListViewStage.setTitle(programListView.getTitle());
+        programListViewStage.show();
     }
 
     public void close(){
@@ -114,11 +118,39 @@ public class MainView {
 
     public ComparisonView getComparisonView(){return comparisonView;}
 
-    public void closeComparisonView()
+    public RemoveProgamListView getRemoveProgramListView(){return removeProgramListView;}
+
+    public void closeProgramListView()
     {
-        if (secondaryStage.getScene() != null){
-            secondaryStage.getScene().getWindow().hide();
+        if (programListViewStage.getScene() != null){
+            programListViewStage.getScene().getWindow().hide();
         }
+    }
+    public void closeProgramRemoveListView()
+    {
+        if (programRemoveListStage.getScene() != null){
+            programRemoveListStage.getScene().getWindow().hide();
+        }
+    }
+
+    public void openProgramRemoveListView()
+    {
+        programRemoveListStage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("RemoveProgramsFXML.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root,900,500);
+            removeProgramListView = loader.getController();
+            removeProgramListView.init(this,scene,"RemovePrograms");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        programRemoveListStage.setScene(removeProgramListView.getScene());
+        programRemoveListStage.setTitle(removeProgramListView.getTitle());
+        programRemoveListStage.show();
     }
 
 }
