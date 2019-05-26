@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{31D04471-E177-4218-A3A6-6BFD81F46BC3}</ProjectGuid>
+    <ProjectGuid>{310B7BDE-BA8D-44C2-A259-D40F06CF247C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>TaskSpy</RootNamespace>
     <AssemblyName>TaskSpy</AssemblyName>
@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

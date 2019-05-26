@@ -1,0 +1,7 @@
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Debug\TaskSpy.exe.config
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Debug\TaskSpy.exe
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\bin\Debug\TaskSpy.pdb
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csprojAssemblyReference.cache
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csproj.CoreCompileInputs.cache
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.exe
+C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.pdb

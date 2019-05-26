@@ -5,6 +5,7 @@ import Model.Domain.ChartManager;
 import Model.Domain.ChartManager.SORTTYPE;
 import Model.Domain.DataPoint;
 import Model.Domain.LocalData;
+import Model.Domain.TaskSpy;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,27 +18,32 @@ public class Client implements Runnable, ClientModel {
 
     private ClientModel clientModel;
     private Receiver receiver;
-
     
-    private LocalData localData = new LocalData("temporary");
-
+    //Domain init:
+    private LocalData localData;
+    
     public Client(){
-
-        this.receiver= new Receiver(localData);
+    	localData = new LocalData(getUserID());
+    	/* Receiver is not used?!?!
+        this.receiver= new Receiver();
 
         Thread thread = new Thread(receiver);
         thread.start();
-
+		*/
     }
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-        System.out.println("Running the client...");
+		/*
+		System.out.println("Running the client...");
         if(!connect())
         {
             System.out.println("Not connected!!");
         }
+        */
+		while (true) {
+	        localData.updateLocal();
+		}
 	}
 	
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
@@ -82,6 +88,7 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Connected!");
         } catch (Exception e)
         {
+        	System.out.println(e);
             return false;
         }
 

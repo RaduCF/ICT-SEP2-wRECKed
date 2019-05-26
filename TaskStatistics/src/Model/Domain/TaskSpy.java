@@ -4,58 +4,79 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
 
-public class TaskSpy {
+public class TaskSpy implements Runnable{
 
-	ServerSocket serverSocket;
-    Socket socket;
-    InputStream in; 
+	private ServerSocket serverSocket;
+    private Socket socket;
+    private InputStream in; 
+    private Process process;
+    
+    private String incoming;
 	
-    boolean init = false;
+    private boolean init = false;
      
+    public TaskSpy() {
+    	incoming = "";
+    }
+    
     public void close()
     {
     	try {
             socket.close();	
-		} catch (Exception e) {
-			// TODO: handle exceptio
+		} catch (Exception e) {}
+    }
+    
+    public String getIncoming() {
+    	return incoming;
+    }
+    
+    public void nullIncoming() { 
+    	synchronized (incoming) {
+        	incoming = "";	
 		}
     }
-     
-    public String run()
+    
+    public void run()
     {
-        System.out.print("TaskSpy run method starting.");
+        System.out.println("TaskSpy run method starting.");
+    	while (true) {
+    		if(!init)
+        	{
+        		try
+        		{
+                    process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
+                    serverSocket = new ServerSocket(5000, 10);
+                    socket = serverSocket.accept();
+                    in = socket.getInputStream();
+            		init = true;
+        		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
+        	
+                System.out.println("TaskSpy initializing complete...");
+        	}
+            try
+            {
+                String received = "";
+                // Receiving
+                byte[] lenBytes = new byte[4];
+                in.read(lenBytes, 0, 4);
+                int len = (((lenBytes[3] & 0xff) << 24) | ((lenBytes[2] & 0xff) << 16) |
+                        ((lenBytes[1] & 0xff) << 8) | (lenBytes[0] & 0xff));
+                byte[] receivedBytes = new byte[len];
+                in.read(receivedBytes, 0, len);
+                received = new String(receivedBytes, 0, len);
 
-    	if(!init)
-    	{
-    		try
-    		{
-                serverSocket = new ServerSocket(5000, 10);
-                socket = serverSocket.accept();
-                in = socket.getInputStream();
-    		} catch (Exception e){}
-    	
-    		init = true;
-    	}
-        System.out.print("TaskSpy initializing complete...");
-        try
-        {
-
-            String received = "";
-            // Receiving
-            byte[] lenBytes = new byte[4];
-            in.read(lenBytes, 0, 4);
-            int len = (((lenBytes[3] & 0xff) << 24) | ((lenBytes[2] & 0xff) << 16) |
-                    ((lenBytes[1] & 0xff) << 8) | (lenBytes[0] & 0xff));
-            byte[] receivedBytes = new byte[len];
-            in.read(receivedBytes, 0, len);
-            received = new String(receivedBytes, 0, len);
-
-            return received;
+                System.out.println("Changed application " + received);
+                incoming = received;
 
 
-        } catch (Exception e){}
-
-        return null;
+            } catch (Exception e){
+               	System.out.println(e);
+               	process.destroy();
+            	socket = null;
+            	serverSocket = null;
+            	in = null;
+            	init = false;
+            }
+		}
     }
-
 }
