@@ -40,8 +40,7 @@ public class ComparisonView {
 
     private ArrayList<SimpleStringProperty> usedLocalDataNameProperties;
     private ArrayList<SimpleDoubleProperty> usedLocalDataValueProperties;
-    private ArrayList<SimpleStringProperty> usedGlobalDataNameProperties;
-    private ArrayList<SimpleDoubleProperty> usedGlobalDataValueProperties;
+
 
 
     public void init(MainView parent, ComparisonViewModel model, Scene scene, String title) {
@@ -56,8 +55,6 @@ public class ComparisonView {
 
         usedLocalDataNameProperties = new ArrayList<>();
         usedLocalDataValueProperties = new ArrayList<>();
-        usedGlobalDataNameProperties = new ArrayList<>();
-        usedGlobalDataValueProperties = new ArrayList<>();
     }
 
 

@@ -43,12 +43,7 @@ public class UserViewModel {
         System.out.println("loadLocalData ended...");
     }
 
-    public SimpleDoubleProperty getDataValueProperty(int index)
-    {
-
-        return dataValueProperties.get(index);
-    }
-
+    public SimpleDoubleProperty getDataValueProperty(int index) { return dataValueProperties.get(index); }
     public SimpleStringProperty getDataNameProperty(int index)
     {
         return dataNameProperties.get(index);
