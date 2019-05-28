@@ -5,3 +5,10 @@ C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csprojAssembly
 C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csproj.CoreCompileInputs.cache
 C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.exe
 C:\Users\TheDragon\source\repos\TaskSpy\TaskSpy\obj\Debug\TaskSpy.pdb
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\bin\Debug\TaskSpy.exe.config
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\bin\Debug\TaskSpy.exe
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\bin\Debug\TaskSpy.pdb
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csprojAssemblyReference.cache
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\obj\Debug\TaskSpy.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\obj\Debug\TaskSpy.exe
+C:\Users\Lenovo\eclipse-workspace\ICT-SEP2-wRECKed\TaskSpy\TaskSpy\obj\Debug\TaskSpy.pdb
