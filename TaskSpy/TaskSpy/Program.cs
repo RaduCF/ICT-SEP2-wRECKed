@@ -119,7 +119,7 @@ namespace TaskSpy
                     y = Cursor.Position.Y;
                 }
 
-                if (time >= 30)
+                if (time >= 600)
                 {
                     title = "AFK";
                 }
