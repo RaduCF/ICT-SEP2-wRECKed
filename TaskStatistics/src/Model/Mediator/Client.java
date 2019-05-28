@@ -41,8 +41,16 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Not connected!!");
         }
         */
-		while (true) {
-	        localData.updateLocal();
+		synchronized (this) {
+			while (true) {
+				try {
+					this.wait(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        localData.updateLocal();
+			}	
 		}
 	}
 	
