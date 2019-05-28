@@ -25,11 +25,9 @@ public class LocalData extends ChartManager {
 	
 	/**
 	 * updates local dataPoints and creates new if new programs are used
-	 * @param CurrentActiveAPP
-	 * @param isActive
 	 */
 	public void updateLocal() {
-		synchronized (chartManager) {
+		synchronized (taskSpy) {
 			//Check for new data
 			if (taskSpy.getIncoming().equals("")){
 				return;
