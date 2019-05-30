@@ -54,8 +54,25 @@ public class Client implements Runnable, ClientModel {
 	}
 
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
-		return this.localData.getData(type);
+        ArrayList<DataPoint> dummy = new ArrayList<>();
+        dummy.add(new DataPoint("Netflix"));
+        dummy.add(new DataPoint("Chrome"));
+        dummy.add(new DataPoint("ssfg"));
+        dummy.add(new DataPoint("Chromgdgdsge"));
+        dummy.add(new DataPoint("sgsdsgs"));
+        return dummy;
+		//return this.localData.getData(type);
 	}
+
+    public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
+        ArrayList<DataPoint> dummy = new ArrayList<>();
+        dummy.add(new DataPoint("oikjuhyg"));
+        dummy.add(new DataPoint("Chrgtgtgtgtgome"));
+        dummy.add(new DataPoint("tydhgfrtr"));
+        dummy.add(new DataPoint("erqtqrefre"));
+        dummy.add(new DataPoint("reqtqertrtre"));
+        return dummy;
+    }
 
     @Override
     public boolean attemptLogin(String password) {
@@ -99,8 +116,7 @@ public class Client implements Runnable, ClientModel {
 		return istream.readFloat();
 	}
 
-	public void reportBug(String str)
-	{
+	public void reportBug(String str) throws IOException {
 		stream.writeInt(3);
 		stream.writeUTF(str);
 	}

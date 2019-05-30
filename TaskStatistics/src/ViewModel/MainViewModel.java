@@ -3,6 +3,8 @@ package ViewModel;
 import Model.Mediator.ObservableModel;
 import View.MainView;
 import javafx.application.Platform;
+import sun.applet.Main;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -22,6 +24,7 @@ public class MainViewModel implements PropertyChangeListener {
         reportBugViewModel=new ReportBugViewModel(model);
         userViewModel = new UserViewModel(model);
         viewModelLogin = new LoginViewModel(model);
+        mainView = MainView.getInstance(this);
         comparisonViewModel = new ComparisonViewModel(model);
         programListViewModel = new ProgramListViewModel(model);
         System.out.println("MainViewModel: Constructor: adding listener to ObservableModel");
@@ -36,14 +39,17 @@ public class MainViewModel implements PropertyChangeListener {
 
         Platform.runLater(() -> {
                     System.out.println("MainViewModel: propertyChange: A property change has been detected!");
-            switch (evt.getPropertyName()){
-                case "dataUpdate" : {
+            if (evt.getPropertyName().equals("dataUpdate")){
                     System.out.println("MainViewModel: propertyChange: loading userViewModel local data "+ evt.getNewValue().toString());
                     userViewModel.loadLocalData(evt.getNewValue());
-                }
+                    mainView.loadData();
             }
-        }
-        );
+            else if(evt.getPropertyName().equals("Moredata")){
+                System.out.println("MainViewModel: propertyChange: loading userViewModel local data "+ evt.getNewValue().toString());
+                userViewModel.loadLocalData(evt.getNewValue());
+                mainView.loadData();
+            }
+        });
 
     }
 

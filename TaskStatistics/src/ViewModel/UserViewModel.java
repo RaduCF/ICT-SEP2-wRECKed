@@ -5,6 +5,7 @@ import Model.Domain.DataPoint;
 import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class UserViewModel {
 
     private ArrayList<SimpleDoubleProperty> dataValueProperties;
     private ArrayList <SimpleStringProperty> dataNameProperties;
+    private StringProperty title;
 
 
     ArrayList<SimpleStringProperty> hours = new ArrayList<>();
@@ -25,9 +27,14 @@ public class UserViewModel {
         this.observableModel = observableModel;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
+        title = new SimpleStringProperty();
         initializeProperties();
     }
 
+    public void getMoreData(){
+        System.out.println("UserViewModel: getMoreData: Calling ObservableModel getMoreData ");
+        observableModel.getMoreData(ChartManager.SORTTYPE.RAW);
+    }
 
     public void getLocalData() {
         System.out.println("UserViewModel: getLocalData: Calling ObservableModel getLocalData ");
@@ -48,8 +55,8 @@ public class UserViewModel {
     {
         for(int i=0;i<list.size();i++)
         {
-            System.out.println("UserViewModel: setValueProperties: loop: "+i+" value: "+list.get(i).getHours());
-           dataValueProperties.get(i).set(list.get(i).getHours());
+           dataValueProperties.get(i).setValue(list.get(i).getHours());
+            System.out.println("UserViewModel: setValueProperties: loop: "+i+" value: "+dataValueProperties.get(i).getValue());
         }
     }
 
@@ -58,14 +65,15 @@ public class UserViewModel {
         System.out.println("UserViewModel: setNameProperties: list size is: "+list.size());
         for(int i=0;i<list.size();i++)
         {
-            System.out.println("UserViewModel: setNameProperties: loop: "+i+" name: "+list.get(i).getId());
-            dataNameProperties.get(i).set(list.get(i).getId());
+            dataNameProperties.get(i).setValue(list.get(i).getId());
+            System.out.println("UserViewModel: setNameProperties: loop: "+i+" name: "+dataNameProperties.get(i).getValue());
         }
     }
 
 
     public void loadLocalData(Object data)
     {
+
         ArrayList<DataPoint> newArrayList = new ArrayList<>();
         newArrayList.addAll((ArrayList<DataPoint>)data);
 
@@ -76,8 +84,7 @@ public class UserViewModel {
 
     public ArrayList<SimpleDoubleProperty> getDataValueProperties() { return dataValueProperties; }
     public ArrayList<SimpleStringProperty> getDataNameProperties() { return dataNameProperties; }
-
-
-
-
+    public StringProperty titleProperty() {
+        return title;
+    }
 }

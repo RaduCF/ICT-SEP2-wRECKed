@@ -3,13 +3,11 @@ package View;
 import ViewModel.UserViewModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-
-
+import javafx.scene.control.Label;
 import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
@@ -23,6 +21,8 @@ public class UserView  {
 
     @FXML
     private BarChart barChart;
+    @FXML
+    private Label Title;
 
     private ArrayList <SimpleDoubleProperty> dataValueProperties;
     private ArrayList <SimpleStringProperty> dataNameProperties;
@@ -41,9 +41,6 @@ public class UserView  {
 
         initializeProperties();
         bindProperties();
-
-        handleBarChartData();
-        System.out.println("Works!");
     }
 
     public UserView() {
@@ -72,44 +69,22 @@ public class UserView  {
 
 
     public void handleBarChartData() {
-        System.out.println("Putting thread to sleep!");
-        try {
-            sleep(4567);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         XYChart.Series displaySet = new XYChart.Series();
-
-        for(int i=0;i<2;i++)
-        {
-            System.out.println("UserView: handleBarChartData: loop "+i);
-            displaySet.getData().add(new XYChart.Data( dataNameProperties.get(i).getValue(), dataValueProperties.get(i).getValue()));
-        }
-
-        barChart.getData().addAll(displaySet);
-        System.out.println("Data loaded.");
-    }
-
-
-
-
-    public void refresh()
-    {
         barChart.getData().clear();
 
-        System.out.println("Loading data..");
-        XYChart.Series displaySet = new XYChart.Series();
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(0).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(1).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(2).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(3).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(4).getValue()));
+        for(int i=0;i<5;i++)
+        {
+            if(dataValueProperties.get(i) != null)
+            {
+                System.out.println("UserView: handleBarChartData: loop "+i);
+                displaySet.getData().add(new XYChart.Data( dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
+            }
+        }
 
         barChart.getData().addAll(displaySet);
-
         System.out.println("Data loaded.");
     }
-
 
     public Scene getScene()
     {
@@ -122,32 +97,22 @@ public class UserView  {
     }
 
     @FXML
-    public void comparison(ActionEvent event){
-        parent.openComparisonView();
-    }
-
-    @FXML
-    public void login(ActionEvent event)
+    public void nextPage()
     {
-        parent.openLoginView();
+for(int i=0;i<dataNameProperties.size();i++)
+{
+    System.out.println("UserView: nextPage: data name "+i+" is: " + dataNameProperties.get(i).getValue());
+}
     }
 
     @FXML
-    public void nextPage(ActionEvent event)
-    {
-        System.out.println("Loading next page..");
-        refresh();
-        System.out.println("Page loaded.");
-    }
-
-    @FXML
-    public void previousPage(ActionEvent event)
+    public void previousPage()
     {
         System.out.println("Loading previous page..");
-        refresh();
+        //refresh();
         System.out.println("Page loaded.");
     }
-
+/*
     public void refresh()
     {
         model.loadLocalData();
@@ -165,13 +130,20 @@ public class UserView  {
 
         System.out.println("Data loaded.");
     }
+    */
 
     @FXML
     public void comparison(){
         parent.openComparisonView();
     }
 
+    @FXML
     public void Report() {
         parent.OpenSendReportView();
+    }
+
+    @FXML
+    public void AutoUpdate() {
+        model.getMoreData();
     }
 }
