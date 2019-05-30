@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
 
    <children>
       <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="41.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Next" textFill="RED">
@@ -19,21 +19,21 @@
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button layoutX="6.0" layoutY="334.0" mnemonicParsing="false" onAction="#comparison" prefHeight="66.0" prefWidth="100.0" style="-fx-background-color: #0BA4B0;" text="Comparison" textFill="#e5ff00">
+      <Button layoutX="6.0" layoutY="284.0" mnemonicParsing="false" onAction="#comparison" prefHeight="66.0" prefWidth="100.0" style="-fx-background-color: #0BA4B0;" text="Comparison" textFill="#e5ff00">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="ReportBug" layoutX="537.0" layoutY="434.0" mnemonicParsing="false" onAction="#Report" prefHeight="41.0" prefWidth="141.0" style="-fx-background-color: #0BA4B0;" text="Report a bug" textFill="#00ff1e">
+      <Button fx:id="ReportBug" layoutX="537.0" layoutY="434.0" mnemonicParsing="false" onAction="#Report" prefHeight="41.0" prefWidth="141.0" style="-fx-background-color: #0BA4B0;" text="Report a bug" textFill="#cd0000">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="Title" layoutX="128.0" layoutY="427.0" prefHeight="55.0" prefWidth="343.0" text="Task Statistics" textFill="#3401ff">
+      <Label fx:id="Title" layoutX="19.0" layoutY="427.0" prefHeight="55.0" prefWidth="343.0" text="Task Statistics" textFill="#6643ff">
          <font>
             <Font name="Bauhaus 93" size="34.0" />
          </font>
       </Label>
-      <BarChart fx:id="barChart" layoutX="114.0" layoutY="25.0" prefHeight="400.0" prefWidth="576.0">
+      <BarChart fx:id="barChart" barGap="3.0" layoutX="114.0" layoutY="25.0" prefHeight="400.0" prefWidth="576.0">
         <xAxis>
           <CategoryAxis animated="false" side="BOTTOM" />
         </xAxis>
@@ -41,7 +41,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <Button fx:id="Update" layoutX="6.0" layoutY="215.0" mnemonicParsing="false" onAction="#AutoUpdate" prefHeight="66.0" prefWidth="100.0" style="-fx-background-color: #0BA4B0;" text="Auto-update" textFill="#e5ff00" textOverrun="CLIP">
+      <Button fx:id="Update" layoutX="6.0" layoutY="198.0" mnemonicParsing="false" onAction="#Update" prefHeight="66.0" prefWidth="100.0" style="-fx-background-color: #0BA4B0;" text="Update data" textFill="#e5ff00" textOverrun="CLIP">
          <font>
             <Font size="14.0" />
          </font>

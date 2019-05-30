@@ -4,7 +4,6 @@ import ViewModel.ProgramListViewModel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -43,7 +42,7 @@ public class ProgramListView {
     public String getTitle(){return title;}
 
     @FXML
-    public void submit(ActionEvent evt) // sends data names to the comparisonView
+    public void submit() // sends data names to the comparisonView
     {
         ObservableList<String> programs;
         ArrayList<String> sendablePrograms = new ArrayList<>();
@@ -53,14 +52,12 @@ public class ProgramListView {
         {
             sendablePrograms.add(programs.get(i));
         }
-
         parent.getComparisonView().loadData(sendablePrograms);
         listView.getSelectionModel().clearSelection();
         parent.closeProgramListView();
     }
 
     public void loadData() {
-
         model.loadData();
         bindProperties();
         boolean add;

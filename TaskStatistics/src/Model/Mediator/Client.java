@@ -55,28 +55,23 @@ public class Client implements Runnable, ClientModel {
 
 	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
         ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("Netflix"));
-        dummy.add(new DataPoint("Chrome"));
-        dummy.add(new DataPoint("Spotify"));
-        dummy.add(new DataPoint("Outlook"));
-        dummy.add(new DataPoint("FileExplorer"));
+        dummy.add(new DataPoint("Netflix",10));
+        dummy.add(new DataPoint("Chrome",15));
+        dummy.add(new DataPoint("Spotify",90));
+        dummy.add(new DataPoint("Outlook",23));
+        dummy.add(new DataPoint("FileExplorer",53));
         return dummy;
 		//return this.localData.getData(type);
 	}
 
     public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
         ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("League of Legends"));
-        dummy.add(new DataPoint("Calculator"));
-        dummy.add(new DataPoint("IntelliJ"));
-        dummy.add(new DataPoint("EclipseIDE"));
-        dummy.add(new DataPoint("Brackets"));
+        dummy.add(new DataPoint("League of Legends",100));
+        dummy.add(new DataPoint("Calculator",5));
+        dummy.add(new DataPoint("IntelliJ",78));
+        dummy.add(new DataPoint("EclipseIDE",34));
+        dummy.add(new DataPoint("Brackets",29));
         return dummy;
-    }
-
-    @Override
-    public boolean attemptLogin(String password) {
-        return true;
     }
 
 	private String UserID = null;

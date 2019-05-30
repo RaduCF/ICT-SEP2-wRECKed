@@ -2,14 +2,12 @@ package View;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 
 import java.util.ArrayList;
-
 
 public class RemoveProgamListView {
     private Scene scene;
@@ -43,7 +41,7 @@ public class RemoveProgamListView {
     }
 
     @FXML
-    public void removePrograms (ActionEvent event)
+    public void removePrograms ()
     {
         ObservableList<String> programs;
         programs = listView.getSelectionModel().getSelectedItems();

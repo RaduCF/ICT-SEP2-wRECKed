@@ -9,14 +9,11 @@ import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 
-
-
 public class UserViewModel {
 
     private ArrayList<SimpleDoubleProperty> dataValueProperties;
     private ArrayList <SimpleStringProperty> dataNameProperties;
     private StringProperty title;
-
 
     ArrayList<SimpleStringProperty> hours = new ArrayList<>();
 
@@ -70,10 +67,8 @@ public class UserViewModel {
         }
     }
 
-
     public void loadLocalData(Object data)
     {
-
         ArrayList<DataPoint> newArrayList = new ArrayList<>();
         newArrayList.addAll((ArrayList<DataPoint>)data);
 
@@ -81,9 +76,14 @@ public class UserViewModel {
         setNameProperties(newArrayList);
     }
 
+    public ArrayList<SimpleDoubleProperty> getDataValueProperties() {
+        return dataValueProperties;
+    }
 
-    public ArrayList<SimpleDoubleProperty> getDataValueProperties() { return dataValueProperties; }
-    public ArrayList<SimpleStringProperty> getDataNameProperties() { return dataNameProperties; }
+    public ArrayList<SimpleStringProperty> getDataNameProperties() {
+        return dataNameProperties;
+    }
+
     public StringProperty titleProperty() {
         return title;
     }

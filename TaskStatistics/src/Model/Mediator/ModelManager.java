@@ -35,20 +35,8 @@ public class ModelManager implements ObservableModel, ClientModel {
 
     @Override
     public void getMoreData(SORTTYPE type) {
-        System.out.println("rquirig data");
-        while(true) {
+        System.out.println("Requiring more data...");
             property.firePropertyChange("Moredata", client.getMoreData(type), client.getMoreData(type));
-            try {
-                sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public boolean attemptLogin(String password) {
-        return client.attemptLogin(password);
     }
 
     @Override
