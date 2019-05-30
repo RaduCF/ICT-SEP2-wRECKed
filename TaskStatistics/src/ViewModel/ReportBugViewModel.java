@@ -4,6 +4,8 @@ import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.IOException;
+
 public class ReportBugViewModel {
     private ObservableModel model;
     private StringProperty comment;
@@ -17,7 +19,7 @@ public class ReportBugViewModel {
 
     }
 
-    public void sendReport(){
+    public void sendReport() throws IOException {
         model.sendReport(comment.getValue());
     }
 

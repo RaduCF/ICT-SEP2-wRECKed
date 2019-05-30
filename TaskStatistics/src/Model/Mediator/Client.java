@@ -57,20 +57,20 @@ public class Client implements Runnable, ClientModel {
         ArrayList<DataPoint> dummy = new ArrayList<>();
         dummy.add(new DataPoint("Netflix"));
         dummy.add(new DataPoint("Chrome"));
-        dummy.add(new DataPoint("ssfg"));
-        dummy.add(new DataPoint("Chromgdgdsge"));
-        dummy.add(new DataPoint("sgsdsgs"));
+        dummy.add(new DataPoint("Spotify"));
+        dummy.add(new DataPoint("Outlook"));
+        dummy.add(new DataPoint("FileExplorer"));
         return dummy;
 		//return this.localData.getData(type);
 	}
 
     public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
         ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("oikjuhyg"));
-        dummy.add(new DataPoint("Chrgtgtgtgtgome"));
-        dummy.add(new DataPoint("tydhgfrtr"));
-        dummy.add(new DataPoint("erqtqrefre"));
-        dummy.add(new DataPoint("reqtqertrtre"));
+        dummy.add(new DataPoint("League of Legends"));
+        dummy.add(new DataPoint("Calculator"));
+        dummy.add(new DataPoint("IntelliJ"));
+        dummy.add(new DataPoint("EclipseIDE"));
+        dummy.add(new DataPoint("Brackets"));
         return dummy;
     }
 

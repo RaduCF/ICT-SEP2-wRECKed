@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.io.IOException;
+
 import static java.lang.Thread.sleep;
 
 public class ReportBugView {
@@ -34,7 +36,7 @@ public class ReportBugView {
         model.subbmitedProperty().setValue("");
     }
 
-    public void SendReport() {
+    public void SendReport() throws IOException {
         model.sendReport();
         parent.openUserView();
     }
