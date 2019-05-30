@@ -46,6 +46,7 @@ public class Client implements Runnable, ClientModel {
 				try {
 					this.wait(1000);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		        localData.updateLocal();
@@ -93,13 +94,14 @@ public class Client implements Runnable, ClientModel {
         return UserID;
     }
 
-	public float getAvgHours(String program) throws IOException {
+	public float getAvgHours(String program) throws Exception
+	{
 		stream.writeInt(2);
 		stream.writeUTF(program);
 		return istream.readFloat();
 	}
 	
-	public void reportBug(String str)
+	public void reportBug(String str) throws Exception
 	{
 		stream.writeInt(3);
 		stream.writeUTF(str);
@@ -111,6 +113,7 @@ public class Client implements Runnable, ClientModel {
         {
             socket = new Socket("10.152.210.98",5001);
             stream = new DataOutputStream(socket.getOutputStream());
+			istream = new DataOutputStream(socket.getInputStream());
             System.out.println("Connected!");
         } catch (Exception e)
         {
@@ -126,7 +129,8 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Sending userID...");
             stream.writeUTF(userid);
             System.out.println("UserID sent!");
-        } catch (Exception e)
+        }
+		catch (Exception e)
         {
             return false;
         }
