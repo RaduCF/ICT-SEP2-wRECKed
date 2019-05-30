@@ -133,7 +133,11 @@ public class UserView {
     }
 
     @FXML
-    public void comparison(ActionEvent event){
+    public void comparison(){
         parent.openComparisonView();
+    }
+
+    public void Report() {
+        parent.OpenSendReportView();
     }
 }

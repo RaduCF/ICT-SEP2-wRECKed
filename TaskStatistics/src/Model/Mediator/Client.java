@@ -46,7 +46,6 @@ public class Client implements Runnable, ClientModel {
 				try {
 					this.wait(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		        localData.updateLocal();
@@ -94,8 +93,7 @@ public class Client implements Runnable, ClientModel {
         return UserID;
     }
 
-	public float getAvgHours(String program)
-	{
+	public float getAvgHours(String program) throws IOException {
 		stream.writeInt(2);
 		stream.writeUTF(program);
 		return istream.readFloat();
