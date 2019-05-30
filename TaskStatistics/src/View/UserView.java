@@ -39,7 +39,8 @@ public class UserView {
         bindProperties();
     }
 
-    public UserView() { }
+    public UserView() {
+    }
 
     public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
@@ -93,25 +94,26 @@ public class UserView {
         //refresh();
         System.out.println("Page loaded.");
     }
-/*
-    public void refresh()
-    {
-        model.loadLocalData();
-        barChart.getData().clear();
 
-        System.out.println("Loading data..");
-        XYChart.Series displaySet = new XYChart.Series();
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(0).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(1).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(2).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(3).getValue()));
-        displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(4).getValue()));
+    /*
+        public void refresh()
+        {
+            model.loadLocalData();
+            barChart.getData().clear();
 
-        barChart.getData().addAll(displaySet);
+            System.out.println("Loading data..");
+            XYChart.Series displaySet = new XYChart.Series();
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(0).getValue()));
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(1).getValue()));
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(2).getValue()));
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(3).getValue()));
+            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(4).getValue()));
 
-        System.out.println("Data loaded.");
-    }
-*/
+            barChart.getData().addAll(displaySet);
+
+            System.out.println("Data loaded.");
+        }
+    */
     @FXML
     public void comparison() {
         parent.openComparisonView();

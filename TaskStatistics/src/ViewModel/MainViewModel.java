@@ -19,7 +19,7 @@ public class MainViewModel implements PropertyChangeListener {
     public MainViewModel(ObservableModel model) {
         this.model = model;
 
-        reportBugViewModel=new ReportBugViewModel(model);
+        reportBugViewModel = new ReportBugViewModel(model);
         userViewModel = new UserViewModel(model);
         mainView = MainView.getInstance(this);
         comparisonViewModel = new ComparisonViewModel(model);
@@ -34,13 +34,12 @@ public class MainViewModel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
             System.out.println("MainViewModel: propertyChange: A property change has been detected!");
-            if (evt.getPropertyName().equals("dataUpdate")){
-                System.out.println("MainViewModel: propertyChange: loading userViewModel local data "+ evt.getNewValue().toString());
+            if (evt.getPropertyName().equals("dataUpdate")) {
+                System.out.println("MainViewModel: propertyChange: loading userViewModel local data " + evt.getNewValue().toString());
                 userViewModel.loadLocalData(evt.getNewValue());
                 mainView.loadData();
-            }
-            else if(evt.getPropertyName().equals("Moredata")){
-                System.out.println("MainViewModel: propertyChange: loading userViewModel local data "+ evt.getNewValue().toString());
+            } else if (evt.getPropertyName().equals("Moredata")) {
+                System.out.println("MainViewModel: propertyChange: loading userViewModel local data " + evt.getNewValue().toString());
                 userViewModel.loadLocalData(evt.getNewValue());
                 mainView.loadData();
             }
@@ -55,7 +54,7 @@ public class MainViewModel implements PropertyChangeListener {
         return comparisonViewModel;
     }
 
-    public ProgramListViewModel getProgramListViewModel(){
+    public ProgramListViewModel getProgramListViewModel() {
         return programListViewModel;
     }
 

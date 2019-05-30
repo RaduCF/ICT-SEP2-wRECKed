@@ -120,6 +120,4 @@ public class LocalData extends ChartManager {
 	public ArrayList<DataPoint> getSpecific(String[] apps){
 		return this.getSpecific(apps);
 	}
-
-
 }

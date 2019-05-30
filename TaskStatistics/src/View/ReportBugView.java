@@ -31,9 +31,9 @@ public class ReportBugView {
 
         submitted.requestFocus();
         Comment.textProperty().bindBidirectional(model.commentProperty());
-        submitted.textProperty().bindBidirectional(model.subbmitedProperty());
+        submitted.textProperty().bindBidirectional(model.submittedProperty());
         model.commentProperty().setValue("");
-        model.subbmitedProperty().setValue("");
+        model.submittedProperty().setValue("");
     }
 
     public void SendReport() throws IOException {

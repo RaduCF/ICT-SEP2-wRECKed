@@ -108,7 +108,7 @@ public class MainView {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 900, 500);
+            Scene scene = new Scene(root, 278, 325);
             programListView = loader.getController();
             programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(), this, scene, "SelectPrograms");
         } catch (Exception e) {
@@ -150,7 +150,7 @@ public class MainView {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("RemoveProgramsFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 900, 500);
+            Scene scene = new Scene(root, 278, 325);
             removeProgramListView = loader.getController();
             removeProgramListView.init(this, scene, "RemovePrograms");
         } catch (Exception e) {
@@ -167,7 +167,8 @@ public class MainView {
             primaryStage.getScene().getWindow().hide();
         }
     }
-    public void loadData(){
+
+    public void loadData() {
         userView.handleBarChartData();
     }
 

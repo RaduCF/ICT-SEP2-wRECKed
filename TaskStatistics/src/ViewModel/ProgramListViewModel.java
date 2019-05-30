@@ -12,15 +12,13 @@ public class ProgramListViewModel {
     private ArrayList<SimpleStringProperty> dataNameProperties;
     private SimpleIntegerProperty countProperty;
 
-   public ProgramListViewModel(ObservableModel model)
-    {
+    public ProgramListViewModel(ObservableModel model) {
         this.model = model;
         countProperty = new SimpleIntegerProperty();
         dataNameProperties = new ArrayList<>();
     }
 
-    public void loadData()
-    {
+    public void loadData() {
 
         dataNameProperties.clear(); // clear all remaining data
 
@@ -29,29 +27,25 @@ public class ProgramListViewModel {
 
         initializeProperties(); // we initialize objects with this method
 
-        for(int i=0;i<countProperty.intValue();i++) // as many as there are tasks:
+        for (int i = 0; i < countProperty.intValue(); i++) // as many as there are tasks:
         {
             //dataNameProperties.get(i).set(model.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getId()); // get data name from data storage
-            dataNameProperties.get(i).set("Testing program "+i); // dummy get data name from storage
+            dataNameProperties.get(i).set("Testing program " + i); // dummy get data name from storage
         }
     }
 
-    public void initializeProperties()
-    {
-        for(int i=0;i<countProperty.intValue();i++) // as many as there are tasks:
+    public void initializeProperties() {
+        for (int i = 0; i < countProperty.intValue(); i++) // as many as there are tasks:
         {
             dataNameProperties.add(new SimpleStringProperty());  // create simpleStringProperty
         }
     }
 
-
-
-    public SimpleIntegerProperty getCountProperty()
-    {
+    public SimpleIntegerProperty getCountProperty() {
         return countProperty;
     }
-    public ArrayList<SimpleStringProperty> getDataNameProperties()
-    {
+
+    public ArrayList<SimpleStringProperty> getDataNameProperties() {
         return dataNameProperties;
     }
 }
