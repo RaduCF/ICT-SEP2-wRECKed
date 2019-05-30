@@ -63,27 +63,35 @@ public class Client implements Runnable, ClientModel {
         return true;
     }
 
+	private String UserID = null;
     public String getUserID()
     {
-        //Combine attributes to get a strong hardware ID
-        int cores = Runtime.getRuntime().availableProcessors();
-        String username =  System.getProperty("user.name");
-        long maxMemory = Runtime.getRuntime().maxMemory();
+		if (UserID == null)
+		{
+					
+			//Combine attributes to get a strong hardware ID
+			int cores = Runtime.getRuntime().availableProcessors();
+			String username =  System.getProperty("user.name");
+			long maxMemory = Runtime.getRuntime().maxMemory();
+	
+			String _hash = cores + username + maxMemory;
+			String hash = "";
+	
+			try
+			{
+				MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+				messageDigest.update(_hash.getBytes());
+				hash = new String(messageDigest.digest());
+			} catch (Exception ex)
+			{
+			System.out.println("Something went wrong in the client...");
+			}
+			
+			UserID = hash;
+			return hash;
+		}
 
-        String _hash = cores + username + maxMemory;
-        String hash = "";
-
-        try
-        {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(_hash.getBytes());
-            hash = new String(messageDigest.digest());
-        } catch (Exception ex)
-        {
-        System.out.println("Something went wrong in the client...");
-        }
-
-        return hash;
+        return UserID;
     }
 
 	public float getAvgHours(String program)
@@ -91,6 +99,12 @@ public class Client implements Runnable, ClientModel {
 		stream.writeInt(2);
 		stream.writeUTF(program);
 		return istream.readFloat();
+	}
+	
+	public void reportBug(String str)
+	{
+		stream.writeInt(3);
+		stream.writeUTF(str);
 	}
 
     public boolean connect() {
