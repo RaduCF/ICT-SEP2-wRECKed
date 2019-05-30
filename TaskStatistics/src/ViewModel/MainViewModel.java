@@ -14,9 +14,12 @@ public class MainViewModel implements PropertyChangeListener {
     private MainView mainView;
     private ComparisonViewModel comparisonViewModel;
     private ProgramListViewModel programListViewModel;
+    private ReportBugViewModel reportBugViewModel;
 
     public MainViewModel(ObservableModel model) {
         this.model = model;
+
+        reportBugViewModel=new ReportBugViewModel(model);
         userViewModel = new UserViewModel(model);
         viewModelLogin = new LoginViewModel(model);
         comparisonViewModel = new ComparisonViewModel(model);
@@ -44,18 +47,13 @@ public class MainViewModel implements PropertyChangeListener {
 
     }
 
+    public LoginViewModel getViewModelLogin() { return viewModelLogin; }
 
-    public LoginViewModel getViewModelLogin() {
-        return viewModelLogin;
-    }
-    
-    public UserViewModel getUserViewModel() {
-    return userViewModel;
-    }
+    public UserViewModel getUserViewModel() { return userViewModel; }
 
-    public ComparisonViewModel getComparisonViewModel() {return comparisonViewModel;}
+    public ComparisonViewModel getComparisonViewModel() { return comparisonViewModel;}
 
-    public ProgramListViewModel getProgramListViewModel(){return programListViewModel;}
+    public ProgramListViewModel getProgramListViewModel(){ return programListViewModel;}
 
-
+    public ReportBugViewModel getReportBugViewModel() { return reportBugViewModel; }
 }

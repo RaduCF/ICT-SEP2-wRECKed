@@ -5,6 +5,5 @@ import utility.observer.subject.PropertyChangeSubject;
 
 public interface ObservableModel extends PropertyChangeSubject, ClientModel {
     boolean attemptLogin(String password);
-     void getLocalData(ChartManager.SORTTYPE type);
-
+    void sendReport(String comment);
 }

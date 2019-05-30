@@ -19,6 +19,7 @@ public class MainView {
     private ComparisonView comparisonView;
     private ProgramListView programListView;
     private RemoveProgamListView removeProgramListView;
+    private ReportBugView reportBugView;
     private Stage programListViewStage;
     private Stage programRemoveListStage;
 
@@ -57,7 +58,7 @@ public class MainView {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userViewFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,900,500);
+            Scene scene = new Scene(root,710,500);
             userView= loader.getController();
             userView.init(this,mainViewModel.getUserViewModel(),scene, "UserView");
         }
@@ -73,6 +74,25 @@ public class MainView {
         primaryStage.show();
         System.out.println("works!");
 
+    }
+    public void OpenSendReportView()  {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ReportBugFXML.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root,600,400);
+            reportBugView= loader.getController();
+            reportBugView.init(this,mainViewModel.getReportBugViewModel(),scene, "UserView");
+        }
+        catch (Exception e){
+            e.getStackTrace();
+        }
+        if (primaryStage.getScene() != null){
+            primaryStage.getScene().getWindow().hide();
+        }
+        primaryStage.setScene(reportBugView.getScene());
+        primaryStage.setTitle(reportBugView.getTitle());
+        primaryStage.show();
     }
 
     public void openComparisonView(){

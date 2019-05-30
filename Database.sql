@@ -1,33 +1,32 @@
 SET SCHEMA 'TaskStatistics';
 
-DROP TABLE Task CASCADE;
 CREATE TABLE Task(
-	  TaskID		VARCHAR(16)		PRIMARY KEY
-	, Name_			VARCHAR(60)
+	, Name_			VARCHAR(60) PRIMARY KEY
 	, AverageUsage	DECIMAL(10,2)
 );
 
-DROP TABLE Usage CASCADE;
+
 CREATE TABLE Usage(
 	  UserID		VARCHAR(256)	NOT NULL
-	, TaskID		VARCHAR(16)		NOT NULL REFERENCES Task(TaskID)
+	, TaskName		VARCHAR(16)		NOT NULL REFERENCES Task(Name_)
 	, Hours			DECIMAL(10,2)   NOT NULL
 );
 
-DROP TRIGGER UpdateAverageHours ON DATABASE;
+
+CREATE FUNCTION AverageHours()
+	RETURNS TRIGGER AS $$
+	BEGIN
+		UPDATE Task r SET AverageUsage = (SELECT AVG(Hours) FROM Usage u JOIN Task s ON u.TaskID=s.Name_ WHERE r.Name_ = u.TaskName);
+		RETURN NULL;
+	END;
+	$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER UpdateAverageHours
 AFTER INSERT OR UPDATE ON Usage
 FOR EACH ROW
 EXECUTE PROCEDURE AverageHours();
 
-CREATE OR REPLACE FUNCTION AverageHours()
-	RETURNS TRIGGER AS $$
-	BEGIN
-		UPDATE Task r SET AverageUsage = (SELECT AVG(Hours) FROM Usage u JOIN Task s ON u.TaskID=s.TaskID WHERE r.TaskID=u.TaskID);
-		RETURN NULL;
-	END;
-	$$ LANGUAGE plpgsql;
-
 SELECT * FROM Usage;
 SELECT * FROM Task;
+
+

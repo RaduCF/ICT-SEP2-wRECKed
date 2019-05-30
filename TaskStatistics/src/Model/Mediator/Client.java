@@ -8,13 +8,13 @@ import Model.Domain.LocalData;
 import Model.Domain.TaskSpy;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.Socket;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
 public class Client implements Runnable, ClientModel {
     private DataOutputStream stream;
+	private DataInputStream istream;
     private Socket socket;
 
     private ClientModel clientModel;
@@ -24,17 +24,16 @@ public class Client implements Runnable, ClientModel {
     private LocalData localData;
 
     public Client(){
-        localData = new LocalData(getUserID());
+    	localData = new LocalData(getUserID());
     	/* Receiver is not used?!?!
         this.receiver= new Receiver();
-
         Thread thread = new Thread(receiver);
         thread.start();
 		*/
     }
 
-    @Override
-    public void run() {
+	@Override
+	public void run() {
 		/*
 		System.out.println("Running the client...");
         if(!connect())
@@ -42,57 +41,69 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Not connected!!");
         }
         */
-        synchronized (this) {
-            while (true) {
-                try {
-                    this.wait(1000);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                localData.updateLocal();
-            }
-        }
-    }
+		synchronized (this) {
+			while (true) {
+				try {
+					this.wait(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+		        localData.updateLocal();
+			}
+		}
+	}
 
-    public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
-
-        //return this.localData.getData(type);
-        ArrayList<DataPoint> returnable = new ArrayList<>();
-        returnable.add(new DataPoint("Test program 1"));
-        returnable.add(new DataPoint ("Test program 2"));
-
-        return returnable;
-    }
+	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
+		return this.localData.getData(type);
+	}
 
     @Override
     public boolean attemptLogin(String password) {
         return true;
     }
 
+	private String UserID = null;
     public String getUserID()
     {
-        //Combine attributes to get a strong hardware ID
-        int cores = Runtime.getRuntime().availableProcessors();
-        String username =  System.getProperty("user.name");
-        long maxMemory = Runtime.getRuntime().maxMemory();
+		if (UserID == null)
+		{
 
-        String _hash = cores + username + maxMemory;
-        String hash = "";
+			//Combine attributes to get a strong hardware ID
+			int cores = Runtime.getRuntime().availableProcessors();
+			String username =  System.getProperty("user.name");
+			long maxMemory = Runtime.getRuntime().maxMemory();
 
-        try
-        {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(_hash.getBytes());
-            hash = new String(messageDigest.digest());
-        } catch (Exception ex)
-        {
-            System.out.println("Something went wrong in the client...");
-        }
+			String _hash = cores + username + maxMemory;
+			String hash = "";
 
-        return hash;
+			try
+			{
+				MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+				messageDigest.update(_hash.getBytes());
+				hash = new String(messageDigest.digest());
+			} catch (Exception ex)
+			{
+			System.out.println("Something went wrong in the client...");
+			}
+
+			UserID = hash;
+			return hash;
+		}
+
+        return UserID;
     }
 
+	public float getAvgHours(String program) throws IOException {
+		stream.writeInt(2);
+		stream.writeUTF(program);
+		return istream.readFloat();
+	}
+
+	public void reportBug(String str)
+	{
+		stream.writeInt(3);
+		stream.writeUTF(str);
+	}
 
     public boolean connect() {
         System.out.println("Connecting...");
@@ -103,7 +114,7 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Connected!");
         } catch (Exception e)
         {
-            System.out.println(e);
+        	System.out.println(e);
             return false;
         }
 
@@ -136,12 +147,13 @@ public class Client implements Runnable, ClientModel {
             {
                 try
                 {
+					stream.writeInt(1); //PacketType: 1 = Update table
                     stream.writeUTF(point.getId());
                     stream.writeFloat(point.getHours());
                 } catch (Exception e)
-                {
+               {
                     return false;
-                }
+               }
             }
             try {
                 Thread.sleep(5000);

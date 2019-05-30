@@ -4,22 +4,43 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="723.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UserView">
 
    <children>
-      <Button layoutX="26.0" layoutY="61.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Login" />
-      <Button layoutX="26.0" layoutY="99.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #0BA4B0;" text="Next" />
-      <Button layoutX="26.0" layoutY="137.0" mnemonicParsing="false" onAction="#previousPage" style="-fx-background-color: #0BA4B0;" text="Previous" />
-      <Button layoutX="14.0" layoutY="173.0" mnemonicParsing="false" onAction="#comparison" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Comparison" />
-      <BarChart fx:id="barChart" layoutX="108.0" layoutY="14.0" prefHeight="422.0" prefWidth="586.0">
+      <BarChart fx:id="barChart" layoutX="109.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0BA4B0;">
+
+          <yAxis>
+              <CategoryAxis prefHeight="347.0" prefWidth="27.0" side="BOTTOM" style="-fx-background-color: #0BA4B0;" fx:id="xAxis" />
+          </yAxis>
         <xAxis>
-          <CategoryAxis animated="false" side="BOTTOM" />
+          <NumberAxis fx:id="yAxis" side="LEFT" style="-fx-background-color: #0BA4B0;" />
         </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
       </BarChart>
+      <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="41.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Next" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="41.0" prefWidth="84.0" style="-fx-background-color: #0BA4B0;" text="Previous" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button layoutX="6.0" layoutY="348.0" mnemonicParsing="false" onAction="#comparison" prefHeight="66.0" prefWidth="100.0" style="-fx-background-color: #0BA4B0;" text="Comparison" textFill="#e5ff00">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="ReportBug" layoutX="553.0" layoutY="434.0" mnemonicParsing="false" onAction="#Report" prefHeight="41.0" prefWidth="141.0" style="-fx-background-color: #0BA4B0;" text="Report a bug" textFill="#00ff1e">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="Title" layoutX="128.0" layoutY="427.0" prefHeight="55.0" prefWidth="343.0" text="Task Statistics" textFill="#3401ff">
+         <font>
+            <Font name="Bauhaus 93" size="34.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

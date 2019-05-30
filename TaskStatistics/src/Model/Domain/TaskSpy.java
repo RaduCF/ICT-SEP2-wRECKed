@@ -31,9 +31,9 @@ public class TaskSpy implements Runnable{
     }
 
     public void resetIncoming() {
-        synchronized (incoming) {
-            incoming = "";
-        }
+    	synchronized (incoming) {
+        	incoming = "";
+		}
     }
 
     public void run()
@@ -49,7 +49,7 @@ public class TaskSpy implements Runnable{
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
                     init = true;
-                } catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
+        		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
 
                 System.out.println("TaskSpy initializing complete...");
             }
@@ -69,11 +69,11 @@ public class TaskSpy implements Runnable{
 
 
             } catch (Exception e){
-                System.out.println(e);
-                try {
-                    serverSocket.close();
-                } catch (IOException e1) {}
-                init = false;
+               	System.out.println(e);
+               	try {
+					serverSocket.close();
+				} catch (IOException e1) {}
+            	init = false;
             }
         }
     }
