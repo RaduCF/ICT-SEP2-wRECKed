@@ -3,7 +3,10 @@ package View;
 import ViewModel.ReportBugViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+
+import static java.lang.Thread.sleep;
 
 public class ReportBugView {
 
@@ -13,6 +16,8 @@ public class ReportBugView {
     private String title;
     @FXML
     public TextArea Comment;
+    @FXML
+    public Label submitted;
 
     public ReportBugView(){}
 
@@ -22,8 +27,11 @@ public class ReportBugView {
         this.title = title;
         this.scene = scene;
 
-        Comment.setText(null);
+        submitted.requestFocus();
         Comment.textProperty().bindBidirectional(model.commentProperty());
+        submitted.textProperty().bindBidirectional(model.subbmitedProperty());
+        model.commentProperty().setValue("");
+        model.subbmitedProperty().setValue("");
     }
 
     public void SendReport() {
