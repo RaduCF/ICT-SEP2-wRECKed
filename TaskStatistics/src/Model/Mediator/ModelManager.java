@@ -4,10 +4,7 @@ import java.beans.PropertyChangeListener;
 
 import java.beans.PropertyChangeSupport;
 
-import java.util.ArrayList;
-
 import Model.Domain.ChartManager.SORTTYPE;
-import Model.Domain.DataPoint;
 
 public class ModelManager implements ObservableModel, ClientModel {
 
@@ -19,9 +16,19 @@ public class ModelManager implements ObservableModel, ClientModel {
         this.property = new PropertyChangeSupport(this);
     }
 
+    public void sendLocalData(SORTTYPE type)
+    {
+        System.out.println("ModelManager: sendLocalData: firing propertyChange "+ type.toString());
+
+        property.firePropertyChange("dataUpdate", client.getLocalData(type), client.getLocalData(type));
+
+        System.out.println("ModelManager: sendLocalData: Property change fired!"+ type.toString());
+
+    }
     @Override
-    public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
-        return this.getLocalData(type);
+    public void getLocalData(SORTTYPE type) {
+        System.out.println("ModelManager: getLocalData: getLocalData called");
+         sendLocalData(type);
     }
 
     @Override

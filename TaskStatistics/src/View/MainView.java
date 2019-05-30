@@ -153,4 +153,10 @@ public class MainView {
         programRemoveListStage.show();
     }
 
+    public void closeComparisonView()
+    {
+        if (primaryStage.getScene() != null){
+            primaryStage.getScene().getWindow().hide();
+        }
+    }
 }

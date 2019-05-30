@@ -6,53 +6,53 @@ import java.io.*;
 
 public class TaskSpy implements Runnable{
 
-	private ServerSocket serverSocket;
+    private ServerSocket serverSocket;
     private Socket socket;
-    private InputStream in; 
+    private InputStream in;
     private Process process;
-    
+
     private String incoming;
-	
+
     private boolean init = false;
-     
+
     public TaskSpy() {
-    	incoming = "";
+        incoming = "";
     }
-    
+
     public void close()
     {
-    	try {
-            socket.close();	
-		} catch (Exception e) {}
+        try {
+            socket.close();
+        } catch (Exception e) {}
     }
-    
+
     public String getIncoming() {
-    	return incoming;
+        return incoming;
     }
-    
-    public void nullIncoming() { 
-    	synchronized (incoming) {
-        	incoming = "";	
-		}
+
+    public void resetIncoming() {
+        synchronized (incoming) {
+            incoming = "";
+        }
     }
-    
+
     public void run()
     {
         System.out.println("TaskSpy run method starting.");
-    	while (true) {
-    		if(!init)
-        	{
-        		try
-        		{
+        while (true) {
+            if(!init)
+            {
+                try
+                {
                     process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
                     serverSocket = new ServerSocket(5000, 10);
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
-            		init = true;
-        		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
-        	
+                    init = true;
+                } catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
+
                 System.out.println("TaskSpy initializing complete...");
-        	}
+            }
             try
             {
                 String received = "";
@@ -65,18 +65,16 @@ public class TaskSpy implements Runnable{
                 in.read(receivedBytes, 0, len);
                 received = new String(receivedBytes, 0, len);
 
-                System.out.println("Changed application " + received);
                 incoming = received;
 
 
             } catch (Exception e){
-               	System.out.println(e);
-               	process.destroy();
-            	socket = null;
-            	serverSocket = null;
-            	in = null;
-            	init = false;
+                System.out.println(e);
+                try {
+                    serverSocket.close();
+                } catch (IOException e1) {}
+                init = false;
             }
-		}
+        }
     }
 }

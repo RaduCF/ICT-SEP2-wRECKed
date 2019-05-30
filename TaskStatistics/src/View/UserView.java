@@ -1,6 +1,8 @@
 package View;
 
+import Model.Domain.DataPoint;
 import ViewModel.UserViewModel;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -11,9 +13,11 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class UserView {
+public class UserView implements PropertyChangeListener {
     private MainView parent;
 
     private UserViewModel model;
@@ -22,10 +26,8 @@ public class UserView {
 
     @FXML
     private BarChart barChart;
-    @FXML
-    private NumberAxis yAxis;
-    @FXML
-    private CategoryAxis xAxis;
+
+
 
 
     private ArrayList <SimpleDoubleProperty> dataValueProperties;
@@ -38,6 +40,8 @@ public class UserView {
         this.model = model;
         this.title = title;
         this.scene = scene;
+
+        model.addListener(this);
 
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
@@ -52,28 +56,31 @@ public class UserView {
             dataNameProperties.add(new SimpleStringProperty());
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperty(1));
         }
+      //  handleInfo();
 
-        handleInfo();
+    }
 
+    public void updateValueData()
+    {
+        model.getValueProperty();
     }
 
     public UserView() {
 
     }
 
-    public void handleInfo() {
 
-        yAxis.setLabel("Time");
-        yAxis.setTickLabelRotation(90);
-        xAxis.setLabel("Program");
+    public void handleInfo(Object data) {
+
+        ArrayList<DataPoint> dataArrayList= new ArrayList<>();
+        dataArrayList.addAll((ArrayList<DataPoint>) data);
 
         XYChart.Series displaySet = new XYChart.Series();
 
-            System.out.println("Loading data..");
-            model.loadLocalData();
-        for(int i=0;i<5;i++)
+        for(int i=0;i<dataArrayList.size();i++)
         {
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(i).doubleValue(), dataNameProperties.get(i).getValue()) );
+            System.out.println("UserView: handleInfo: loop "+i);
+            displaySet.getData().add(new XYChart.Data( dataArrayList.get(i).getId(), dataArrayList.get(i).getHours() ));
         }
 
         barChart.getData().addAll(displaySet);
@@ -101,7 +108,6 @@ public class UserView {
     public void nextPage(ActionEvent event)
     {
         System.out.println("Loading next page..");
-
         refresh();
         System.out.println("Page loaded.");
     }
@@ -114,9 +120,9 @@ public class UserView {
         System.out.println("Page loaded.");
     }
 
+
     public void refresh()
     {
-        model.loadLocalData();
         barChart.getData().clear();
 
         System.out.println("Loading data..");
@@ -136,4 +142,20 @@ public class UserView {
     public void comparison(ActionEvent event){
         parent.openComparisonView();
     }
+
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        Platform.runLater(() -> {
+                    System.out.println("UserView: propertyChange: A property change has been detected!");
+                    switch (evt.getPropertyName()){
+                        case "chartUpdate" : {
+                            System.out.println("UserView: propertyChange: Changing bar chart data "+ evt.getNewValue().toString());
+                            handleInfo(evt.getNewValue());
+                        }
+                    }
+                }
+        );
+    }
+
 }

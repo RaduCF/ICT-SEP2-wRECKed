@@ -222,4 +222,11 @@ public class ComparisonView {
         }
         loadData(sendablePrograms);
     }
+
+    @FXML
+    public void openUserView(ActionEvent evt)
+    {
+        parent.closeComparisonView();
+        parent.openUserView();
+    }
 }
