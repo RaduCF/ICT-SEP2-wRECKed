@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Client implements Runnable, ClientModel {
     private DataOutputStream stream;
+	private DataInputStream istream;
     private Socket socket;
 
     private ClientModel clientModel;
@@ -26,7 +27,6 @@ public class Client implements Runnable, ClientModel {
     	localData = new LocalData(getUserID());
     	/* Receiver is not used?!?!
         this.receiver= new Receiver();
-
         Thread thread = new Thread(receiver);
         thread.start();
 		*/
@@ -86,6 +86,12 @@ public class Client implements Runnable, ClientModel {
         return hash;
     }
 
+	public float getAvgHours(String program)
+	{
+		stream.writeInt(2);
+		stream.writeUTF(program);
+		return istream.readFloat();
+	}
 
     public boolean connect() {
         System.out.println("Connecting...");
@@ -129,6 +135,7 @@ public class Client implements Runnable, ClientModel {
             {
                 try
                 {
+					stream.writeInt(1); //PacketType: 1 = Update table  
                     stream.writeUTF(point.getId());
                     stream.writeFloat(point.getHours());
                 } catch (Exception e)
