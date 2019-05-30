@@ -6,9 +6,6 @@ import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 
@@ -17,7 +14,8 @@ public class UserViewModel {
 
     private ArrayList<SimpleDoubleProperty> dataValueProperties;
     private ArrayList <SimpleStringProperty> dataNameProperties;
-    private PropertyChangeSupport property;
+
+
     ArrayList<SimpleStringProperty> hours = new ArrayList<>();
 
     private ObservableModel observableModel;
@@ -27,9 +25,7 @@ public class UserViewModel {
         this.observableModel = observableModel;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
-        property = new PropertyChangeSupport(this);
-
-        //calling  get local data...
+        initializeProperties();
     }
 
 
@@ -38,49 +34,50 @@ public class UserViewModel {
         observableModel.getLocalData(ChartManager.SORTTYPE.RAW);
     }
 
-
-    public void createValueProperty(ArrayList<DataPoint> list)
+    public void initializeProperties()
     {
+        System.out.println("UserViewModel: initializeProperties: initializing the properties");
+        for(int i=0;i<5;i++)
+        {
+            dataValueProperties.add(new SimpleDoubleProperty());
+            dataNameProperties.add(new SimpleStringProperty());
+        }
+    }
 
+    public void setValueProperties(ArrayList<DataPoint> list)
+    {
         for(int i=0;i<list.size();i++)
         {
-            SimpleStringProperty newProperty = new SimpleStringProperty();
-            newProperty.set(Float.toString(list.get(i).getHours()));
-            hours.add(newProperty);
+            System.out.println("UserViewModel: setValueProperties: loop: "+i+" value: "+list.get(i).getHours());
+           dataValueProperties.get(i).set(list.get(i).getHours());
         }
-        
     }
 
-    public ArrayList<SimpleStringProperty> getValueProperty()
+    public void setNameProperties(ArrayList<DataPoint> list)
     {
-        return hours;
+        System.out.println("UserViewModel: setNameProperties: list size is: "+list.size());
+        for(int i=0;i<list.size();i++)
+        {
+            System.out.println("UserViewModel: setNameProperties: loop: "+i+" name: "+list.get(i).getId());
+            dataNameProperties.get(i).set(list.get(i).getId());
+        }
     }
+
 
     public void loadLocalData(Object data)
-    { System.out.println("UserViewModel: loadLocalData: "+data.toString());
-        ArrayList<DataPoint> newArrayList = new ArrayList<>();
-
-        newArrayList.addAll((ArrayList<DataPoint>)data);
-        createValueProperty(newArrayList);
-        for(int i=0;i<newArrayList.size();i++)
-        {
-            System.out.println("UserViewModel: loadLocalData: loop: "+i+" values: "+newArrayList.get(i).getId()+" "+newArrayList.get(i).getHours());
-        }
-        System.out.println("UserViewModel: loadLocalData: firing property change");
-        property.firePropertyChange("chartUpdate", null, newArrayList);
-        System.out.println("UserViewModel: loadLocalData: property change fired");
-
-    }
-
-
-    public SimpleDoubleProperty getDataValueProperty(int index) { return dataValueProperties.get(index); }
-    public SimpleStringProperty getDataNameProperty(int index)
     {
-        return dataNameProperties.get(index);
+        ArrayList<DataPoint> newArrayList = new ArrayList<>();
+        newArrayList.addAll((ArrayList<DataPoint>)data);
+
+        setValueProperties(newArrayList);
+        setNameProperties(newArrayList);
     }
 
-    public void addListener(PropertyChangeListener listener) {
-        this.property.addPropertyChangeListener(listener);
-    }
+
+    public ArrayList<SimpleDoubleProperty> getDataValueProperties() { return dataValueProperties; }
+    public ArrayList<SimpleStringProperty> getDataNameProperties() { return dataNameProperties; }
+
+
+
 
 }

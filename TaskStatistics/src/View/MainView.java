@@ -69,7 +69,10 @@ public class MainView {
         }
         primaryStage.setScene(userView.getScene());
         primaryStage.setTitle(userView.getTitle());
+        System.out.println("works!");
         primaryStage.show();
+        System.out.println("works!");
+
     }
 
     public void openComparisonView(){

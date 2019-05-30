@@ -5,8 +5,6 @@ import View.MainView;
 import javafx.application.Platform;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class MainViewModel implements PropertyChangeListener {
 
@@ -19,7 +17,6 @@ public class MainViewModel implements PropertyChangeListener {
 
     public MainViewModel(ObservableModel model) {
         this.model = model;
-        
         userViewModel = new UserViewModel(model);
         viewModelLogin = new LoginViewModel(model);
         comparisonViewModel = new ComparisonViewModel(model);
@@ -28,6 +25,7 @@ public class MainViewModel implements PropertyChangeListener {
         model.addListener(this);
         System.out.println("MainViewModel: Constructor: added listener to ObservableModel");
         userViewModel.getLocalData();
+
     }
 
     @Override
