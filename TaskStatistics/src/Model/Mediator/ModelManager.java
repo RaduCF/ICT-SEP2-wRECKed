@@ -30,6 +30,11 @@ public class ModelManager implements ObservableModel, ClientModel {
     }
 
     @Override
+    public void sendReport(String comment) {
+        //client.sendReport(comment);
+    }
+
+    @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
 
     }
