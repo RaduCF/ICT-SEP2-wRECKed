@@ -32,10 +32,10 @@ public class RemoveProgamListView {
         return title;
     }
 
-    public void loadData(ArrayList<SimpleStringProperty> usedDataNameProperties) {
+    public void loadData(ArrayList<String> usedDataNameProperties) {
         System.out.println("RemoveProgramListView: The amount of used data is: " + usedDataNameProperties.size());
         for (int i = 0; i < usedDataNameProperties.size(); i++) {
-            listView.getItems().add(usedDataNameProperties.get(i).getValue());
+            listView.getItems().add(usedDataNameProperties.get(i));
         }
     }
 

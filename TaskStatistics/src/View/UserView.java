@@ -73,6 +73,14 @@ public class UserView {
         System.out.println("Data loaded.");
     }
 
+    public ArrayList<SimpleDoubleProperty> getDataValueProperties(){
+        return dataValueProperties;
+    }
+
+    public ArrayList<SimpleStringProperty> getDataNameProperties(){
+        return dataNameProperties;
+    }
+
     public Scene getScene() {
         return scene;
     }

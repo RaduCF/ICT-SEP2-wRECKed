@@ -1,5 +1,6 @@
 package ViewModel;
 
+import Model.Domain.ChartManager;
 import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,12 +19,12 @@ public class ProgramListViewModel {
         dataNameProperties = new ArrayList<>();
     }
 
-    public void loadData() {
+    /*public void loadData() {
 
         dataNameProperties.clear(); // clear all remaining data
 
-        //countProperty.set(model.getLocalData(ChartManager.SORTTYPE.RAW).size());  // retrieve task count number from data storage
-        countProperty.set(2);  // dummy task count
+        countProperty.set(model.getLocalData(ChartManager.SORTTYPE.RAW).size());  // retrieve task count number from data storage
+        //countProperty.set(2);  // dummy task count
 
         initializeProperties(); // we initialize objects with this method
 
@@ -48,4 +49,5 @@ public class ProgramListViewModel {
     public ArrayList<SimpleStringProperty> getDataNameProperties() {
         return dataNameProperties;
     }
+    */
 }

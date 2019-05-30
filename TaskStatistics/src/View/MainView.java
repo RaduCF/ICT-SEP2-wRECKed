@@ -102,7 +102,7 @@ public class MainView {
         primaryStage.show();
     }
 
-    public void openProgramListView(ArrayList<SimpleStringProperty> dataNameProperties) {
+    public void openProgramListView(ArrayList<String> dataNameProperties) {
         programListViewStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -162,10 +162,8 @@ public class MainView {
         programRemoveListStage.show();
     }
 
-    public void closeComparisonView() {
-        if (primaryStage.getScene() != null) {
-            primaryStage.getScene().getWindow().hide();
-        }
+    public UserView getUserView(){
+        return userView;
     }
 
     public void loadData() {
