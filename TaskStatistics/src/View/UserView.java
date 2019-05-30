@@ -8,33 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
-public class UserView  {
+public class UserView {
 
     private MainView parent;
     private UserViewModel model;
     private Scene scene;
     private String title;
-
     @FXML
     private BarChart barChart;
     @FXML
     private Label Title;
 
-    private ArrayList <SimpleDoubleProperty> dataValueProperties;
-    private ArrayList <SimpleStringProperty> dataNameProperties;
+    private ArrayList<SimpleDoubleProperty> dataValueProperties;
+    private ArrayList<SimpleStringProperty> dataNameProperties;
 
 
-    public void init(MainView parent , UserViewModel model , Scene scene, String title) {
+    public void init(MainView parent, UserViewModel model, Scene scene, String title) {
         this.parent = parent;
         this.model = model;
         this.title = title;
         this.scene = scene;
-
-        // TESTING
 
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
@@ -43,71 +39,56 @@ public class UserView  {
         bindProperties();
     }
 
-    public UserView() {
+    public UserView() { }
 
-    }
-
-    public void initializeProperties()
-    {
+    public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
-        for(int i=0;i<5;i++)
-        {
+        for (int i = 0; i < 5; i++) {
             dataValueProperties.add(new SimpleDoubleProperty());
             dataNameProperties.add(new SimpleStringProperty());
         }
     }
 
-    public void bindProperties()
-    {
+    public void bindProperties() {
         System.out.println("UserView: bindProperties: binding the properties");
-        for(int i=0;i<5;i++)
-        {
+        for (int i = 0; i < 5; i++) {
             dataValueProperties.get(i).bindBidirectional(model.getDataValueProperties().get(i));
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
         }
     }
-
 
     public void handleBarChartData() {
 
         XYChart.Series displaySet = new XYChart.Series();
         barChart.getData().clear();
 
-        for(int i=0;i<5;i++)
-        {
-            if(dataValueProperties.get(i) != null)
-            {
-                System.out.println("UserView: handleBarChartData: loop "+i);
-                displaySet.getData().add(new XYChart.Data( dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
+        for (int i = 0; i < 5; i++) {
+            if (dataValueProperties.get(i) != null) {
+                System.out.println("UserView: handleBarChartData: loop " + i);
+                displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(), dataValueProperties.get(i).getValue()));
             }
         }
-
         barChart.getData().addAll(displaySet);
         System.out.println("Data loaded.");
     }
 
-    public Scene getScene()
-    {
+    public Scene getScene() {
         return scene;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
     @FXML
-    public void nextPage()
-    {
-for(int i=0;i<dataNameProperties.size();i++)
-{
-    System.out.println("UserView: nextPage: data name "+i+" is: " + dataNameProperties.get(i).getValue());
-}
+    public void nextPage() {
+        for (int i = 0; i < dataNameProperties.size(); i++) {
+            System.out.println("UserView: nextPage: data name " + i + " is: " + dataNameProperties.get(i).getValue());
+        }
     }
 
     @FXML
-    public void previousPage()
-    {
+    public void previousPage() {
         System.out.println("Loading previous page..");
         //refresh();
         System.out.println("Page loaded.");
@@ -130,10 +111,9 @@ for(int i=0;i<dataNameProperties.size();i++)
 
         System.out.println("Data loaded.");
     }
-    */
-
+*/
     @FXML
-    public void comparison(){
+    public void comparison() {
         parent.openComparisonView();
     }
 
@@ -143,7 +123,7 @@ for(int i=0;i<dataNameProperties.size();i++)
     }
 
     @FXML
-    public void AutoUpdate() {
+    public void Update() {
         model.getMoreData();
     }
 }
