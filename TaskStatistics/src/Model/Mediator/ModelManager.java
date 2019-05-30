@@ -3,6 +3,8 @@ package Model.Mediator;
 import java.beans.PropertyChangeListener;
 
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+
 import Model.Domain.ChartManager.SORTTYPE;
 
 import static java.lang.Thread.sleep;
@@ -43,8 +45,8 @@ public class ModelManager implements ObservableModel, ClientModel {
     }
 
     @Override
-    public void sendReport(String comment) {
-        //client.sendReport(comment);
+    public void sendReport(String comment) throws IOException {
+        client.reportBug(comment);
     }
 
     @Override
