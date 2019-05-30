@@ -103,22 +103,6 @@ public class LocalData extends ChartManager {
 		}
 	}
 
-	/**
-	 *  gets fresh data from DB
-	 */
-	public void refresh() {
-
-		/*Magic upload/Download code*/
-
-	}
-
-	/**
-	 * published data to db
-	 */
-	public void publish() {
-
-	}
-
 	public String toString() {
 		String out = user + " \n";
 		ArrayList<DataPoint> outData = data;
