@@ -13,6 +13,11 @@ public class DataPoint implements Comparable<DataPoint> {
 		this.isActive = false;
 		this.hoursActive = 0;
 	}
+	public DataPoint(String id, float hoursActive) {
+		this.id = id;
+		this.isActive = false;
+		this.hoursActive = hoursActive;
+	}
 	
 	public void Focused() {
 		Calendar now = Calendar.getInstance();
@@ -39,7 +44,7 @@ public class DataPoint implements Comparable<DataPoint> {
 	}
 	
 	public String toString() {
-		return id + ": " + hoursActive;
+		return id + "," + hoursActive;
 	}
 
 	public int compareTo(DataPoint DP) {
