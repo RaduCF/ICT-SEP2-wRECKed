@@ -3,19 +3,18 @@ package View;
 import ViewModel.UserViewModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
+import javafx.scene.control.Label;
 import java.util.ArrayList;
 
-public class UserView {
-    private MainView parent;
+import static java.lang.Thread.sleep;
 
+public class UserView  {
+
+    private MainView parent;
     private UserViewModel model;
     private Scene scene;
     private String title;
@@ -23,14 +22,10 @@ public class UserView {
     @FXML
     private BarChart barChart;
     @FXML
-    private NumberAxis yAxis;
-    @FXML
-    private CategoryAxis xAxis;
-
+    private Label Title;
 
     private ArrayList <SimpleDoubleProperty> dataValueProperties;
     private ArrayList <SimpleStringProperty> dataNameProperties;
-
 
 
     public void init(MainView parent , UserViewModel model , Scene scene, String title) {
@@ -39,41 +34,52 @@ public class UserView {
         this.title = title;
         this.scene = scene;
 
+        // TESTING
+
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
-        for(int i=0;i<5;i++)
-        {
-            dataValueProperties.add(new SimpleDoubleProperty());
-            dataValueProperties.get(i).bindBidirectional(model.getDataValueProperty(1));
-        }
-        System.out.println("Starting info handling..");
-        for(int i=0;i<5;i++)
-        {
-            dataNameProperties.add(new SimpleStringProperty());
-            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperty(1));
-        }
 
-        handleInfo();
-
+        initializeProperties();
+        bindProperties();
     }
 
     public UserView() {
 
     }
 
-    public void handleInfo() {
-
-        yAxis.setLabel("Time");
-        yAxis.setTickLabelRotation(90);
-        xAxis.setLabel("Program");
-
-        XYChart.Series displaySet = new XYChart.Series();
-
-            System.out.println("Loading data..");
-            model.loadLocalData();
+    public void initializeProperties()
+    {
+        System.out.println("UserView: initializeProperties: initializing the properties");
         for(int i=0;i<5;i++)
         {
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(i).doubleValue(), dataNameProperties.get(i).getValue()) );
+            dataValueProperties.add(new SimpleDoubleProperty());
+            dataNameProperties.add(new SimpleStringProperty());
+        }
+    }
+
+    public void bindProperties()
+    {
+        System.out.println("UserView: bindProperties: binding the properties");
+        for(int i=0;i<5;i++)
+        {
+            dataValueProperties.get(i).bindBidirectional(model.getDataValueProperties().get(i));
+            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
+        }
+    }
+
+
+    public void handleBarChartData() {
+
+        XYChart.Series displaySet = new XYChart.Series();
+        barChart.getData().clear();
+
+        for(int i=0;i<5;i++)
+        {
+            if(dataValueProperties.get(i) != null)
+            {
+                System.out.println("UserView: handleBarChartData: loop "+i);
+                displaySet.getData().add(new XYChart.Data( dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
+            }
         }
 
         barChart.getData().addAll(displaySet);
@@ -91,29 +97,22 @@ public class UserView {
     }
 
     @FXML
-    public void login(ActionEvent event)
+    public void nextPage()
     {
-        parent.openLoginView();
-    }
-
-
-    @FXML
-    public void nextPage(ActionEvent event)
-    {
-        System.out.println("Loading next page..");
-
-        refresh();
-        System.out.println("Page loaded.");
+for(int i=0;i<dataNameProperties.size();i++)
+{
+    System.out.println("UserView: nextPage: data name "+i+" is: " + dataNameProperties.get(i).getValue());
+}
     }
 
     @FXML
-    public void previousPage(ActionEvent event)
+    public void previousPage()
     {
         System.out.println("Loading previous page..");
-        refresh();
+        //refresh();
         System.out.println("Page loaded.");
     }
-
+/*
     public void refresh()
     {
         model.loadLocalData();
@@ -131,13 +130,20 @@ public class UserView {
 
         System.out.println("Data loaded.");
     }
+    */
 
     @FXML
     public void comparison(){
         parent.openComparisonView();
     }
 
+    @FXML
     public void Report() {
         parent.OpenSendReportView();
+    }
+
+    @FXML
+    public void AutoUpdate() {
+        model.getMoreData();
     }
 }

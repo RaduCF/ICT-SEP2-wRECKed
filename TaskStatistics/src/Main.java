@@ -16,10 +16,9 @@ public class Main extends Application {
         Thread clientThread = new Thread(client);
         clientThread.start();
 
-    	ObservableModel model = new ModelManager(client);
-
+        ObservableModel model = new ModelManager(client);
     	MainViewModel viewModel = new MainViewModel(model);
-        MainView view = new MainView(viewModel);
+        MainView view = MainView.getInstance(viewModel);
         view.start(primaryStage);
     }
 }

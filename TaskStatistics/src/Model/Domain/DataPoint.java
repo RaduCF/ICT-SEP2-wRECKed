@@ -18,31 +18,31 @@ public class DataPoint implements Comparable<DataPoint> {
 		this.isActive = false;
 		this.hoursActive = hoursActive;
 	}
-	
+
 	public void Focused() {
 		Calendar now = Calendar.getInstance();
 		isActive = true;
 		LastUpdated = now;
-		
+
 
 	}
-	
+
 	public float getHours() {
 		return this.hoursActive;
 	}
-	
+
 	public String getId() {
 		return this.id;
 	}
-	
+
 	public void DeFocused() {
 		Calendar now = Calendar.getInstance();
-		this.hoursActive += (now.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000f;	
+		this.hoursActive += (now.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000f;
 		LastUpdated = now;
 		this.isActive = false;
-		
+
 	}
-	
+
 	public String toString() {
 		return id + "," + hoursActive;
 	}

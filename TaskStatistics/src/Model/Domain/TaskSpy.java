@@ -6,53 +6,53 @@ import java.io.*;
 
 public class TaskSpy implements Runnable{
 
-	private ServerSocket serverSocket;
+    private ServerSocket serverSocket;
     private Socket socket;
-    private InputStream in; 
+    private InputStream in;
     private Process process;
-    
+
     private String incoming;
-	
+
     private boolean init = false;
-     
+
     public TaskSpy() {
-    	incoming = "";
+        incoming = "";
     }
-    
+
     public void close()
     {
-    	try {
-            socket.close();	
-		} catch (Exception e) {}
+        try {
+            socket.close();
+        } catch (Exception e) {}
     }
-    
+
     public String getIncoming() {
-    	return incoming;
+        return incoming;
     }
-    
-    public void resetIncoming() { 
+
+    public void resetIncoming() {
     	synchronized (incoming) {
-        	incoming = "";	
+        	incoming = "";
 		}
     }
-    
+
     public void run()
     {
         System.out.println("TaskSpy run method starting.");
-    	while (true) {
-    		if(!init)
-        	{
-        		try
-        		{
+        while (true) {
+            if(!init)
+            {
+                try
+                {
                     process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
                     serverSocket = new ServerSocket(5000, 10);
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
                     init = true;
         		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
-        	
+
                 System.out.println("TaskSpy initializing complete...");
-        	}
+            }
             try
             {
                 String received = "";
@@ -75,6 +75,6 @@ public class TaskSpy implements Runnable{
 				} catch (IOException e1) {}
             	init = false;
             }
-		}
+        }
     }
 }

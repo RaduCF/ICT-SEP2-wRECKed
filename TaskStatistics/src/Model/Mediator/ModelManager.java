@@ -3,11 +3,11 @@ package Model.Mediator;
 import java.beans.PropertyChangeListener;
 
 import java.beans.PropertyChangeSupport;
-
-import java.util.ArrayList;
+import java.io.IOException;
 
 import Model.Domain.ChartManager.SORTTYPE;
-import Model.Domain.DataPoint;
+
+import static java.lang.Thread.sleep;
 
 public class ModelManager implements ObservableModel, ClientModel {
 
@@ -19,9 +19,24 @@ public class ModelManager implements ObservableModel, ClientModel {
         this.property = new PropertyChangeSupport(this);
     }
 
+    public void sendLocalData(SORTTYPE type)
+    {
+        System.out.println("ModelManager: sendLocalData: firing propertyChange " + type.toString());
+
+        property.firePropertyChange("dataUpdate", client.getLocalData(type), client.getLocalData(type));
+
+        System.out.println("ModelManager: sendLocalData: Property change fired!" + type.toString());
+    }
     @Override
-    public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
-        return this.getLocalData(type);
+    public void getLocalData(SORTTYPE type) {
+        System.out.println("ModelManager: getLocalData: getLocalData called");
+         sendLocalData(type);
+    }
+
+    @Override
+    public void getMoreData(SORTTYPE type) {
+        System.out.println("rquirig data");
+        property.firePropertyChange("Moredata", client.getMoreData(type), client.getMoreData(type));
     }
 
     @Override
@@ -30,8 +45,8 @@ public class ModelManager implements ObservableModel, ClientModel {
     }
 
     @Override
-    public void sendReport(String comment) {
-        //client.sendReport(comment);
+    public void sendReport(String comment) throws IOException {
+        client.reportBug(comment);
     }
 
     @Override

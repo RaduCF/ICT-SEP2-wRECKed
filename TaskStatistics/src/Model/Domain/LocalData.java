@@ -15,8 +15,8 @@ public class LocalData extends ChartManager {
 	private String user;
 	private int LastActiveIndex = -1;
 	private ChartManager chartManager;
-    private TaskSpy taskSpy; 
-    private Thread thread;
+	private TaskSpy taskSpy;
+	private Thread thread;
 
 	public LocalData(String user) {
 		this.data = new ArrayList<DataPoint>();
@@ -26,11 +26,11 @@ public class LocalData extends ChartManager {
 		UpdateFromStorage();
 		
 		taskSpy = new TaskSpy();
-		
+
 		thread = new Thread(taskSpy);
 		thread.start();
 	}
-	
+
 	/**
 	 * updates local dataPoints and creates new if new programs are used
 	 */
@@ -49,7 +49,7 @@ public class LocalData extends ChartManager {
 			for (int i = 0; i < data.size(); i++) {
 				if (currentActiveAPP.equals(data.get(i).getId())) {
 					if (LastActiveIndex != -1) {
-						data.get(LastActiveIndex).DeFocused();	
+						data.get(LastActiveIndex).DeFocused();
 					}
 					data.get(i).Focused();
 					LastActiveIndex = i;
@@ -102,23 +102,23 @@ public class LocalData extends ChartManager {
 			System.out.println("FileReader error: " + e);
 		}
 	}
-	
+
 	/**
 	 *  gets fresh data from DB
 	 */
 	public void refresh() {
-		
+
 		/*Magic upload/Download code*/
-		
+
 	}
-	
+
 	/**
 	 * published data to db
 	 */
 	public void publish() {
-		
+
 	}
-	
+
 	public String toString() {
 		String out = user + " \n";
 		ArrayList<DataPoint> outData = data;
@@ -128,14 +128,14 @@ public class LocalData extends ChartManager {
 		}
 		return out;
 	}
-	
+
 	public ArrayList<DataPoint> getData(SORTTYPE type){
 		return this.getData(type, data);
 	}
-	
+
 	public ArrayList<DataPoint> getSpecific(String[] apps){
 		return this.getSpecific(apps);
 	}
-	
-	
+
+
 }

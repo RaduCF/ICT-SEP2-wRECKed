@@ -18,13 +18,27 @@ public class MainView {
     private MainViewModel mainViewModel;
     private ComparisonView comparisonView;
     private ProgramListView programListView;
+    private static Object lock = new Object();
     private RemoveProgamListView removeProgramListView;
     private ReportBugView reportBugView;
+    private static MainView instance;
     private Stage programListViewStage;
     private Stage programRemoveListStage;
 
-    public MainView(MainViewModel mainViewModel) {
+    private MainView(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
+    }
+
+    public static MainView getInstance(MainViewModel viewModel) {
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
+                    instance = new MainView(viewModel);
+                }
+            }
+        }
+        return instance;
+
     }
 
     public void start(Stage primaryStage) throws IOException {
@@ -40,11 +54,10 @@ public class MainView {
             Scene scene = new Scene(root, 600, 360);
             loginView = loader.getController();
             loginView.init(this, mainViewModel.getViewModelLogin(), scene, "Login");
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        if (primaryStage.getScene() != null){
+        if (primaryStage.getScene() != null) {
             primaryStage.getScene().getWindow().hide();
         }
         primaryStage.setScene(loginView.getScene());
@@ -52,39 +65,41 @@ public class MainView {
         System.out.println("Opening login window...");
         primaryStage.show();
     }
-    
-    public void openUserView()  {
+
+    public void openUserView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("userViewFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,710,500);
-            userView= loader.getController();
-            userView.init(this,mainViewModel.getUserViewModel(),scene, "UserView");
-        }
-        catch (Exception e){
+            Scene scene = new Scene(root, 710, 500);
+            userView = loader.getController();
+            userView.init(this, mainViewModel.getUserViewModel(), scene, "UserView");
+        } catch (Exception e) {
             e.getStackTrace();
         }
-        if (primaryStage.getScene() != null){
+        if (primaryStage.getScene() != null) {
             primaryStage.getScene().getWindow().hide();
         }
         primaryStage.setScene(userView.getScene());
         primaryStage.setTitle(userView.getTitle());
+        System.out.println("works!");
         primaryStage.show();
+        System.out.println("works!");
+
     }
-    public void OpenSendReportView()  {
+
+    public void OpenSendReportView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("ReportBugFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,600,400);
-            reportBugView= loader.getController();
-            reportBugView.init(this,mainViewModel.getReportBugViewModel(),scene, "UserView");
-        }
-        catch (Exception e){
+            Scene scene = new Scene(root, 600, 400);
+            reportBugView = loader.getController();
+            reportBugView.init(this, mainViewModel.getReportBugViewModel(), scene, "UserView");
+        } catch (Exception e) {
             e.getStackTrace();
         }
-        if (primaryStage.getScene() != null){
+        if (primaryStage.getScene() != null) {
             primaryStage.getScene().getWindow().hide();
         }
         primaryStage.setScene(reportBugView.getScene());
@@ -92,19 +107,18 @@ public class MainView {
         primaryStage.show();
     }
 
-    public void openComparisonView(){
+    public void openComparisonView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("ComparisonFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,900,500);
+            Scene scene = new Scene(root, 900, 500);
             comparisonView = loader.getController();
-            comparisonView.init(this, mainViewModel.getComparisonViewModel(),scene,"ComparisonView");
-        }
-        catch (Exception e){
+            comparisonView.init(this, mainViewModel.getComparisonViewModel(), scene, "ComparisonView");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if (primaryStage.getScene() != null){
+        if (primaryStage.getScene() != null) {
             primaryStage.getScene().getWindow().hide();
         }
         primaryStage.setScene(comparisonView.getScene());
@@ -112,18 +126,16 @@ public class MainView {
         primaryStage.show();
     }
 
-    public void openProgramListView(ArrayList<SimpleStringProperty> dataNameProperties)
-    {
+    public void openProgramListView(ArrayList<SimpleStringProperty> dataNameProperties) {
         programListViewStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,900,500);
+            Scene scene = new Scene(root, 900, 500);
             programListView = loader.getController();
-            programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(),this,scene,"SelectPrograms");
-        }
-        catch (Exception e){
+            programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(), this, scene, "SelectPrograms");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -132,45 +144,55 @@ public class MainView {
         programListViewStage.show();
     }
 
-    public void close(){
+    public void close() {
         Platform.exit();
     }
 
-    public ComparisonView getComparisonView(){return comparisonView;}
+    public ComparisonView getComparisonView() {
+        return comparisonView;
+    }
 
-    public RemoveProgamListView getRemoveProgramListView(){return removeProgramListView;}
+    public RemoveProgamListView getRemoveProgramListView() {
+        return removeProgramListView;
+    }
 
-    public void closeProgramListView()
-    {
-        if (programListViewStage.getScene() != null){
+    public void closeProgramListView() {
+        if (programListViewStage.getScene() != null) {
             programListViewStage.getScene().getWindow().hide();
         }
     }
-    public void closeProgramRemoveListView()
-    {
-        if (programRemoveListStage.getScene() != null){
+
+    public void closeProgramRemoveListView() {
+        if (programRemoveListStage.getScene() != null) {
             programRemoveListStage.getScene().getWindow().hide();
         }
     }
 
-    public void openProgramRemoveListView()
-    {
+    public void openProgramRemoveListView() {
         programRemoveListStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("RemoveProgramsFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,900,500);
+            Scene scene = new Scene(root, 900, 500);
             removeProgramListView = loader.getController();
-            removeProgramListView.init(this,scene,"RemovePrograms");
-        }
-        catch (Exception e){
+            removeProgramListView.init(this, scene, "RemovePrograms");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         programRemoveListStage.setScene(removeProgramListView.getScene());
         programRemoveListStage.setTitle(removeProgramListView.getTitle());
         programRemoveListStage.show();
+    }
+
+    public void closeComparisonView() {
+        if (primaryStage.getScene() != null) {
+            primaryStage.getScene().getWindow().hide();
+        }
+    }
+    public void loadData(){
+        userView.handleBarChartData();
     }
 
 }

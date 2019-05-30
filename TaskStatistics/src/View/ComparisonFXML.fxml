@@ -16,20 +16,20 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <ToggleButton fx:id="global" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Global" />
-                  <Button layoutX="130.0" layoutY="26.0" mnemonicParsing="false" onAction="#selectPrograms" text="Select" />
-                  <Button layoutX="209.0" layoutY="26.0" mnemonicParsing="false" onAction="#setInterval" text="Interval" />
-                  <Button layoutX="299.0" layoutY="26.0" mnemonicParsing="false" onAction="#clearAllPrograms" text="Clear all" />
-                  <Button layoutX="383.0" layoutY="26.0" mnemonicParsing="false" onAction="#clearSpecificPrograms" text="Clear specific" />
+                  <Button layoutX="116.0" layoutY="25.0" mnemonicParsing="false" onAction="#selectPrograms" text="Select" />
+                  <Button layoutX="195.0" layoutY="25.0" mnemonicParsing="false" onAction="#clearAllPrograms" text="Clear all" />
+                  <Button layoutX="279.0" layoutY="25.0" mnemonicParsing="false" onAction="#clearSpecificPrograms" text="Clear specific" />
+                  <Button layoutX="396.0" layoutY="25.0" mnemonicParsing="false" onAction="#openUserView" text="cancel" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <BarChart fx:id="barChart" layoutY="6.0" prefHeight="412.0" prefWidth="600.0">
                     <xAxis>
-                      <CategoryAxis fx:id="yAxis" side="BOTTOM" />
+                      <CategoryAxis animated="false" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" fx:id="xAxis" />
+                      <NumberAxis side="LEFT" />
                     </yAxis>
                   </BarChart>
                </children>
