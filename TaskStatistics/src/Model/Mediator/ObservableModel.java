@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public interface ObservableModel extends PropertyChangeSubject, ClientModel {
     void sendReport(String comment) throws IOException;
+
     void getLocalData(ChartManager.SORTTYPE type);
+
     void getMoreData(ChartManager.SORTTYPE type);
 }

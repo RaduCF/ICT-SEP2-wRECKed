@@ -22,24 +22,26 @@ public class ProgramListView {
     @FXML
     private ListView<String> listView;
 
-    public void init(ArrayList<SimpleStringProperty> usedDataNameProperties, ProgramListViewModel model, MainView parent, Scene scene, String title)
-    {
+    public void init(ArrayList<SimpleStringProperty> usedDataNameProperties, ProgramListViewModel model, MainView parent, Scene scene, String title) {
         this.model = model;
         this.parent = parent;
         this.scene = scene;
         this.title = title;
+
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         countProperty = new SimpleIntegerProperty();
         this.dataNameProperties = new ArrayList<>();
         this.usedDataNameProperties = usedDataNameProperties;
         loadData();
-
     }
 
+    public Scene getScene() {
+        return scene;
+    }
 
-
-    public Scene getScene(){return scene;}
-    public String getTitle(){return title;}
+    public String getTitle() {
+        return title;
+    }
 
     @FXML
     public void submit() // sends data names to the comparisonView
@@ -47,9 +49,8 @@ public class ProgramListView {
         ObservableList<String> programs;
         ArrayList<String> sendablePrograms = new ArrayList<>();
         programs = listView.getSelectionModel().getSelectedItems();
-        System.out.println("ProgramListView: submit: Selected program ammount: "+ programs.size());
-        for(int i=0;i<programs.size();i++)
-        {
+        System.out.println("ProgramListView: submit: Selected program ammount: " + programs.size());
+        for (int i = 0; i < programs.size(); i++) {
             sendablePrograms.add(programs.get(i));
         }
         parent.getComparisonView().loadData(sendablePrograms);
@@ -61,21 +62,18 @@ public class ProgramListView {
         model.loadData();
         bindProperties();
         boolean add;
-        for(int i = 0; i< countProperty.intValue(); i++)
-        {
-            add=true;
-            if(usedDataNameProperties.size()!=0) {
-                for(int j=0;j<usedDataNameProperties.size();j++) {
-                    if(dataNameProperties.get(i).getValue().equals(usedDataNameProperties.get(j).getValue()))
-                    {
-                       add=false;
+        for (int i = 0; i < countProperty.intValue(); i++) {
+            add = true;
+            if (usedDataNameProperties.size() != 0) {
+                for (int j = 0; j < usedDataNameProperties.size(); j++) {
+                    if (dataNameProperties.get(i).getValue().equals(usedDataNameProperties.get(j).getValue())) {
+                        add = false;
                     }
                 }
-                if(add==true) {
-                     listView.getItems().add(dataNameProperties.get(i).getValue());
+                if (add == true) {
+                    listView.getItems().add(dataNameProperties.get(i).getValue());
                 }
-            }
-            else {
+            } else {
                 listView.getItems().add(dataNameProperties.get(i).getValue());
             }
         }
@@ -86,9 +84,13 @@ public class ProgramListView {
         countProperty.bindBidirectional(model.getCountProperty());
         dataNameProperties.clear();
 
-        for(int i = 0; i< countProperty.intValue(); i++) {
+        for (int i = 0; i < countProperty.intValue(); i++) {
             dataNameProperties.add(new SimpleStringProperty());
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
         }
+    }
+
+    public void cancel() {
+        parent.closeProgramListView();
     }
 }

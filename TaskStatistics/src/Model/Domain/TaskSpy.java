@@ -4,7 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
 
-public class TaskSpy implements Runnable{
+public class TaskSpy implements Runnable {
 
     private ServerSocket serverSocket;
     private Socket socket;
@@ -19,11 +19,11 @@ public class TaskSpy implements Runnable{
         incoming = "";
     }
 
-    public void close()
-    {
+    public void close() {
         try {
             socket.close();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public String getIncoming() {
@@ -31,30 +31,28 @@ public class TaskSpy implements Runnable{
     }
 
     public void resetIncoming() {
-    	synchronized (incoming) {
-        	incoming = "";
-		}
+        synchronized (incoming) {
+            incoming = "";
+        }
     }
 
-    public void run()
-    {
+    public void run() {
         System.out.println("TaskSpy run method starting.");
         while (true) {
-            if(!init)
-            {
-                try
-                {
+            if (!init) {
+                try {
                     process = new ProcessBuilder("..\\TaskSpy/TaskSpy/bin/Release/taskSpy.exe").start();
                     serverSocket = new ServerSocket(5000, 10);
                     socket = serverSocket.accept();
                     in = socket.getInputStream();
                     init = true;
-        		} catch (Exception e){ System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);}
+                } catch (Exception e) {
+                    System.out.println("TaskSpy failed to Start Or TaskSpy connection not succesful" + e);
+                }
 
                 System.out.println("TaskSpy initializing complete...");
             }
-            try
-            {
+            try {
                 String received = "";
                 // Receiving
                 byte[] lenBytes = new byte[4];
@@ -68,12 +66,13 @@ public class TaskSpy implements Runnable{
                 incoming = received;
 
 
-            } catch (Exception e){
-               	System.out.println(e);
-               	try {
-					serverSocket.close();
-				} catch (IOException e1) {}
-            	init = false;
+            } catch (Exception e) {
+                System.out.println(e);
+                try {
+                    serverSocket.close();
+                } catch (IOException e1) {
+                }
+                init = false;
             }
         }
     }

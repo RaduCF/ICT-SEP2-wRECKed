@@ -14,7 +14,7 @@ public class Notification {
 
             //If the icon is a file
             Image image = Toolkit.getDefaultToolkit().getImage("Notification.jpg");
-            TrayIcon trayIcon = new TrayIcon(image,"Tray");
+            TrayIcon trayIcon = new TrayIcon(image, "Tray");
             //Let the system resize the image if needed
             trayIcon.setImageAutoSize(true);
             //Set tooltip text for the tray icon

@@ -19,24 +19,24 @@ public class ModelManager implements ObservableModel, ClientModel {
         this.property = new PropertyChangeSupport(this);
     }
 
-    public void sendLocalData(SORTTYPE type)
-    {
+    public void sendLocalData(SORTTYPE type) {
         System.out.println("ModelManager: sendLocalData: firing propertyChange " + type.toString());
 
         property.firePropertyChange("dataUpdate", client.getLocalData(type), client.getLocalData(type));
 
         System.out.println("ModelManager: sendLocalData: Property change fired!" + type.toString());
     }
+
     @Override
     public void getLocalData(SORTTYPE type) {
         System.out.println("ModelManager: getLocalData: getLocalData called");
-         sendLocalData(type);
+        sendLocalData(type);
     }
 
     @Override
     public void getMoreData(SORTTYPE type) {
         System.out.println("Requiring more data...");
-            property.firePropertyChange("Moredata", client.getMoreData(type), client.getMoreData(type));
+        property.firePropertyChange("Moredata", client.getMoreData(type), client.getMoreData(type));
     }
 
     @Override

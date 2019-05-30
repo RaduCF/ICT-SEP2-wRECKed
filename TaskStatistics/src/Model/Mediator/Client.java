@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Client implements Runnable, ClientModel {
     private DataOutputStream stream;
-	private DataInputStream istream;
+    private DataInputStream istream;
     private Socket socket;
 
     private ClientModel clientModel;
@@ -23,8 +23,8 @@ public class Client implements Runnable, ClientModel {
     //Domain init:
     private LocalData localData;
 
-    public Client(){
-    	localData = new LocalData(getUserID());
+    public Client() {
+        localData = new LocalData(getUserID());
     	/* Receiver is not used?!?!
         this.receiver= new Receiver();
         Thread thread = new Thread(receiver);
@@ -32,8 +32,8 @@ public class Client implements Runnable, ClientModel {
 		*/
     }
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
 		/*
 		System.out.println("Running the client...");
         if(!connect())
@@ -41,110 +41,102 @@ public class Client implements Runnable, ClientModel {
             System.out.println("Not connected!!");
         }
         */
-		synchronized (this) {
-			while (true) {
-				try {
-					this.wait(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-		        localData.updateLocal();
-			}
-		}
-	}
+        synchronized (this) {
+            while (true) {
+                try {
+                    this.wait(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                localData.updateLocal();
+            }
+        }
+    }
 
-	public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
+    public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
         ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("Netflix",10));
-        dummy.add(new DataPoint("Chrome",15));
-        dummy.add(new DataPoint("Spotify",90));
-        dummy.add(new DataPoint("Outlook",23));
-        dummy.add(new DataPoint("FileExplorer",53));
+        dummy.add(new DataPoint("Netflix", 10));
+        dummy.add(new DataPoint("Chrome", 15));
+        dummy.add(new DataPoint("Spotify", 90));
+        dummy.add(new DataPoint("Outlook", 23));
+        dummy.add(new DataPoint("FileExplorer", 53));
         return dummy;
-		//return this.localData.getData(type);
-	}
+        //return this.localData.getData(type);
+    }
 
     public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
         ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("League of Legends",100));
-        dummy.add(new DataPoint("Calculator",5));
-        dummy.add(new DataPoint("IntelliJ",78));
-        dummy.add(new DataPoint("EclipseIDE",34));
-        dummy.add(new DataPoint("Brackets",29));
+        dummy.add(new DataPoint("League of Legends", 100));
+        dummy.add(new DataPoint("Calculator", 5));
+        dummy.add(new DataPoint("IntelliJ", 78));
+        dummy.add(new DataPoint("EclipseIDE", 34));
+        dummy.add(new DataPoint("Brackets", 29));
         return dummy;
     }
 
-	private String UserID = null;
-    public String getUserID()
-    {
-		if (UserID == null)
-		{
+    private String UserID = null;
 
-			//Combine attributes to get a strong hardware ID
-			int cores = Runtime.getRuntime().availableProcessors();
-			String username =  System.getProperty("user.name");
-			long maxMemory = Runtime.getRuntime().maxMemory();
+    public String getUserID() {
+        if (UserID == null) {
 
-			String _hash = cores + username + maxMemory;
-			String hash = "";
+            //Combine attributes to get a strong hardware ID
+            int cores = Runtime.getRuntime().availableProcessors();
+            String username = System.getProperty("user.name");
+            long maxMemory = Runtime.getRuntime().maxMemory();
 
-			try
-			{
-				MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-				messageDigest.update(_hash.getBytes());
-				hash = new String(messageDigest.digest());
-			} catch (Exception ex)
-			{
-			System.out.println("Something went wrong in the client...");
-			}
+            String _hash = cores + username + maxMemory;
+            String hash = "";
 
-			UserID = hash;
-			return hash;
-		}
+            try {
+                MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+                messageDigest.update(_hash.getBytes());
+                hash = new String(messageDigest.digest());
+            } catch (Exception ex) {
+                System.out.println("Something went wrong in the client...");
+            }
+
+            UserID = hash;
+            return hash;
+        }
 
         return UserID;
     }
 
-	public float getAvgHours(String program) throws IOException {
-		stream.writeInt(2);
-		stream.writeUTF(program);
-		return istream.readFloat();
-	}
+    public float getAvgHours(String program) throws IOException {
+        stream.writeInt(2);
+        stream.writeUTF(program);
+        return istream.readFloat();
+    }
 
-	public void reportBug(String str) throws IOException {
-		stream.writeInt(3);
-		stream.writeUTF(str);
-	}
+    public void reportBug(String str) throws IOException {
+        stream.writeInt(3);
+        stream.writeUTF(str);
+    }
 
     public boolean connect() {
         System.out.println("Connecting...");
-        try
-        {
-            socket = new Socket("10.152.210.98",5001);
+        try {
+            socket = new Socket("10.152.210.98", 5001);
             stream = new DataOutputStream(socket.getOutputStream());
             System.out.println("Connected!");
-        } catch (Exception e)
-        {
-        	System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
 
         //Send user ID to server
         String userid = getUserID();
 
-        try
-        {
+        try {
             System.out.println("Sending userID...");
             stream.writeUTF(userid);
             System.out.println("UserID sent!");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return false;
         }
 
 
-        while (true)
-        {/* DEBUGING CODE
+        while (true) {/* DEBUGING CODE
             try
             {
                 stream.writeUTF("doogle.org");
@@ -154,17 +146,14 @@ public class Client implements Runnable, ClientModel {
                 return false;
             }
             */
-            for (DataPoint point : localData.getData(ChartManager.SORTTYPE.RAW))
-            {
-                try
-                {
-					stream.writeInt(1); //PacketType: 1 = Update table
+            for (DataPoint point : localData.getData(ChartManager.SORTTYPE.RAW)) {
+                try {
+                    stream.writeInt(1); //PacketType: 1 = Update table
                     stream.writeUTF(point.getId());
                     stream.writeFloat(point.getHours());
-                } catch (Exception e)
-               {
+                } catch (Exception e) {
                     return false;
-               }
+                }
             }
             try {
                 Thread.sleep(5000);

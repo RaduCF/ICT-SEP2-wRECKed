@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ReportBugView">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ReportBugView">
    <children>
       <VBox prefHeight="344.0" prefWidth="600.0">
          <children>
             <Pane prefHeight="342.0" prefWidth="600.0">
                <children>
-                  <Label alignment="CENTER" layoutX="29.0" prefHeight="41.0" prefWidth="549.0" text="Report a Bug" textAlignment="CENTER" textFill="#008314">
+                  <Label alignment="CENTER" layoutX="29.0" prefHeight="41.0" prefWidth="549.0" text="Report a Bug" textAlignment="CENTER" textFill="#00570d">
                      <font>
                         <Font name="Comic Sans MS" size="32.0" />
                      </font>
@@ -31,14 +31,14 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="Send" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#SendReport" prefHeight="46.0" prefWidth="117.0" text="Send Report" textFill="#680000">
+                  <Button fx:id="Send" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#SendReport" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #0BA4B0;" text="Send Report" textFill="#dd0000">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="System Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Cancel" layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#CancelPressed" prefHeight="46.0" prefWidth="117.0" text="Cancel" textFill="#6b0000">
+                  <Button fx:id="Cancel" layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#CancelPressed" prefHeight="46.0" prefWidth="117.0" style="-fx-background-color: #0BA4B0;" text="Cancel" textFill="#cd0000">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                   <Label fx:id="submitted" layoutX="145.0" layoutY="9.0" prefHeight="46.0" prefWidth="313.0" textFill="#ff0404">
