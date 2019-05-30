@@ -5,7 +5,6 @@ import ViewModel.ComparisonViewModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -37,11 +36,8 @@ public class ComparisonView {
     private ArrayList <SimpleStringProperty> localDataNameProperties;
     private ArrayList<SimpleDoubleProperty> globalDataValueProperties;
     private ArrayList <SimpleStringProperty> globalDataNameProperties;
-
     private ArrayList<SimpleStringProperty> usedLocalDataNameProperties;
     private ArrayList<SimpleDoubleProperty> usedLocalDataValueProperties;
-
-
 
     public void init(MainView parent, ComparisonViewModel model, Scene scene, String title) {
         this.parent = parent;
@@ -57,8 +53,6 @@ public class ComparisonView {
         usedLocalDataValueProperties = new ArrayList<>();
     }
 
-
-
     public void loadData(ArrayList<String> dataNames)
     {
         System.out.println("ComparisonView: loadData: received program amount: "+dataNames.size() + ", and toggle button is: "+global.isSelected());
@@ -70,7 +64,6 @@ public class ComparisonView {
         localDataNameProperties.clear();
         localDataValueProperties.clear();
     }
-
 
     public void bindProperties(int size) // creates and binds this class properties to the existing model properties
     {
@@ -105,9 +98,6 @@ public class ComparisonView {
                 globalDataNameProperties.get(i).bindBidirectional(model.getGlobalDataNameProperties().get(i));
             }
         }
-
-
-
     }
 
     public void handleBarChartData()
@@ -122,13 +112,10 @@ public class ComparisonView {
                 System.out.println("ComparisonView: handleBarChartData: loop: "+i+" usedDataNameProperty name: "+ localDataNameProperties.get(i).getValue());
                 barChart.getData().addAll(displaySet);
             }
-
         }
 
         else if(global.isSelected())
         {
-
-
             for(int i = 0; i< localDataValueProperties.size(); i++)
             {
                 XYChart.Series displaySet = new XYChart.Series();
@@ -140,19 +127,17 @@ public class ComparisonView {
 
         }
 
-
         moveUnusedToUsed();
         System.out.println("ComparisonView: handleBarChartData: Data loaded.");
     }
 
     @FXML
-    public void setInterval(ActionEvent event)
-    {
+    public void setInterval() {
 
     }
 
     @FXML
-    public void clearAllPrograms(ActionEvent event)
+    public void clearAllPrograms()
     {
         for(int i = 0; i< usedLocalDataValueProperties.size(); i++)
         {
@@ -163,14 +148,14 @@ public class ComparisonView {
     }
 
     @FXML
-    public void clearSpecificPrograms(ActionEvent event)
+    public void clearSpecificPrograms()
     {
         parent.openProgramRemoveListView();
         parent.getRemoveProgramListView().loadData(usedLocalDataNameProperties);
     }
 
     @FXML
-    public void selectPrograms(ActionEvent event)
+    public void selectPrograms()
     {
         parent.openProgramListView(usedLocalDataNameProperties);
     }
@@ -188,7 +173,6 @@ public class ComparisonView {
         }
         localDataNameProperties.clear();
         localDataValueProperties.clear();
-
     }
 
     public void removeData(ObservableList<String> programs) {
@@ -224,7 +208,7 @@ public class ComparisonView {
     }
 
     @FXML
-    public void openUserView(ActionEvent evt)
+    public void cancelPressed()
     {
         parent.closeComparisonView();
         parent.openUserView();
