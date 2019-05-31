@@ -139,8 +139,8 @@ public class MainView {
     }
 
     public void closeProgramRemoveListView() {
-            programRemoveListStage.getScene().getWindow().hide();
-
+        openProgramRemoveListView();
+        programRemoveListStage.getScene().getWindow().hide();
     }
 
     public void openProgramRemoveListView() {

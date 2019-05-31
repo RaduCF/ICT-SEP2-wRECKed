@@ -2,6 +2,7 @@ package View;
 
 import ViewModel.UserViewModel;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class UserView {
     @FXML
     private Label Title;
 
-    private ArrayList<SimpleDoubleProperty> dataValueProperties;
+    private ArrayList<SimpleFloatProperty> dataValueProperties;
     private ArrayList<SimpleStringProperty> dataNameProperties;
 
 
@@ -45,7 +46,7 @@ public class UserView {
     public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
         for (int i = 0; i < 5; i++) {
-            dataValueProperties.add(new SimpleDoubleProperty());
+            dataValueProperties.add(new SimpleFloatProperty());
             dataNameProperties.add(new SimpleStringProperty());
         }
     }
@@ -73,7 +74,7 @@ public class UserView {
         System.out.println("Data loaded.");
     }
 
-    public ArrayList<SimpleDoubleProperty> getDataValueProperties(){
+    public ArrayList<SimpleFloatProperty> getDataValueProperties(){
         return dataValueProperties;
     }
 

@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import Model.Domain.ChartManager.SORTTYPE;
 
-import static java.lang.Thread.sleep;
 
 public class ModelManager implements ObservableModel, ClientModel {
 

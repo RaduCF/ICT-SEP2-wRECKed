@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2d18493f-b108-45cc-b68d-ee24a6c3bff1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/LocalStorage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LocalStorage.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mediator/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ComparisonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ComparisonView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ProgramListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ProgramListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewModel/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewModel/UserViewModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,15 +40,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/ProgramListView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="45" column="30" lean-forward="true" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+            <state relative-caret-position="-294">
+              <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1443#1444#0" expanded="true" />
                 <element signature="e#1471#1472#0" expanded="true" />
+                <element signature="e#1503#1504#0" expanded="true" />
                 <element signature="e#1531#1532#0" expanded="true" />
                 <element signature="e#4830#4831#0" expanded="true" />
                 <element signature="e#4875#4876#0" expanded="true" />
@@ -53,15 +61,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/MainView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="141" column="40" lean-forward="true" selection-start-line="141" selection-start-column="40" selection-end-line="141" selection-end-column="40" />
+            <state relative-caret-position="201">
+              <caret line="142" column="61" selection-start-line="142" selection-start-column="61" selection-end-line="142" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#836#837#0" expanded="true" />
                 <element signature="e#886#887#0" expanded="true" />
                 <element signature="e#5770#5771#0" expanded="true" />
                 <element signature="e#5801#5802#0" expanded="true" />
-                <element signature="e#5846#5847#0" expanded="true" />
+                <element signature="e#5837#5838#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Mediator/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+            <state relative-caret-position="397">
+              <caret line="75" column="39" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -97,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ModelManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="-286">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ViewModel/MainViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="440">
+              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ViewModel/UserViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1323">
-              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+            <state relative-caret-position="89">
+              <caret line="29" column="76" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -130,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/UserView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="994">
-              <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+            <state relative-caret-position="289">
+              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2390#2391#0" expanded="true" />
@@ -144,11 +152,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/ComparisonView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="167" column="34" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
+            <state relative-caret-position="-96">
+              <caret line="85" column="62" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6926#6927#0" expanded="true" />
+                <element signature="e#5967#5968#0" expanded="true" />
+                <element signature="e#6038#6039#0" expanded="true" />
+                <element signature="e#6069#6070#0" expanded="true" />
+                <element signature="e#6097#6098#0" expanded="true" />
+                <element signature="e#6129#6130#0" expanded="true" />
+                <element signature="e#6157#6158#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,6 +181,7 @@
     <findStrings>
       <find>works</find>
       <find>getLoca</find>
+      <find>Double</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -204,33 +218,33 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/View/userViewFXML.fxml" />
         <option value="$PROJECT_DIR$/src/View/ReportBugView.java" />
-        <option value="$PROJECT_DIR$/src/Model/Mediator/Client.java" />
         <option value="$PROJECT_DIR$/src/Model/Mediator/ClientModel.java" />
-        <option value="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" />
         <option value="$PROJECT_DIR$/src/Model/Mediator/ObservableModel.java" />
         <option value="$PROJECT_DIR$/src/View/RemoveProgramsFXML.fxml" />
         <option value="$PROJECT_DIR$/src/Model/Domain/ChartManager.java" />
         <option value="$PROJECT_DIR$/src/Model/Domain/DataPoint.java" />
         <option value="$PROJECT_DIR$/src/Model/Domain/LocalData.java" />
         <option value="$PROJECT_DIR$/src/Model/Domain/TaskSpy.java" />
-        <option value="$PROJECT_DIR$/src/Model/Mediator/Client.java" />
         <option value="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" />
         <option value="$PROJECT_DIR$/src/Model/Mediator/Notification.java" />
         <option value="$PROJECT_DIR$/src/Model/Mediator/ObservableModel.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/MainViewModel.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/ComparisonViewModel.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/ReportBugViewModel.java" />
-        <option value="$PROJECT_DIR$/src/ViewModel/UserViewModel.java" />
-        <option value="$PROJECT_DIR$/src/View/UserView.java" />
         <option value="$PROJECT_DIR$/src/ViewModel/ProgramListViewModel.java" />
         <option value="$PROJECT_DIR$/src/View/RemoveProgamListView.java" />
-        <option value="$PROJECT_DIR$/src/View/ComparisonView.java" />
-        <option value="$PROJECT_DIR$/src/View/MainView.java" />
         <option value="$PROJECT_DIR$/src/View/ProgramListView.java" />
+        <option value="$PROJECT_DIR$/src/View/ComparisonView.java" />
+        <option value="$PROJECT_DIR$/src/View/UserView.java" />
+        <option value="$PROJECT_DIR$/src/View/MainView.java" />
+        <option value="$PROJECT_DIR$/src/Model/Mediator/Client.java" />
+        <option value="$PROJECT_DIR$/src/Model/Mediator/Client.java" />
+        <option value="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" />
+        <option value="$PROJECT_DIR$/src/ViewModel/UserViewModel.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -394,7 +408,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28307000" />
+    <option name="totallyTimeSpent" value="29126000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -406,7 +420,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992785" visible="true" weight="0.15831557" />
@@ -601,13 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Mediator/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ClientModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -632,16 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewModel/MainViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ReportBugView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -659,29 +656,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewModel/UserViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ObservableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/UserView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="994">
-          <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2390#2391#0" expanded="true" />
-            <element signature="e#2432#2433#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,17 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ModelManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/RemoveProgamListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
@@ -741,21 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MainView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="141" column="40" lean-forward="true" selection-start-line="141" selection-start-column="40" selection-end-line="141" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#836#837#0" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
-            <element signature="e#5770#5771#0" expanded="true" />
-            <element signature="e#5801#5802#0" expanded="true" />
-            <element signature="e#5846#5847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/SelectProgramsFXML.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -766,27 +718,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ComparisonView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="167" column="34" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
+        <state relative-caret-position="-96">
+          <caret line="85" column="62" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6926#6927#0" expanded="true" />
+            <element signature="e#5967#5968#0" expanded="true" />
+            <element signature="e#6038#6039#0" expanded="true" />
+            <element signature="e#6069#6070#0" expanded="true" />
+            <element signature="e#6097#6098#0" expanded="true" />
+            <element signature="e#6129#6130#0" expanded="true" />
+            <element signature="e#6157#6158#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ProgramListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="45" column="30" lean-forward="true" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        <state relative-caret-position="-294">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1443#1444#0" expanded="true" />
             <element signature="e#1471#1472#0" expanded="true" />
+            <element signature="e#1503#1504#0" expanded="true" />
             <element signature="e#1531#1532#0" expanded="true" />
             <element signature="e#4830#4831#0" expanded="true" />
             <element signature="e#4875#4876#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/UserView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2390#2391#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="142" column="61" selection-start-line="142" selection-start-column="61" selection-end-line="142" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#886#887#0" expanded="true" />
+            <element signature="e#5770#5771#0" expanded="true" />
+            <element signature="e#5801#5802#0" expanded="true" />
+            <element signature="e#5837#5838#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Mediator/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="75" column="39" selection-start-line="75" selection-start-column="39" selection-end-line="75" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Mediator/ModelManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-286">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewModel/MainViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewModel/UserViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="29" column="76" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
         </state>
       </provider>
     </entry>

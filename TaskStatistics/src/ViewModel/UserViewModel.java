@@ -28,12 +28,12 @@ public class UserViewModel {
 
     public void getMoreData() {
         System.out.println("UserViewModel: getMoreData: Calling ObservableModel getMoreData ");
-        observableModel.getMoreData(ChartManager.SORTTYPE.RAW);
+        observableModel.getMoreData(ChartManager.SORTTYPE.BYHOURS);
     }
 
     public void getLocalData() {
         System.out.println("UserViewModel: getLocalData: Calling ObservableModel getLocalData ");
-        observableModel.getLocalData(ChartManager.SORTTYPE.RAW);
+        observableModel.getLocalData(ChartManager.SORTTYPE.BYHOURS);
     }
 
     public void initializeProperties() {

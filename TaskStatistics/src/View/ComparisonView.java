@@ -2,8 +2,6 @@ package View;
 
 
 import ViewModel.ComparisonViewModel;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -32,12 +30,12 @@ public class ComparisonView {
 
     private MainView parent;
     private ComparisonViewModel model;
-    private ArrayList<Double> localDataValueProperties;
+    private ArrayList<Float> localDataValueProperties;
     private ArrayList<String> localDataNameProperties;
-    private ArrayList<Double> globalDataValueProperties;
+    private ArrayList<Float> globalDataValueProperties;
     private ArrayList<String> globalDataNameProperties;
     private ArrayList<String> usedLocalDataNameProperties;
-    private ArrayList<Double> usedLocalDataValueProperties;
+    private ArrayList<Float> usedLocalDataValueProperties;
 
     public void init(MainView parent, ComparisonViewModel model, Scene scene, String title) {
         this.parent = parent;
@@ -53,7 +51,7 @@ public class ComparisonView {
         usedLocalDataValueProperties = new ArrayList<>();
     }
 
-    public void loadData(ArrayList<String> dataNames, ArrayList<Double> dataValues) {
+    public void loadData(ArrayList<String> dataNames, ArrayList<Float> dataValues) {
         System.out.println("ComparisonView: loadData: received program amount: " + dataNames.size() + ", and toggle button is: " + global.isSelected());
         //model.loadData(dataNames, global.isSelected());
         //bindProperties(dataNames.size());
@@ -169,7 +167,7 @@ public class ComparisonView {
 
         boolean remove;
         ArrayList<String> sendablePrograms = new ArrayList<>();
-        ArrayList<Double> sendableProgramsValues = new ArrayList<>();
+        ArrayList<Float> sendableProgramsValues = new ArrayList<>();
 
         barChart.getData().clear();
 

@@ -65,13 +65,15 @@ public class Client implements Runnable, ClientModel {
     }
 
     public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
-        ArrayList<DataPoint> dummy = new ArrayList<>();
+        /*ArrayList<DataPoint> dummy = new ArrayList<>();
         dummy.add(new DataPoint("League of Legends", 100));
         dummy.add(new DataPoint("Calculator", 5));
         dummy.add(new DataPoint("IntelliJ", 78));
         dummy.add(new DataPoint("EclipseIDE", 34));
         dummy.add(new DataPoint("Brackets", 29));
         return dummy;
+         */
+        return localData.getData(type);
     }
 
     private String UserID = null;

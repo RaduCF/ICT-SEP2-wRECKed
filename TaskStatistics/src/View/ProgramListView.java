@@ -52,7 +52,7 @@ public class ProgramListView {
     {
         ObservableList<String> programs;
         ArrayList<String> sendablePrograms = new ArrayList<>();
-        ArrayList<Double> sendableProgramsValues = new ArrayList<>();
+        ArrayList<Float> sendableProgramsValues = new ArrayList<>();
         ArrayList<SimpleStringProperty> selected = new ArrayList<>();
         programs = listView.getSelectionModel().getSelectedItems();
         System.out.println("ProgramListView: submit: Selected program ammount: " + programs.size());
