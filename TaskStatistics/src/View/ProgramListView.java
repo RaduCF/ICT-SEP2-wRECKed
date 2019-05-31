@@ -70,8 +70,10 @@ public class ProgramListView {
 
         System.out.println("Programs sent to the comparison view: " + sendablePrograms.toString());
         for (int i = 0; i<selected.size();i++){
-            if (selected.get(i).getValue().equals(parent.getUserView().getDataNameProperties().get(i).getValue())){
-                sendableProgramsValues.add(parent.getUserView().getDataValueProperties().get(i).getValue());
+            for (int t=0;t<parent.getUserView().getDataNameProperties().size();t++) {
+                if (selected.get(i).getValue().equals(parent.getUserView().getDataNameProperties().get(t).getValue())) {
+                    sendableProgramsValues.add(parent.getUserView().getDataValueProperties().get(i).getValue());
+                }
             }
         }
         System.out.println("Hours per app sent: " + sendableProgramsValues.toString());
