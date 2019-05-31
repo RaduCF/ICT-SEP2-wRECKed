@@ -82,4 +82,5 @@ public class UserViewModel {
     public StringProperty titleProperty() {
         return title;
     }
+
 }

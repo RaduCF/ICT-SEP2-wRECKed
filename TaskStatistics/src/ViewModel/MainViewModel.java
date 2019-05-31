@@ -40,12 +40,19 @@ public class MainViewModel implements PropertyChangeListener {
                 mainView.initialiseUserViewProperties();
                 mainView.bindUserViewProperties();
                 mainView.loadData();
-            } else if (evt.getPropertyName().equals("Moredata")) {
+            }
+            else if (evt.getPropertyName().equals("Moredata")) {
                 System.out.println("MainViewModel: propertyChange: loading userViewModel local data " + evt.getNewValue().toString());
                 userViewModel.loadLocalData(evt.getNewValue());
                 mainView.initialiseUserViewProperties();
                 mainView.bindUserViewProperties();
                 mainView.loadData();
+            }
+            else if(evt.getPropertyName().equals("Globaldata")) {
+                System.out.println("MainViewModel: propertyChange: sending global data to the userViewModel,  value is:" + evt.getNewValue() );
+                System.out.println("MainViewModel: propertyChange: sending global data to the userViewModel, name is:" + evt.getPropertyName() );
+
+                comparisonViewModel.receiveGlobalDataValue(((float) evt.getNewValue()));
             }
         });
     }

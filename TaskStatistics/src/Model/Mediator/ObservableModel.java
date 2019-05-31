@@ -11,4 +11,6 @@ public interface ObservableModel extends PropertyChangeSubject, ClientModel {
     void getLocalData(ChartManager.SORTTYPE type);
 
     void getMoreData(ChartManager.SORTTYPE type);
+
+    void getGlobalData(String dataName);
 }

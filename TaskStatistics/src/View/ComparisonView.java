@@ -2,6 +2,9 @@ package View;
 
 
 import ViewModel.ComparisonViewModel;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -13,15 +16,13 @@ import javafx.scene.control.ToggleButton;
 
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 
 public class ComparisonView {
 
     @FXML
     private BarChart barChart;
-    @FXML
-    private CategoryAxis yAxis;
-    @FXML
-    private NumberAxis xAxis;
     @FXML
     private ToggleButton global;
 
@@ -32,8 +33,8 @@ public class ComparisonView {
     private ComparisonViewModel model;
     private ArrayList<Float> localDataValueProperties;
     private ArrayList<String> localDataNameProperties;
-    private ArrayList<Float> globalDataValueProperties;
-    private ArrayList<String> globalDataNameProperties;
+    private ArrayList<SimpleFloatProperty> globalDataValueProperties;
+    private ArrayList<SimpleStringProperty> globalDataNameProperties;
     private ArrayList<String> usedLocalDataNameProperties;
     private ArrayList<Float> usedLocalDataValueProperties;
 
@@ -53,46 +54,48 @@ public class ComparisonView {
 
     public void loadData(ArrayList<String> dataNames, ArrayList<Float> dataValues) {
         System.out.println("ComparisonView: loadData: received program amount: " + dataNames.size() + ", and toggle button is: " + global.isSelected());
-        //model.loadData(dataNames, global.isSelected());
-        //bindProperties(dataNames.size());
-        // implement request to receive EXACT data objects
         localDataNameProperties.addAll(dataNames);
         localDataValueProperties.addAll(dataValues);
 
-        handleBarChartData();
-        localDataNameProperties.clear();
-        localDataValueProperties.clear();
+        for(int i=0;i<localDataNameProperties.size();i++)
+        {
+            System.out.println("ComparisonView: loadData: local data name: "+localDataNameProperties.get(i));
+            System.out.println("ComparisonView: loadData: local data value: "+localDataValueProperties.get(i));
+        }
+
+        if(global.isSelected()) {
+            model.getGlobalData(dataNames);
+
+            initializeGlobalProperties(dataNames);
+            bindGlobalProperties(dataNames);
+
+            Platform.runLater(() -> {
+                handleBarChartData();
+            });
+
+
+        }
+
     }
 
-    /*public void bindProperties(int size) // creates and binds this class properties to the existing model properties
-    {
-        localDataNameProperties.clear();
-        localDataValueProperties.clear();
-        globalDataNameProperties.clear();
-        globalDataValueProperties.clear();
 
-        if (!global.isSelected()) {
-            for (int i = 0; i < size; i++) {
-                localDataNameProperties.add(new SimpleStringProperty());
-                localDataValueProperties.add(new SimpleDoubleProperty());
-                localDataNameProperties.get(i).bindBidirectional(model.getLocalDataNameProperties().get(i));
-                localDataValueProperties.get(i).bindBidirectional(model.getLocalDataValueProperties().get(i));
-            }
-        } else if (global.isSelected()) {
-            for (int i = 0; i < size; i++) {
-                localDataNameProperties.add(new SimpleStringProperty());
-                localDataValueProperties.add(new SimpleDoubleProperty());
-                globalDataNameProperties.add(new SimpleStringProperty());
-                globalDataValueProperties.add(new SimpleDoubleProperty());
-
-                localDataNameProperties.get(i).bindBidirectional(model.getLocalDataNameProperties().get(i));
-                localDataValueProperties.get(i).bindBidirectional(model.getLocalDataValueProperties().get(i));
-                globalDataValueProperties.get(i).bindBidirectional(model.getGlobalDataValueProperties().get(i));
-                globalDataNameProperties.get(i).bindBidirectional(model.getGlobalDataNameProperties().get(i));
-            }
+    public void initializeGlobalProperties(ArrayList<String> dataNames) {
+        for(int i=0;i<dataNames.size();i++)
+        {
+            globalDataNameProperties.add(new SimpleStringProperty());
+            globalDataValueProperties.add(new SimpleFloatProperty());
         }
     }
-    */
+
+    public void bindGlobalProperties(ArrayList<String> dataNames) {
+        for(int i=0;i<dataNames.size();i++)
+        {
+            System.out.println("ComparisonView: bindGlobalProperties: binding the properties");
+            globalDataNameProperties.get(i).bindBidirectional(model.getGlobalDataNameProperties().get(i));
+            globalDataValueProperties.get(i).bindBidirectional(model.getGlobalDataValueProperties().get(i));
+        }
+    }
+
 
     public void handleBarChartData() {
         System.out.println("ComparisonView: handleBarChartData: executing data loading");
@@ -106,11 +109,15 @@ public class ComparisonView {
                 barChart.getData().addAll(displaySet);
             }
         } else if (global.isSelected()) {
+            System.out.println("ComparisonView: handleBarChartData: loading data into the chart...");
             for (int i = 0; i < localDataNameProperties.size(); i++) {
                 XYChart.Series displaySet = new XYChart.Series();
+                System.out.println("ComparisonView: handleBarChartData: loading local data name:" + localDataNameProperties.get(i));
+                System.out.println("ComparisonView: handleBarChartData: loading local data value: "+localDataValueProperties.get(i));
                 displaySet.getData().add(new XYChart.Data(localDataNameProperties.get(i), localDataValueProperties.get(i)));
-                displaySet.getData().add(new XYChart.Data(localDataNameProperties.get(i), localDataValueProperties.get(i)));
-                System.out.println("ComparisonView: handleBarChartData: loop: " + i + " usedDataNameProperty name: " + parent.getUserView().getDataNameProperties().get(i).getValue());
+                System.out.println("ComparisonView: handleBarChartData: loading global data name:" + globalDataNameProperties.get(i));
+                System.out.println("ComparisonView: handleBarChartData: loading global data value: "+globalDataValueProperties.get(i));
+                displaySet.getData().add(new XYChart.Data("global: "+globalDataNameProperties.get(i), globalDataValueProperties.get(i).getValue()));
                 barChart.getData().addAll(displaySet);
             }
 
@@ -120,17 +127,11 @@ public class ComparisonView {
         System.out.println("ComparisonView: handleBarChartData: Data loaded.");
     }
 
-    @FXML
-    public void setInterval() {
-
-    }
 
     @FXML
     public void clearAllPrograms() {
-        for (int i = 0; i < usedLocalDataValueProperties.size(); i++) {
-            usedLocalDataValueProperties.clear();
-            usedLocalDataNameProperties.clear();
-        }
+        localDataValueProperties.clear();
+        localDataNameProperties.clear();
         barChart.getData().clear();
     }
 
@@ -202,5 +203,19 @@ public class ComparisonView {
         parent.closeProgramRemoveListView();
         parent.closeProgramListView();
         parent.openUserView();
+    }
+
+
+    @FXML
+    public void globalPressed()
+    {
+        if(global.isSelected())
+        {
+            global.setStyle("-fx-background-color: #c9c9c9");
+        }
+        else {
+            global.setStyle("-fx-background-color: #0BA4B0");
+        }
+
     }
 }
