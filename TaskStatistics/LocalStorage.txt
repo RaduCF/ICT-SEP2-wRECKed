@@ -1,12 +1,13 @@
-idea64,0.95445806
-java,0.49318975
+idea64,0.96004194
+java,0.49569252
 AFK,0.08754333
 chrome,0.05809472
 ShellExperienceHost,0.04613861
 explorer,0.02863639
 SceneBuilder,0.027516667
 dwm,0.0205775
+GitHubDesktop,0.038645275
 Idle,0.0037405556
-GitHubDesktop,0.0027872222
 LockApp,8.9E-4
-Discord,0.0
+Discord,0.08755056
+Code,0.0205675

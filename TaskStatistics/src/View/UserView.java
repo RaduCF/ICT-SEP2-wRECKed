@@ -63,17 +63,16 @@ public class UserView {
     }
 
     public void handleBarChartData() {
-
+        System.out.println("UserView: handleBarChartData: Loading data into bar chart");
         XYChart.Series displaySet = new XYChart.Series();
         barChart.getData().clear();
-        for (int i = 0; i < (pageCount*5)+5; i++) {
+        for (int i = pageCount*5; i < (pageCount*5)+5; i++) {
             if (dataValueProperties.get(i).getValue() != null) {
-                System.out.println("UserView: handleBarChartData: loop " + i+" values are: "+dataNameProperties.get(i).getValue()+" "+dataValueProperties.get(i).getValue());
-                displaySet.getData().add(new XYChart.Data(dataNameProperties.get(5*pageCount+i).getValue(),dataValueProperties.get(5*pageCount+i).getValue()));
+                displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
             }
         }
         barChart.getData().addAll(displaySet);
-        System.out.println("Data loaded.");
+        System.out.println("UserView: handleBarChartData: Data loaded into bar chart.");
     }
 
     public ArrayList<SimpleFloatProperty> getDataValueProperties(){
@@ -95,60 +94,42 @@ public class UserView {
     @FXML
     public void nextPage() {
         try{
-            if(dataNameProperties.get((pageCount+1)*5)!=null)
-            {
-                System.out.println("works");
+            if(dataNameProperties.get((pageCount+1)*5)!=null) {
+                System.out.println("UserView: nextPage: loading next page");
                 pageCount++;
                 fixPage();
                 handleBarChartData();
             }
         }
-        catch (IndexOutOfBoundsException exception)
-        {
+        catch (IndexOutOfBoundsException exception) {
             System.out.println("UserView: nextPage: next page does not exist!");
         }
-
-
     }
 
     public void fixPage()
     {
-        for(int i=pageCount*5;i<pageCount*5+5;i++)
-        {
-            getDataNameProperties().add(new SimpleStringProperty());
-            getDataNameProperties().get(i).set("EMPTY");
-            getDataValueProperties().add(new SimpleFloatProperty());
-            getDataValueProperties().get(i).setValue(0);
+        for(int i=pageCount*5;i<pageCount*5+5;i++) {
+            try {
+                getDataNameProperties().get(i);
+            } catch (IndexOutOfBoundsException exception) {
+                getDataNameProperties().add(new SimpleStringProperty());
+                getDataNameProperties().get(i).set("EMPTY");
+                getDataValueProperties().add(new SimpleDoubleProperty());
+                getDataValueProperties().get(i).setValue(0);
+            }
         }
     }
 
     @FXML
     public void previousPage() {
-        System.out.println("Loading previous page..");
-        //refresh();
-        System.out.println("Page loaded.");
+        if(pageCount!=0) {
+        pageCount--;
+        System.out.println("UserView: previousPage: loading previous page");
+        handleBarChartData();
+        }
+        else System.out.println("UserView: previousPage: Previous page does not exist.");
     }
 
-
-    /*
-        public void refresh()
-        {
-            model.loadLocalData();
-            barChart.getData().clear();
-
-            System.out.println("Loading data..");
-            XYChart.Series displaySet = new XYChart.Series();
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(0).getValue()));
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(1).getValue()));
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(2).getValue()));
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(3).getValue()));
-            displaySet.getData().add(new XYChart.Data(dataValueProperties.get(0).doubleValue(), dataNameProperties.get(4).getValue()));
-
-            barChart.getData().addAll(displaySet);
-
-            System.out.println("Data loaded.");
-        }
-    */
     @FXML
     public void comparison() {
         parent.openComparisonView();
