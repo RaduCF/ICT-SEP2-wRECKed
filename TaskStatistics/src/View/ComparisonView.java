@@ -201,6 +201,8 @@ public class ComparisonView {
 
     @FXML
     public void cancelPressed() {
+        parent.closeProgramRemoveListView();
+        parent.closeProgramListView();
         parent.openUserView();
     }
 }
