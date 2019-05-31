@@ -36,7 +36,9 @@ public class ModelManager implements ObservableModel, ClientModel {
     @Override
     public void getMoreData(SORTTYPE type) {
         System.out.println("Requiring more data...");
+        System.out.println("The data received by MM is: " + client.getMoreData(type).toString());
         property.firePropertyChange("Moredata", client.getMoreData(type), client.getMoreData(type));
+        System.out.println("Property fired in MM!");
     }
 
     @Override

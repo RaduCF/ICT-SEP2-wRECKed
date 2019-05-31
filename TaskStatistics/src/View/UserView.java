@@ -49,7 +49,7 @@ public class UserView {
     public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
         for (int i = dataNameProperties.size(); i < model.getDataNameProperties().size(); i++) {
-            dataValueProperties.add(new SimpleDoubleProperty());
+            dataValueProperties.add(new SimpleFloatProperty());
             dataNameProperties.add(new SimpleStringProperty());
         }
     }
@@ -117,7 +117,7 @@ public class UserView {
         {
             getDataNameProperties().add(new SimpleStringProperty());
             getDataNameProperties().get(i).set("EMPTY");
-            getDataValueProperties().add(new SimpleDoubleProperty());
+            getDataValueProperties().add(new SimpleFloatProperty());
             getDataValueProperties().get(i).setValue(0);
         }
     }

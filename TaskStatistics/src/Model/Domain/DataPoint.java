@@ -12,12 +12,14 @@ public class DataPoint implements Comparable<DataPoint> {
         this.id = id;
         this.isActive = false;
         this.hoursActive = 0;
+        this.LastUpdated= Calendar.getInstance();
     }
 
     public DataPoint(String id, float hoursActive) {
         this.id = id;
         this.isActive = false;
         this.hoursActive = hoursActive;
+        this.LastUpdated= Calendar.getInstance();
     }
 
     public void Focused() {
@@ -41,7 +43,6 @@ public class DataPoint implements Comparable<DataPoint> {
         this.hoursActive += (now.getTimeInMillis() - this.LastUpdated.getTimeInMillis()) / 3600000f;
         LastUpdated = now;
         this.isActive = false;
-
     }
 
     public String toString() {

@@ -41,6 +41,8 @@ public class MainView {
 
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
+        this.programRemoveListStage = new Stage();
+        this.programListViewStage = new Stage();
         openUserView();
     }
 
@@ -103,7 +105,6 @@ public class MainView {
     }
 
     public void openProgramListView(ArrayList<String> dataNameProperties) {
-        programListViewStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
@@ -139,12 +140,12 @@ public class MainView {
     }
 
     public void closeProgramRemoveListView() {
-        openProgramRemoveListView();
-        programRemoveListStage.getScene().getWindow().hide();
+        if (programRemoveListStage.getScene() != null) {
+            programRemoveListStage.getScene().getWindow().hide();
+        }
     }
 
     public void openProgramRemoveListView() {
-        programRemoveListStage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("RemoveProgramsFXML.fxml"));

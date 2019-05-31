@@ -72,8 +72,16 @@ public class Client implements Runnable, ClientModel {
         dummy.add(new DataPoint("EclipseIDE", 34));
         dummy.add(new DataPoint("Brackets", 29));
         dummy.add(new DataPoint("Github", 5));
+
+        System.out.println("Actual data is:" + localData.getData(type).toString());
+
+
         return dummy;
-         */
+        */
+        for (int i = 0; i < localData.getData(type).size();i++){
+            System.out.println(localData.getData(type).get(i).getId());
+            System.out.println(localData.getData(type).get(i).getHours());
+        }
         return localData.getData(type);
     }
 
