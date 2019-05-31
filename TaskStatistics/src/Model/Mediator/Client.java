@@ -116,9 +116,11 @@ public class Client implements Runnable, ClientModel {
     }
 
     public float getAvgHours(String program) throws IOException {
-        stream.writeInt(2);
+        /*stream.writeInt(2);
         stream.writeUTF(program);
         return istream.readFloat();
+        */
+        return (float) 1.5;
     }
 
     public void reportBug(String str) throws IOException {

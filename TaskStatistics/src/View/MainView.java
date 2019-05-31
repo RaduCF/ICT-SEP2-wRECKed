@@ -2,7 +2,6 @@ package View;
 
 import ViewModel.MainViewModel;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -90,7 +89,7 @@ public class MainView {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("ComparisonFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 500);
+            Scene scene = new Scene(root, 839, 581);
             comparisonView = loader.getController();
             comparisonView.init(this, mainViewModel.getComparisonViewModel(), scene, "ComparisonView");
         } catch (Exception e) {
@@ -179,5 +178,4 @@ public class MainView {
     {
         userView.bindProperties();
     }
-
 }

@@ -65,4 +65,19 @@ public class ModelManager implements ObservableModel, ClientModel {
     public void removeListener(PropertyChangeListener listener) {
         this.property.removePropertyChangeListener(listener);
     }
+
+    @Override
+    public void getGlobalData(String dataName)
+    {
+        float value = 0;
+        try {
+            value = client.getAvgHours(dataName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("ModelManager: getGlobalData: firing event, value: " + value);
+        property.firePropertyChange("Globaldata", null, value);
+        System.out.println("ModelManager: getGlobalData: event fired, value: "+value);
+
+    }
 }

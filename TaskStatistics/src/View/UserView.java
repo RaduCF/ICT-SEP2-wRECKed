@@ -114,7 +114,7 @@ public class UserView {
             } catch (IndexOutOfBoundsException exception) {
                 getDataNameProperties().add(new SimpleStringProperty());
                 getDataNameProperties().get(i).set("EMPTY");
-                getDataValueProperties().add(new SimpleDoubleProperty());
+                getDataValueProperties().add(new SimpleFloatProperty());
                 getDataValueProperties().get(i).setValue(0);
             }
         }
@@ -144,4 +144,6 @@ public class UserView {
     public void Update() {
         model.getMoreData();
     }
+
+
 }
