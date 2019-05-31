@@ -108,7 +108,7 @@ public class MainView {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 278, 325);
+            Scene scene = new Scene(root, 278, 355);
             programListView = loader.getController();
             programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(), this, scene, "SelectPrograms");
         } catch (Exception e) {
@@ -139,9 +139,8 @@ public class MainView {
     }
 
     public void closeProgramRemoveListView() {
-        if (programRemoveListStage.getScene() != null) {
             programRemoveListStage.getScene().getWindow().hide();
-        }
+
     }
 
     public void openProgramRemoveListView() {

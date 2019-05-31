@@ -1,17 +1,20 @@
 package View;
 
 import ViewModel.ProgramListViewModel;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 
 public class ProgramListView {
+    public TextField search;
     private ProgramListViewModel model;
     private MainView parent;
     private Scene scene;
@@ -28,6 +31,7 @@ public class ProgramListView {
         this.scene = scene;
         this.title = title;
 
+        search.setText("");
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         countProperty = parent.getUserView().getDataNameProperties().size();
         this.dataNameProperties = new ArrayList<>();
@@ -78,6 +82,7 @@ public class ProgramListView {
     }
 
     public void loadData() {
+        listView.getSelectionModel().clearSelection();
         //model.loadData();
         //bindProperties();
         boolean add = true;
@@ -111,5 +116,42 @@ public class ProgramListView {
 
     public void cancel() {
         parent.closeProgramListView();
+    }
+
+
+    public void searchApp() {
+        if (search.getText().equals("")){
+            this.dataNameProperties.clear();
+            listView.getItems().clear();
+            countProperty = parent.getUserView().getDataNameProperties().size();
+            this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
+            loadData();
+        }
+        else {
+            this.dataNameProperties.clear();
+            listView.getItems().clear();
+            int count=0;
+            for (int i = 0; i < parent.getUserView().getDataNameProperties().size(); i++) {
+                if (search.getText().equals(parent.getUserView().getDataNameProperties().get(i).getValue())) {
+                    this.dataNameProperties.add(parent.getUserView().getDataNameProperties().get(i));
+                    count++;
+                }
+            }
+            if (count!=0){
+                countProperty = dataNameProperties.size();
+                loadData();
+            }
+            else{
+                countProperty = parent.getUserView().getDataNameProperties().size();
+                this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
+                loadData();
+            }
+        }
+    }
+
+    public void OnEnter(KeyEvent keyEvent) {
+            if(keyEvent.getCode() == KeyCode.ENTER){
+                searchApp();
+            }
     }
 }
