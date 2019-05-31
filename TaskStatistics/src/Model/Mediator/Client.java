@@ -71,6 +71,7 @@ public class Client implements Runnable, ClientModel {
         dummy.add(new DataPoint("IntelliJ", 78));
         dummy.add(new DataPoint("EclipseIDE", 34));
         dummy.add(new DataPoint("Brackets", 29));
+        dummy.add(new DataPoint("Github", 5));
         return dummy;
     }
 

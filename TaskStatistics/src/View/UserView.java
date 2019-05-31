@@ -17,6 +17,7 @@ public class UserView {
     private UserViewModel model;
     private Scene scene;
     private String title;
+    private int pageCount;
     @FXML
     private BarChart barChart;
     @FXML
@@ -24,6 +25,7 @@ public class UserView {
 
     private ArrayList<SimpleDoubleProperty> dataValueProperties;
     private ArrayList<SimpleStringProperty> dataNameProperties;
+
 
 
     public void init(MainView parent, UserViewModel model, Scene scene, String title) {
@@ -34,6 +36,7 @@ public class UserView {
 
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
+        pageCount=0;
 
         initializeProperties();
         bindProperties();
@@ -44,7 +47,7 @@ public class UserView {
 
     public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
-        for (int i = 0; i < 5; i++) {
+        for (int i = dataNameProperties.size(); i < model.getDataNameProperties().size(); i++) {
             dataValueProperties.add(new SimpleDoubleProperty());
             dataNameProperties.add(new SimpleStringProperty());
         }
@@ -52,7 +55,7 @@ public class UserView {
 
     public void bindProperties() {
         System.out.println("UserView: bindProperties: binding the properties");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < model.getDataNameProperties().size(); i++) {
             dataValueProperties.get(i).bindBidirectional(model.getDataValueProperties().get(i));
             dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
         }
@@ -62,11 +65,10 @@ public class UserView {
 
         XYChart.Series displaySet = new XYChart.Series();
         barChart.getData().clear();
-
-        for (int i = 0; i < 5; i++) {
-            if (dataValueProperties.get(i) != null) {
-                System.out.println("UserView: handleBarChartData: loop " + i);
-                displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(), dataValueProperties.get(i).getValue()));
+        for (int i = 0; i < (pageCount*5)+5; i++) {
+            if (dataValueProperties.get(i).getValue() != null) {
+                System.out.println("UserView: handleBarChartData: loop " + i+" values are: "+dataNameProperties.get(i).getValue()+" "+dataValueProperties.get(i).getValue());
+                displaySet.getData().add(new XYChart.Data(dataNameProperties.get(5*pageCount+i).getValue(),dataValueProperties.get(5*pageCount+i).getValue()));
             }
         }
         barChart.getData().addAll(displaySet);
@@ -91,8 +93,31 @@ public class UserView {
 
     @FXML
     public void nextPage() {
-        for (int i = 0; i < dataNameProperties.size(); i++) {
-            System.out.println("UserView: nextPage: data name " + i + " is: " + dataNameProperties.get(i).getValue());
+        try{
+            if(dataNameProperties.get((pageCount+1)*5)!=null)
+            {
+                System.out.println("works");
+                pageCount++;
+                fixPage();
+                handleBarChartData();
+            }
+        }
+        catch (IndexOutOfBoundsException exception)
+        {
+            System.out.println("UserView: nextPage: next page does not exist!");
+        }
+
+
+    }
+
+    public void fixPage()
+    {
+        for(int i=pageCount*5;i<pageCount*5+5;i++)
+        {
+            getDataNameProperties().add(new SimpleStringProperty());
+            getDataNameProperties().get(i).set("EMPTY");
+            getDataValueProperties().add(new SimpleDoubleProperty());
+            getDataValueProperties().get(i).setValue(0);
         }
     }
 
@@ -102,6 +127,7 @@ public class UserView {
         //refresh();
         System.out.println("Page loaded.");
     }
+
 
     /*
         public void refresh()

@@ -3,9 +3,8 @@ package ViewModel;
 import Model.Domain.ChartManager;
 import Model.Domain.DataPoint;
 import Model.Mediator.ObservableModel;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+
 import java.util.ArrayList;
 
 public class UserViewModel {
@@ -18,12 +17,13 @@ public class UserViewModel {
 
     private ObservableModel observableModel;
 
+
+
     public UserViewModel(ObservableModel observableModel) {
         this.observableModel = observableModel;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
         title = new SimpleStringProperty();
-        initializeProperties();
     }
 
     public void getMoreData() {
@@ -36,11 +36,15 @@ public class UserViewModel {
         observableModel.getLocalData(ChartManager.SORTTYPE.RAW);
     }
 
-    public void initializeProperties() {
+    public void initializeProperties(ArrayList<DataPoint> list) {
+
         System.out.println("UserViewModel: initializeProperties: initializing the properties");
-        for (int i = 0; i < 5; i++) {
-            dataValueProperties.add(new SimpleDoubleProperty());
-            dataNameProperties.add(new SimpleStringProperty());
+        if(dataNameProperties.size()<list.size())
+        {
+            for (int i = dataNameProperties.size(); i < list.size(); i++) {
+                dataValueProperties.add(new SimpleDoubleProperty());
+                dataNameProperties.add(new SimpleStringProperty());
+            }
         }
     }
 
@@ -62,6 +66,7 @@ public class UserViewModel {
     public void loadLocalData(Object data) {
         ArrayList<DataPoint> newArrayList = new ArrayList<>();
         newArrayList.addAll((ArrayList<DataPoint>) data);
+        initializeProperties(newArrayList);
         setValueProperties(newArrayList);
         setNameProperties(newArrayList);
     }

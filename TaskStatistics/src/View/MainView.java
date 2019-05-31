@@ -169,4 +169,14 @@ public class MainView {
         userView.handleBarChartData();
     }
 
+    public void initialiseUserViewProperties()
+    {
+        userView.initializeProperties();
+    }
+
+    public void bindUserViewProperties()
+    {
+        userView.bindProperties();
+    }
+
 }
