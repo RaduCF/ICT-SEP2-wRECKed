@@ -1,5 +1,5 @@
 idea64,0.9069289
-java,0.43452922
+java,0.44426003
 AFK,0.08754333
 chrome,0.05809472
 ShellExperienceHost,0.04613861

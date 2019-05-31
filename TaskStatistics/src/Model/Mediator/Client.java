@@ -7,6 +7,7 @@ import Model.Domain.DataPoint;
 import Model.Domain.LocalData;
 import Model.Domain.TaskSpy;
 
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.Socket;
 import java.security.MessageDigest;
@@ -54,6 +55,7 @@ public class Client implements Runnable, ClientModel {
     }
 
     public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
+        /*
         ArrayList<DataPoint> dummy = new ArrayList<>();
         dummy.add(new DataPoint("Netflix", 10));
         dummy.add(new DataPoint("Chrome", 15));
@@ -61,11 +63,16 @@ public class Client implements Runnable, ClientModel {
         dummy.add(new DataPoint("Outlook", 23));
         dummy.add(new DataPoint("FileExplorer", 53));
         return dummy;
-        //return this.localData.getData(type);
+*/
+        ArrayList<DataPoint> points = new ArrayList<>();
+        for (int i = 0; i<localData.getData(type).size();i++){
+            points.add(new DataPoint(localData.getData(type).get(i).getId(), localData.getData(type).get(i).getHours()));
+        }
+        return points;
     }
-
+/*
     public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
-        /*ArrayList<DataPoint> dummy = new ArrayList<>();
+        ArrayList<DataPoint> dummy = new ArrayList<>();
         dummy.add(new DataPoint("League of Legends", 100));
         dummy.add(new DataPoint("Calculator", 5));
         dummy.add(new DataPoint("IntelliJ", 78));
@@ -73,17 +80,12 @@ public class Client implements Runnable, ClientModel {
         dummy.add(new DataPoint("Brackets", 29));
         dummy.add(new DataPoint("Github", 5));
 
-        System.out.println("Actual data is:" + localData.getData(type).toString());
-
-
-        return dummy;
-        */
-        for (int i = 0; i < localData.getData(type).size();i++){
-            System.out.println(localData.getData(type).get(i).getId());
-            System.out.println(localData.getData(type).get(i).getHours());
+        for (int i = 0; i<localData.getData(type).size();i++){
+            dummy.add(new DataPoint(localData.getData(type).get(i).getId(),localData.getData(type).get(i).getHours()));
         }
-        return localData.getData(type);
+        return dummy;
     }
+*/
 
     private String UserID = null;
 
