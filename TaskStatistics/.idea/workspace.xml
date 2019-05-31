@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2d18493f-b108-45cc-b68d-ee24a6c3bff1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/LocalStorage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LocalStorage.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mediator/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mediator/ModelManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Model/Mediator/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+            <state relative-caret-position="946">
+              <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -403,7 +401,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32807000" />
+    <option name="totallyTimeSpent" value="33116000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -416,9 +414,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992785" visible="true" weight="0.15831557" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992785" visible="true" weight="0.15831557" />
       <window_info id="Structure" order="1" sideWeight="0.5007215" side_tool="true" weight="0.15671642" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -428,7 +425,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36944744" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.36944744" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -803,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Mediator/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="946">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
         </state>
       </provider>
     </entry>
