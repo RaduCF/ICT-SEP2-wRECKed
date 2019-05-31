@@ -1,6 +1,12 @@
-java,0.37696558
+java,0.52514124
 dwm,0.0
-idea64,0.04838027
+idea64,0.26572
 SceneBuilder,0.027516667
-explorer,0.0047319448
-chrome,0.012231944
+explorer,0.06727861
+chrome,0.017529722
+AFK,0.01806389
+notepad,2.8027777E-4
+Discord,0.14146195
+Idle,2.8027777E-4
+ShellExperienceHost,5.602778E-4
+GitHubDesktop,0.02335222
