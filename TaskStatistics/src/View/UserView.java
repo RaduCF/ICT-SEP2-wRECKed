@@ -38,9 +38,10 @@ public class UserView {
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
         pageCount=0;
-
+/*                                  <---- The properties are not initialised or binded until they are received in the model
         initializeProperties();
         bindProperties();
+        */
     }
 
     public UserView() {

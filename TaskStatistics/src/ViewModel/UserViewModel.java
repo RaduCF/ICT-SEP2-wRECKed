@@ -47,14 +47,16 @@ public class UserViewModel {
             }
         }
     }
-
+/*
     public void setValueProperties(ArrayList<DataPoint> list) {
         for (int i = 0; i < list.size(); i++) {
             dataValueProperties.get(i).setValue(list.get(i).getHours());
             System.out.println("UserViewModel: setValueProperties: loop: " + i + " value: " + dataValueProperties.get(i).getValue());
         }
     }
+*/
 
+/*
     public void setNameProperties(ArrayList<DataPoint> list) {
         System.out.println("UserViewModel: setNameProperties: list size is: " + list.size());
         for (int i = 0; i < list.size(); i++) {
@@ -62,13 +64,23 @@ public class UserViewModel {
             System.out.println("UserViewModel: setNameProperties: loop: " + i + " name: " + dataNameProperties.get(i).getValue());
         }
     }
+    */
+    public void setPropertyData(ArrayList<DataPoint> list)
+    {
+        System.out.println("UserViewModel: setPropertyData: list size is: " + list.size());
+        for(int i=0;i<list.size();i++)
+        {
+            dataNameProperties.get(i).setValue(list.get(i).getId());
+            dataValueProperties.get(i).setValue(list.get(i).getHours());
+            System.out.println("UserViewModel: setPropertyData: loop: " + i + " name: " + dataNameProperties.get(i).getValue()+" value: "+dataValueProperties.get(i).getValue());
+        }
+    }
 
     public void loadLocalData(Object data) {
         ArrayList<DataPoint> newArrayList = new ArrayList<>();
         newArrayList.addAll((ArrayList<DataPoint>) data);
         initializeProperties(newArrayList);
-        setValueProperties(newArrayList);
-        setNameProperties(newArrayList);
+        setPropertyData(newArrayList);
     }
 
     public ArrayList<SimpleDoubleProperty> getDataValueProperties() {
