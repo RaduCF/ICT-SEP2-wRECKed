@@ -1,7 +1,7 @@
 SET SCHEMA 'TaskStatistics';
 
 CREATE TABLE Task(
-	, Name_			VARCHAR(60) PRIMARY KEY
+	  Name_			VARCHAR(60) PRIMARY KEY
 	, AverageUsage	DECIMAL(10,2)
 );
 
