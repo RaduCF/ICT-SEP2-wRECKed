@@ -129,7 +129,7 @@ public class Client implements Runnable, ClientModel {
     public boolean connect() {
         System.out.println("Connecting...");
         try {
-            socket = new Socket("10.152.210.98", 5001);
+            socket = new Socket("10.152.210.8", 5001);
             stream = new DataOutputStream(socket.getOutputStream());
             System.out.println("Connected!");
         } catch (Exception e) {

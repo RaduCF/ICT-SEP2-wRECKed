@@ -8,7 +8,7 @@ CREATE TABLE Task(
 
 CREATE TABLE Usage(
 	  UserID		VARCHAR(256)	NOT NULL
-	, TaskName		VARCHAR(16)		NOT NULL REFERENCES Task(Name_)
+	, TaskName		VARCHAR(64)		NOT NULL REFERENCES Task(Name_)
 	, Hours			DECIMAL(10,2)   NOT NULL
 );
 
@@ -28,5 +28,3 @@ EXECUTE PROCEDURE AverageHours();
 
 SELECT * FROM Usage;
 SELECT * FROM Task;
-
-
