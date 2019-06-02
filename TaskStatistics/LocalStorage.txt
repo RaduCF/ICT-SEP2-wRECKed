@@ -16,4 +16,4 @@ Lightshot,0.009182501
 javaw,0.008069444
 notepad,0.00278
 steamwebhelper,2.7888888E-4
-sendctrlc.x64.E4257D768B94C95C4C6D7C260D4F9E8F,0.0
+dwm,0.0
