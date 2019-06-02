@@ -35,13 +35,11 @@ public class Client implements Runnable, ClientModel {
 
     @Override
     public void run() {
-		/*
 		System.out.println("Running the client...");
         if(!connect())
         {
             System.out.println("Not connected!!");
         }
-        */
         synchronized (this) {
             while (true) {
                 try {
