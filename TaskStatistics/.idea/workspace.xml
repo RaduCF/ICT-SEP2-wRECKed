@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d18493f-b108-45cc-b68d-ee24a6c3bff1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LocalStorage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LocalStorage.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mediator/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Mediator/Receiver.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -309,7 +306,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../libraries/MyObserver-1.0.jar!/" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -402,7 +399,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36848000" />
+    <option name="totallyTimeSpent" value="37036000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -415,7 +412,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49837488" visible="true" weight="0.16044776" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.16044776" />
