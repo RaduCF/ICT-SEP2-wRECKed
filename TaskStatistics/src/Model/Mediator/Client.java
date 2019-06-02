@@ -17,20 +17,14 @@ public class Client implements Runnable, ClientModel {
     private DataOutputStream stream;
     private DataInputStream istream;
     private Socket socket;
+    private String UserID = null;
 
     private ClientModel clientModel;
-    private Receiver receiver;
 
-    //Domain init:
     private LocalData localData;
 
     public Client() {
         localData = new LocalData(getUserID());
-    	/* Receiver is not used?!?!
-        this.receiver= new Receiver();
-        Thread thread = new Thread(receiver);
-        thread.start();
-		*/
     }
 
     @Override
@@ -53,39 +47,13 @@ public class Client implements Runnable, ClientModel {
     }
 
     public ArrayList<DataPoint> getLocalData(SORTTYPE type) {
-        /*
-        ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("Netflix", 10));
-        dummy.add(new DataPoint("Chrome", 15));
-        dummy.add(new DataPoint("Spotify", 90));
-        dummy.add(new DataPoint("Outlook", 23));
-        dummy.add(new DataPoint("FileExplorer", 53));
-        return dummy;
-*/
+
         ArrayList<DataPoint> points = new ArrayList<>();
         for (int i = 0; i<localData.getData(type).size();i++){
             points.add(new DataPoint(localData.getData(type).get(i).getId(), localData.getData(type).get(i).getHours()));
         }
         return points;
     }
-/*
-    public ArrayList<DataPoint> getMoreData(SORTTYPE type) {
-        ArrayList<DataPoint> dummy = new ArrayList<>();
-        dummy.add(new DataPoint("League of Legends", 100));
-        dummy.add(new DataPoint("Calculator", 5));
-        dummy.add(new DataPoint("IntelliJ", 78));
-        dummy.add(new DataPoint("EclipseIDE", 34));
-        dummy.add(new DataPoint("Brackets", 29));
-        dummy.add(new DataPoint("Github", 5));
-
-        for (int i = 0; i<localData.getData(type).size();i++){
-            dummy.add(new DataPoint(localData.getData(type).get(i).getId(),localData.getData(type).get(i).getHours()));
-        }
-        return dummy;
-    }
-*/
-
-    private String UserID = null;
 
     public String getUserID() {
         if (UserID == null) {
@@ -114,11 +82,11 @@ public class Client implements Runnable, ClientModel {
     }
 
     public float getAvgHours(String program) throws IOException {
-        /*stream.writeInt(2);
+        stream.writeInt(2);
         stream.writeUTF(program);
-        return istream.readFloat();
-        */
-        return (float) 1.5;
+        float avg = istream.readFloat();
+        System.out.println("Received form server this:" + avg);
+        return avg;
     }
 
     public void reportBug(String str) throws IOException {
@@ -131,6 +99,7 @@ public class Client implements Runnable, ClientModel {
         try {
             socket = new Socket("10.152.210.8", 5001);
             stream = new DataOutputStream(socket.getOutputStream());
+            istream = new DataInputStream(socket.getInputStream());
             System.out.println("Connected!");
         } catch (Exception e) {
             System.out.println(e);
@@ -165,6 +134,7 @@ public class Client implements Runnable, ClientModel {
                     stream.writeUTF(point.getId());
                     stream.writeFloat(point.getHours());
                 } catch (Exception e) {
+                    e.printStackTrace();
                     return false;
                 }
             }
