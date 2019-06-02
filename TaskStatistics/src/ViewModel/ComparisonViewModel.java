@@ -4,6 +4,7 @@ import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ComparisonViewModel {
@@ -51,7 +52,7 @@ public class ComparisonViewModel {
         temporaryDataValues.clear();
     }
 
-    public void getGlobalData(ArrayList<String> dataNames) {
+    public void getGlobalData(ArrayList<String> dataNames) throws IOException {
         System.out.println("ComparisonViewModel: getGlobalData: retrieving global data from server");
         for(int i=0;i<dataNames.size();i++)
         {

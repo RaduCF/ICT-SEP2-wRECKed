@@ -35,9 +35,8 @@ public class Client implements Runnable, ClientModel {
 
     @Override
     public void run() {
-		System.out.println("Running the client...");
-        if(!connect())
-        {
+        System.out.println("Running the client...");
+        if (!connect()) {
             System.out.println("Not connected!!");
         }
         synchronized (this) {
@@ -63,7 +62,7 @@ public class Client implements Runnable, ClientModel {
         return dummy;
 */
         ArrayList<DataPoint> points = new ArrayList<>();
-        for (int i = 0; i<localData.getData(type).size();i++){
+        for (int i = 0; i < localData.getData(type).size(); i++) {
             points.add(new DataPoint(localData.getData(type).get(i).getId(), localData.getData(type).get(i).getHours()));
         }
         return points;
@@ -114,11 +113,14 @@ public class Client implements Runnable, ClientModel {
     }
 
     public float getAvgHours(String program) throws IOException {
-        /*stream.writeInt(2);
+        /*
+        stream.writeInt(2);
         stream.writeUTF(program);
         return istream.readFloat();
         */
-        return (float) 1.5;
+
+        return (float) 0.5;
+
     }
 
     public void reportBug(String str) throws IOException {
@@ -129,8 +131,9 @@ public class Client implements Runnable, ClientModel {
     public boolean connect() {
         System.out.println("Connecting...");
         try {
-            socket = new Socket("10.152.210.98", 5001);
+            socket = new Socket("10.152.210.8", 5001);
             stream = new DataOutputStream(socket.getOutputStream());
+            istream = new DataInputStream(socket.getInputStream());
             System.out.println("Connected!");
         } catch (Exception e) {
             System.out.println(e);

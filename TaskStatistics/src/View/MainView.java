@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainView {
     private Stage primaryStage;
@@ -103,14 +102,14 @@ public class MainView {
         primaryStage.show();
     }
 
-    public void openProgramListView(ArrayList<String> dataNameProperties) {
+    public void openProgramListView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("SelectProgramsFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 278, 355);
             programListView = loader.getController();
-            programListView.init(dataNameProperties, mainViewModel.getProgramListViewModel(), this, scene, "SelectPrograms");
+            programListView.init( mainViewModel.getProgramListViewModel(), this, scene, "SelectPrograms");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,6 +163,7 @@ public class MainView {
     public UserView getUserView(){
         return userView;
     }
+    public ProgramListView getProgramListView() { return programListView; }
 
     public void loadData() {
         userView.handleBarChartData();

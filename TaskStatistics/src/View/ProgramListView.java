@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProgramListView {
@@ -22,11 +23,11 @@ public class ProgramListView {
     private int count;
     private ArrayList<SimpleStringProperty> dataNameProperties;
 
-    private ArrayList<SimpleStringProperty> usedDataNameProperties;
+    private ArrayList<String> usedDataNames;
     @FXML
     private ListView<String> listView;
 
-    public void init(ArrayList<String> usedDataNameProperties, ProgramListViewModel model, MainView parent, Scene scene, String title) {
+    public void init(ProgramListViewModel model, MainView parent, Scene scene, String title) {
         this.model = model;
         this.parent = parent;
         this.scene = scene;
@@ -38,10 +39,10 @@ public class ProgramListView {
 
         count = parent.getUserView().getDataNameProperties().size();
 
+        usedDataNames = new ArrayList<>();
+
         this.dataNameProperties = new ArrayList<>();
         this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
-
-        loadData();
     }
 
     public Scene getScene() {
@@ -63,32 +64,33 @@ public class ProgramListView {
 
         ArrayList<SimpleStringProperty> selected = new ArrayList<>();
 
-
-        System.out.println("ProgramListView: submit: Selected program ammount: " + programs.size());
-        //System.out.println(programs.toString());  <-- too many printout statements, this works so removing it
+        System.out.println("ProgramListView: submit: Selected program amount: " + programs.size());
         System.out.println("ProgramListView: submit: Number of all programs (loaded from UserView): " + dataNameProperties.size());
         System.out.println("ProgramListView: submit: All existent program data: " + dataNameProperties.toString());
         for (int i = 0; i < programs.size(); i++) {
-            for (int t = 0;t<dataNameProperties.size();t++) {
-                if (programs.get(i).equals(dataNameProperties.get(t).getValue())){
-                    selected.add(dataNameProperties.get(t));
+            for (int j = 0; j < dataNameProperties.size(); j++) {
+                if (programs.get(i).equals(dataNameProperties.get(j).getValue())) {
+                    selected.add(dataNameProperties.get(j));
                 }
             }
             sendableProgramNames.add(selected.get(i).getValue());
         }
 
-        //System.out.println("Programs sent to the comparison view: " + sendableProgramNames.toString());
-        for (int i = 0; i<selected.size();i++){
-            for (int t=0;t<parent.getUserView().getDataNameProperties().size();t++) {
-                if (selected.get(i).getValue().equals(parent.getUserView().getDataNameProperties().get(t).getValue())) {
-                    sendableProgramValues.add(parent.getUserView().getDataValueProperties().get(i).getValue());
+        for (int i = 0; i < selected.size(); i++) {
+            for (int j = 0; j < parent.getUserView().getDataNameProperties().size(); j++) {
+                if (selected.get(i).getValue().equals(parent.getUserView().getDataNameProperties().get(j).getValue())) {
+                    sendableProgramValues.add(parent.getUserView().getDataValueProperties().get(j).getValue());
                 }
             }
         }
-        //System.out.println("Hours per app sent: " + sendableProgramValues.toString());
-        //System.out.println("Hours per all the existent apps: " + parent.getUserView().getDataValueProperties().toString());
+
         System.out.println("Sending program names and values to the ComparisonView");
-        parent.getComparisonView().loadData(sendableProgramNames, sendableProgramValues);
+        try {
+            parent.getComparisonView().loadData(sendableProgramNames, sendableProgramValues);
+            System.out.println("ProgramListView: Submit: sending program values, values are: "+sendableProgramValues.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         listView.getSelectionModel().clearSelection();
         parent.closeProgramListView();
     }
@@ -96,54 +98,56 @@ public class ProgramListView {
     public void loadData() {
         listView.getSelectionModel().clearSelection();
 
-        boolean add = true;
+        boolean add;
+
         for (int i = 0; i < count; i++) {
+            add = true;
             if (dataNameProperties.size() != 0) {
-                //for (int j = 0; j < dataNameProperties.size(); j++) {
-                //    if (dataNameProperties.get(i).getValue().equals(usedDataNameProperties.get(j).getValue())) {
-                //        add = false;
-                //    }
-                //}
-                if (add) {
+                for (int j = 0; j < usedDataNames.size(); j++) {
+                    if (dataNameProperties.get(i).getValue().equals(usedDataNames.get(j)) || dataNameProperties.get(i).getValue().equals("EMPTY")) {
+                        add = false;
+                    }
+                }
+                if (add == true) {
                     listView.getItems().add(dataNameProperties.get(i).getValue());
                 }
-                //} else {
-                //    listView.getItems().add(dataNameProperties.get(i).getValue());
-                //}
+
             }
         }
     }
-
-
 
     public void cancel() {
         parent.closeProgramListView();
     }
 
+    public void setUsedDataNames(ArrayList<String> usedDataNames) {
+        if (usedDataNames.size() != 0) {
+            this.usedDataNames.addAll(usedDataNames);
+        }
+        loadData();
+    }
 
     public void searchApp() {
-        if (search.getText().equals("")){
+        if (search.getText().equals("")) {
             this.dataNameProperties.clear();
             listView.getItems().clear();
             count = parent.getUserView().getDataNameProperties().size();
             this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
             loadData();
-        }
-        else {
+        } else {
             this.dataNameProperties.clear();
             listView.getItems().clear();
-            int count=0;
+            int count = 0;
             for (int i = 0; i < parent.getUserView().getDataNameProperties().size(); i++) {
                 if (search.getText().equals(parent.getUserView().getDataNameProperties().get(i).getValue())) {
                     this.dataNameProperties.add(parent.getUserView().getDataNameProperties().get(i));
                     count++;
                 }
             }
-            if (count!=0){
+            if (count != 0) {
                 this.count = dataNameProperties.size();
                 loadData();
-            }
-            else{
+            } else {
                 this.count = parent.getUserView().getDataNameProperties().size();
                 this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
                 loadData();
@@ -152,8 +156,8 @@ public class ProgramListView {
     }
 
     public void OnEnter(KeyEvent keyEvent) {
-            if(keyEvent.getCode() == KeyCode.ENTER){
-                searchApp();
-            }
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            searchApp();
+        }
     }
 }

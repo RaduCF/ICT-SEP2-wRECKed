@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="839.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ComparisonView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="839.0" style="-fx-background-color: #85D1D7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ComparisonView">
    <children>
       <VBox layoutY="513.0" prefHeight="68.0" prefWidth="839.0">
          <children>
@@ -46,7 +46,7 @@
       </VBox>
       <VBox prefHeight="511.0" prefWidth="839.0">
          <children>
-            <BarChart fx:id="barChart" barGap="1.0" categoryGap="1.0" prefHeight="514.0" prefWidth="839.0">
+            <BarChart fx:id="barChart" barGap="1.0" categoryGap="1.0" prefHeight="514.0" prefWidth="839.0" style="-fx-bar-fill: #c9c9c9;">
               <xAxis>
                 <CategoryAxis animated="false" endMargin="1.0" side="BOTTOM" startMargin="1.0" tickLabelGap="1.0" />
               </xAxis>

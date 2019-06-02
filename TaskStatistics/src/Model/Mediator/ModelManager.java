@@ -75,9 +75,14 @@ public class ModelManager implements ObservableModel, ClientModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("ModelManager: getGlobalData: firing event, value: " + value);
-        property.firePropertyChange("Globaldata", null, value);
-        System.out.println("ModelManager: getGlobalData: event fired, value: "+value);
+        try {
+            System.out.println("ModelManager: getGlobalData: firing event, value: " + client.getAvgHours(dataName));
+            property.firePropertyChange("Globaldata", null, client.getAvgHours(dataName));
+            System.out.println("ModelManager: getGlobalData: event fired, value: "+client.getAvgHours(dataName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

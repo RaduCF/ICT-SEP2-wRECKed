@@ -68,9 +68,12 @@ public class UserView {
         XYChart.Series displaySet = new XYChart.Series();
         barChart.getData().clear();
         for (int i = pageCount*5; i < (pageCount*5)+5; i++) {
-            if (dataValueProperties.get(i).getValue() != null) {
+            try {
                 displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
+            } catch (IndexOutOfBoundsException exception) {
+                displaySet.getData().add(new XYChart.Data("EMPTY",(float)0));
             }
+
         }
         barChart.getData().addAll(displaySet);
         System.out.println("UserView: handleBarChartData: Data loaded into bar chart.");
@@ -98,26 +101,11 @@ public class UserView {
             if(dataNameProperties.get((pageCount+1)*5)!=null) {
                 System.out.println("UserView: nextPage: loading next page");
                 pageCount++;
-                fixPage();
                 handleBarChartData();
             }
         }
         catch (IndexOutOfBoundsException exception) {
             System.out.println("UserView: nextPage: next page does not exist!");
-        }
-    }
-
-    public void fixPage()
-    {
-        for(int i=pageCount*5;i<pageCount*5+5;i++) {
-            try {
-                getDataNameProperties().get(i);
-            } catch (IndexOutOfBoundsException exception) {
-                getDataNameProperties().add(new SimpleStringProperty());
-                getDataNameProperties().get(i).set("EMPTY");
-                getDataValueProperties().add(new SimpleFloatProperty());
-                getDataValueProperties().get(i).setValue(0);
-            }
         }
     }
 
