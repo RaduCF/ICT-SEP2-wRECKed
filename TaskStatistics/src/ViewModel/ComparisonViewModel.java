@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class ComparisonViewModel {
     private ObservableModel model;
-    private ArrayList<SimpleStringProperty> localDataNameProperties;
-    private ArrayList<SimpleFloatProperty> localDataValueProperties;
     private ArrayList<SimpleStringProperty> globalDataNameProperties;
     private ArrayList<SimpleFloatProperty> globalDataValueProperties;
     private ArrayList<Float> temporaryDataValues;
@@ -17,20 +15,11 @@ public class ComparisonViewModel {
 
     public ComparisonViewModel(ObservableModel model) {
         this.model = model;
-        localDataNameProperties = new ArrayList<>();
-        localDataValueProperties = new ArrayList<>();
         globalDataNameProperties = new ArrayList<>();
         globalDataValueProperties = new ArrayList<>();
         temporaryDataValues = new ArrayList<>();
     }
 
-    public ArrayList<SimpleStringProperty> getLocalDataNameProperties() {
-        return localDataNameProperties;
-    }
-
-    public ArrayList<SimpleFloatProperty> getLocalDataValueProperties() {
-        return localDataValueProperties;
-    }
 
     public ArrayList<SimpleStringProperty> getGlobalDataNameProperties() {
         return globalDataNameProperties;
@@ -66,9 +55,9 @@ public class ComparisonViewModel {
         System.out.println("ComparisonViewModel: getGlobalData: retrieving global data from server");
         for(int i=0;i<dataNames.size();i++)
         {
-            globalDataNameProperties.add(new SimpleStringProperty());
-            globalDataValueProperties.add(new SimpleFloatProperty());
-            globalDataNameProperties.get(globalDataNameProperties.size()-1).set(dataNames.get(i));
+            globalDataNameProperties.add(new SimpleStringProperty());  // as many as there are dataNames, initialize properties
+            globalDataValueProperties.add(new SimpleFloatProperty());  // as many as there are dataNames, initialize properties
+            globalDataNameProperties.get(i).set(dataNames.get(i));
             model.getGlobalData(dataNames.get(i));
 
         }

@@ -19,8 +19,9 @@ public class ProgramListView {
     private MainView parent;
     private Scene scene;
     private String title;
-    private int countProperty;
+    private int count;
     private ArrayList<SimpleStringProperty> dataNameProperties;
+
     private ArrayList<SimpleStringProperty> usedDataNameProperties;
     @FXML
     private ListView<String> listView;
@@ -32,10 +33,14 @@ public class ProgramListView {
         this.title = title;
 
         search.setText("");
+
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        countProperty = parent.getUserView().getDataNameProperties().size();
+
+        count = parent.getUserView().getDataNameProperties().size();
+
         this.dataNameProperties = new ArrayList<>();
         this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
+
         loadData();
     }
 
@@ -51,44 +56,48 @@ public class ProgramListView {
     public void submit() // sends data names to the comparisonView
     {
         ObservableList<String> programs;
-        ArrayList<String> sendablePrograms = new ArrayList<>();
-        ArrayList<Float> sendableProgramsValues = new ArrayList<>();
-        ArrayList<SimpleStringProperty> selected = new ArrayList<>();
         programs = listView.getSelectionModel().getSelectedItems();
+
+        ArrayList<String> sendableProgramNames = new ArrayList<>();
+        ArrayList<Float> sendableProgramValues = new ArrayList<>();
+
+        ArrayList<SimpleStringProperty> selected = new ArrayList<>();
+
+
         System.out.println("ProgramListView: submit: Selected program ammount: " + programs.size());
-        System.out.println(programs.toString());
-        System.out.println("Number of all apps: " + dataNameProperties.size());
-        System.out.println("All existent apps: " + dataNameProperties.toString());
+        //System.out.println(programs.toString());  <-- too many printout statements, this works so removing it
+        System.out.println("ProgramListView: submit: Number of all programs (loaded from UserView): " + dataNameProperties.size());
+        System.out.println("ProgramListView: submit: All existent program data: " + dataNameProperties.toString());
         for (int i = 0; i < programs.size(); i++) {
             for (int t = 0;t<dataNameProperties.size();t++) {
                 if (programs.get(i).equals(dataNameProperties.get(t).getValue())){
                     selected.add(dataNameProperties.get(t));
                 }
             }
-            sendablePrograms.add(selected.get(i).getValue());
+            sendableProgramNames.add(selected.get(i).getValue());
         }
 
-        System.out.println("Programs sent to the comparison view: " + sendablePrograms.toString());
+        //System.out.println("Programs sent to the comparison view: " + sendableProgramNames.toString());
         for (int i = 0; i<selected.size();i++){
             for (int t=0;t<parent.getUserView().getDataNameProperties().size();t++) {
                 if (selected.get(i).getValue().equals(parent.getUserView().getDataNameProperties().get(t).getValue())) {
-                    sendableProgramsValues.add(parent.getUserView().getDataValueProperties().get(i).getValue());
+                    sendableProgramValues.add(parent.getUserView().getDataValueProperties().get(i).getValue());
                 }
             }
         }
-        System.out.println("Hours per app sent: " + sendableProgramsValues.toString());
-        System.out.println("Hours per all the existent apps: " + parent.getUserView().getDataValueProperties().toString());
-        parent.getComparisonView().loadData(sendablePrograms, sendableProgramsValues);
+        //System.out.println("Hours per app sent: " + sendableProgramValues.toString());
+        //System.out.println("Hours per all the existent apps: " + parent.getUserView().getDataValueProperties().toString());
+        System.out.println("Sending program names and values to the ComparisonView");
+        parent.getComparisonView().loadData(sendableProgramNames, sendableProgramValues);
         listView.getSelectionModel().clearSelection();
         parent.closeProgramListView();
     }
 
     public void loadData() {
         listView.getSelectionModel().clearSelection();
-        //model.loadData();
-        //bindProperties();
+
         boolean add = true;
-        for (int i = 0; i < countProperty; i++) {
+        for (int i = 0; i < count; i++) {
             if (dataNameProperties.size() != 0) {
                 //for (int j = 0; j < dataNameProperties.size(); j++) {
                 //    if (dataNameProperties.get(i).getValue().equals(usedDataNameProperties.get(j).getValue())) {
@@ -105,16 +114,7 @@ public class ProgramListView {
         }
     }
 
-    /*public void bindProperties() // creates and binds this class properties to the existing model properties
-    {
-        countProperty.bindBidirectional(model.getCountProperty());
-        dataNameProperties.clear();
 
-        for (int i = 0; i < countProperty.intValue(); i++) {
-            dataNameProperties.add(new SimpleStringProperty());
-            dataNameProperties.get(i).bindBidirectional(model.getDataNameProperties().get(i));
-        }
-    }*/
 
     public void cancel() {
         parent.closeProgramListView();
@@ -125,7 +125,7 @@ public class ProgramListView {
         if (search.getText().equals("")){
             this.dataNameProperties.clear();
             listView.getItems().clear();
-            countProperty = parent.getUserView().getDataNameProperties().size();
+            count = parent.getUserView().getDataNameProperties().size();
             this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
             loadData();
         }
@@ -140,11 +140,11 @@ public class ProgramListView {
                 }
             }
             if (count!=0){
-                countProperty = dataNameProperties.size();
+                this.count = dataNameProperties.size();
                 loadData();
             }
             else{
-                countProperty = parent.getUserView().getDataNameProperties().size();
+                this.count = parent.getUserView().getDataNameProperties().size();
                 this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
                 loadData();
             }
