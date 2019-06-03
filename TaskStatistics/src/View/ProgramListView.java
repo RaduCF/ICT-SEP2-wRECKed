@@ -1,6 +1,5 @@
 package View;
 
-import ViewModel.ProgramListViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 
 public class ProgramListView {
     public TextField search;
-    private ProgramListViewModel model;
     private MainView parent;
     private Scene scene;
     private String title;
@@ -27,8 +25,7 @@ public class ProgramListView {
     @FXML
     private ListView<String> listView;
 
-    public void init(ProgramListViewModel model, MainView parent, Scene scene, String title) {
-        this.model = model;
+    public void init( MainView parent, Scene scene, String title) {
         this.parent = parent;
         this.scene = scene;
         this.title = title;

@@ -13,7 +13,6 @@ public class MainViewModel implements PropertyChangeListener {
     private ObservableModel model;
     private MainView mainView;
     private ComparisonViewModel comparisonViewModel;
-    private ProgramListViewModel programListViewModel;
     private ReportBugViewModel reportBugViewModel;
 
     public MainViewModel(ObservableModel model) {
@@ -23,7 +22,6 @@ public class MainViewModel implements PropertyChangeListener {
         userViewModel = new UserViewModel(model);
         mainView = MainView.getInstance(this);
         comparisonViewModel = new ComparisonViewModel(model);
-        programListViewModel = new ProgramListViewModel(model);
         System.out.println("MainViewModel: Constructor: adding listener to ObservableModel");
         model.addListener(this);
         System.out.println("MainViewModel: Constructor: added listener to ObservableModel");
@@ -65,9 +63,7 @@ public class MainViewModel implements PropertyChangeListener {
         return comparisonViewModel;
     }
 
-    public ProgramListViewModel getProgramListViewModel() {
-        return programListViewModel;
-    }
+
 
     public ReportBugViewModel getReportBugViewModel() {
         return reportBugViewModel;

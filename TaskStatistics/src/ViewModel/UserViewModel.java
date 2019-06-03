@@ -9,21 +9,15 @@ import java.util.ArrayList;
 
 public class UserViewModel {
 
-    private ArrayList<SimpleDoubleProperty> dataValueProperties;
+    private ArrayList<SimpleFloatProperty> dataValueProperties;
     private ArrayList<SimpleStringProperty> dataNameProperties;
-    private StringProperty title;
-
-    ArrayList<SimpleStringProperty> hours = new ArrayList<>();
 
     private ObservableModel observableModel;
-
-
 
     public UserViewModel(ObservableModel observableModel) {
         this.observableModel = observableModel;
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
-        title = new SimpleStringProperty();
     }
 
     public void getMoreData() {
@@ -42,29 +36,12 @@ public class UserViewModel {
         if(dataNameProperties.size()<list.size())
         {
             for (int i = dataNameProperties.size(); i < list.size(); i++) {
-                dataValueProperties.add(new SimpleDoubleProperty());
+                dataValueProperties.add(new SimpleFloatProperty());
                 dataNameProperties.add(new SimpleStringProperty());
             }
         }
     }
-/*
-    public void setValueProperties(ArrayList<DataPoint> list) {
-        for (int i = 0; i < list.size(); i++) {
-            dataValueProperties.get(i).setValue(list.get(i).getHours());
-            System.out.println("UserViewModel: setValueProperties: loop: " + i + " value: " + dataValueProperties.get(i).getValue());
-        }
-    }
-*/
 
-/*
-    public void setNameProperties(ArrayList<DataPoint> list) {
-        System.out.println("UserViewModel: setNameProperties: list size is: " + list.size());
-        for (int i = 0; i < list.size(); i++) {
-            dataNameProperties.get(i).setValue(list.get(i).getId());
-            System.out.println("UserViewModel: setNameProperties: loop: " + i + " name: " + dataNameProperties.get(i).getValue());
-        }
-    }
-    */
     public void setPropertyData(ArrayList<DataPoint> list)
     {
         System.out.println("UserViewModel: setPropertyData: list size is: " + list.size());
@@ -83,7 +60,7 @@ public class UserViewModel {
         setPropertyData(newArrayList);
     }
 
-    public ArrayList<SimpleDoubleProperty> getDataValueProperties() {
+    public ArrayList<SimpleFloatProperty> getDataValueProperties() {
         return dataValueProperties;
     }
 
@@ -91,8 +68,5 @@ public class UserViewModel {
         return dataNameProperties;
     }
 
-    public StringProperty titleProperty() {
-        return title;
-    }
 
 }
