@@ -11,9 +11,11 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace TaskSpy
 {
+
     class Program
     {
 
@@ -76,6 +78,18 @@ namespace TaskSpy
             return true;
         }
 
+        //Returns true if the task is valid
+        static bool validTask(string task)
+        {
+            if (task == "dwm")
+                return false;
+
+            if (task.StartsWith("sendctrlc"))
+                return false;
+
+            return true;
+        }
+
         static void Main(string[] args)
         {
             string ip = "";
@@ -124,7 +138,7 @@ namespace TaskSpy
                     title = "AFK";
                 }
 
-                if (oldTitle == title)
+                if (oldTitle == title || !validTask(title) )
                     continue;
 
                 oldTitle = title;
@@ -134,7 +148,6 @@ namespace TaskSpy
                     return;
 
             }
-
         }
     }
 }
