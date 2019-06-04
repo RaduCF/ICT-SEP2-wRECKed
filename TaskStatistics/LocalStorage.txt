@@ -1,5 +1,5 @@
 idea64,1.3287129
-java,1.251159
+java,1.2533826
 chrome,0.4880891
 SceneBuilder,0.33023584
 ApplicationFrameHost,0.24894112
