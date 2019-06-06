@@ -13,6 +13,12 @@ CREATE TABLE Usage(
 	, Hours			FLOAT(24)   NOT NULL
 );
 
+
+CREATE TABLE BugReport(
+	  UserID		VARCHAR(256)	NOT NULL
+	, report		VARCHAR(1024) 
+);
+
 CREATE FUNCTION AverageHours()
 	RETURNS TRIGGER AS $$
 	BEGIN
