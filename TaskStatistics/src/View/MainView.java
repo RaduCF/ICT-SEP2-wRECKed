@@ -15,26 +15,13 @@ public class MainView {
     private MainViewModel mainViewModel;
     private ComparisonView comparisonView;
     private ProgramListView programListView;
-    private static Object lock = new Object();
     private RemoveProgamListView removeProgramListView;
     private ReportBugView reportBugView;
-    private static MainView instance;
     private Stage programListViewStage;
     private Stage programRemoveListStage;
 
-    private MainView(MainViewModel mainViewModel) {
+    public MainView(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
-    }
-
-    public static MainView getInstance(MainViewModel viewModel) {
-        if (instance == null) {
-            synchronized (lock) {
-                if (instance == null) {
-                    instance = new MainView(viewModel);
-                }
-            }
-        }
-        return instance;
     }
 
     public void start(Stage primaryStage) throws IOException {
@@ -119,18 +106,6 @@ public class MainView {
         programListViewStage.show();
     }
 
-    public void close() {
-        Platform.exit();
-    }
-
-    public ComparisonView getComparisonView() {
-        return comparisonView;
-    }
-
-    public RemoveProgamListView getRemoveProgramListView() {
-        return removeProgramListView;
-    }
-
     public void closeProgramListView() {
         if (programListViewStage.getScene() != null) {
             programListViewStage.getScene().getWindow().hide();
@@ -160,22 +135,21 @@ public class MainView {
         programRemoveListStage.show();
     }
 
+    public void close() {
+        Platform.exit();
+    }
+
+    public ComparisonView getComparisonView() {
+        return comparisonView;
+    }
+
+    public RemoveProgamListView getRemoveProgramListView() {
+        return removeProgramListView;
+    }
+
     public UserView getUserView(){
         return userView;
     }
+
     public ProgramListView getProgramListView() { return programListView; }
-
-    public void loadData() {
-        userView.handleBarChartData();
-    }
-
-    public void initialiseUserViewProperties()
-    {
-        userView.initializeProperties();
-    }
-
-    public void bindUserViewProperties()
-    {
-        userView.bindProperties();
-    }
 }

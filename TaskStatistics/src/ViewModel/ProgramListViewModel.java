@@ -1,6 +1,7 @@
 package ViewModel;
 
 import Model.Domain.ChartManager;
+import Model.Domain.DataPoint;
 import Model.Mediator.ObservableModel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,43 +12,58 @@ public class ProgramListViewModel {
 
     private ObservableModel model;
     private ArrayList<SimpleStringProperty> dataNameProperties;
-    private SimpleIntegerProperty countProperty;
+    private long counter;
 
     public ProgramListViewModel(ObservableModel model) {
         this.model = model;
-        countProperty = new SimpleIntegerProperty();
         dataNameProperties = new ArrayList<>();
+        counter=0;
+    }
+
+    public void loadLocalData() {
+        ArrayList<DataPoint> newArrayList = new ArrayList<>();
+        newArrayList.addAll(model.getData(ChartManager.SORTTYPE.BYHOURS));
+        initializeProperties(newArrayList);
+        setPropertyData(newArrayList);
+        counter++;
+        System.out.println("Counter incremented: " + counter);
     }
 
     /*public void loadData() {
 
         dataNameProperties.clear(); // clear all remaining data
 
-        countProperty.set(model.getLocalData(ChartManager.SORTTYPE.RAW).size());  // retrieve task count number from data storage
-        //countProperty.set(2);  // dummy task count
-
-        initializeProperties(); // we initialize objects with this method
-
         for (int i = 0; i < countProperty.intValue(); i++) // as many as there are tasks:
         {
-            //dataNameProperties.get(i).set(model.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getId()); // get data name from data storage
-            dataNameProperties.get(i).set("Testing program " + i); // dummy get data name from storage
+            dataNameProperties.get(i).set(model.getLocalData(ChartManager.SORTTYPE.RAW).get(i).getId()); // get data name from data storage
+        }
+    }*/
+
+    public void initializeProperties(ArrayList<DataPoint> list) {
+        System.out.println("UserViewModel: initializeProperties: initializing the properties");
+        if(dataNameProperties.size()<list.size())
+        {
+            for (int i = dataNameProperties.size(); i < list.size(); i++) {
+                dataNameProperties.add(new SimpleStringProperty());
+            }
         }
     }
 
-    public void initializeProperties() {
-        for (int i = 0; i < countProperty.intValue(); i++) // as many as there are tasks:
+    public void setPropertyData(ArrayList<DataPoint> list)
+    {
+        System.out.println("UserViewModel: setPropertyData: list size is: " + list.size());
+        for(int i=0;i<list.size();i++)
         {
-            dataNameProperties.add(new SimpleStringProperty());  // create simpleStringProperty
+            dataNameProperties.get(i).setValue(list.get(i).getId());
+            System.out.println("UserViewModel: setPropertyData: loop: " + i + " name: " + dataNameProperties.get(i).getValue());
         }
     }
 
-    public SimpleIntegerProperty getCountProperty() {
-        return countProperty;
+    public long getCount() {
+        return counter;
     }
 
     public ArrayList<SimpleStringProperty> getDataNameProperties() {
         return dataNameProperties;
     }
-    */
 }

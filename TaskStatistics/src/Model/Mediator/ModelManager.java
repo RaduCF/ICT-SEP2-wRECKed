@@ -4,8 +4,10 @@ import java.beans.PropertyChangeListener;
 
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Model.Domain.ChartManager.SORTTYPE;
+import Model.Domain.DataPoint;
 
 
 public class ModelManager implements ObservableModel, ClientModel {
@@ -21,10 +23,12 @@ public class ModelManager implements ObservableModel, ClientModel {
 
     public void sendLocalData(SORTTYPE type) {
         System.out.println("ModelManager: sendLocalData: firing propertyChange " + type.toString());
-
         property.firePropertyChange("dataUpdate", client.getLocalData(type), client.getLocalData(type));
-
         System.out.println("ModelManager: sendLocalData: Property change fired!" + type.toString());
+    }
+
+    public ArrayList<DataPoint> getData(SORTTYPE type) {
+        return client.getLocalData(type);
     }
 
     @Override
@@ -47,14 +51,10 @@ public class ModelManager implements ObservableModel, ClientModel {
     }
 
     @Override
-    public void addListener(String propertyName, PropertyChangeListener listener) {
-
-    }
+    public void addListener(String propertyName, PropertyChangeListener listener) { }
 
     @Override
-    public void removeListener(String propertyName, PropertyChangeListener listener) {
-
-    }
+    public void removeListener(String propertyName, PropertyChangeListener listener) { }
 
     @Override
     public void addListener(PropertyChangeListener listener) {
@@ -78,7 +78,5 @@ public class ModelManager implements ObservableModel, ClientModel {
             System.out.println("ModelManager: getGlobalData: firing event, value: " + value);
             property.firePropertyChange("Globaldata", null, value);
             System.out.println("ModelManager: getGlobalData: event fired, value: "+value);
-
-
     }
 }

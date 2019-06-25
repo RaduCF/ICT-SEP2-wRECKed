@@ -1,8 +1,10 @@
 package View;
 
 import ViewModel.UserViewModel;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.application.Platform;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -23,29 +25,26 @@ public class UserView {
     private BarChart barChart;
     @FXML
     private Label Title;
-
+    private Updater updater;
     private ArrayList<SimpleFloatProperty> dataValueProperties;
     private ArrayList<SimpleStringProperty> dataNameProperties;
-
-
 
     public void init(MainView parent, UserViewModel model, Scene scene, String title) {
         this.parent = parent;
         this.model = model;
         this.title = title;
         this.scene = scene;
+        this.updater=new Updater(this);
 
         dataValueProperties = new ArrayList<>();
         dataNameProperties = new ArrayList<>();
         pageCount=0;
-/*                                  <---- The properties are not initialised or binded until they are received in the model
-        initializeProperties();
-        bindProperties();
-        */
+
+        Thread upd = new Thread(updater);
+        upd.start();
     }
 
-    public UserView() {
-    }
+    public UserView() { }
 
     public void initializeProperties() {
         System.out.println("UserView: initializeProperties: initializing the properties");
@@ -66,16 +65,20 @@ public class UserView {
     public void handleBarChartData() {
         System.out.println("UserView: handleBarChartData: Loading data into bar chart");
         XYChart.Series displaySet = new XYChart.Series();
-        barChart.getData().clear();
+        Platform.runLater(() -> {
+            barChart.getData().clear();
+        });
         for (int i = pageCount*5; i < (pageCount*5)+5; i++) {
+            System.out.println("Adding data to barchart: loop " + i+": " + dataNameProperties.get(i).getValue() + " + "+ dataValueProperties.get(i).getValue());
             try {
                 displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
             } catch (IndexOutOfBoundsException exception) {
                 displaySet.getData().add(new XYChart.Data("EMPTY",(float)0));
             }
-
         }
-        barChart.getData().addAll(displaySet);
+        Platform.runLater(() -> {
+                    barChart.getData().addAll(displaySet);
+                });
         System.out.println("UserView: handleBarChartData: Data loaded into bar chart.");
     }
 
@@ -134,5 +137,7 @@ public class UserView {
         model.getMoreData();
     }
 
-
+    public UserViewModel getModel(){
+        return model;
+    }
 }

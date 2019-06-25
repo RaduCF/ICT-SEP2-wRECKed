@@ -1,7 +1,6 @@
 package ViewModel;
 
 import Model.Mediator.ObservableModel;
-import View.MainView;
 import javafx.application.Platform;
 
 import java.beans.PropertyChangeEvent;
@@ -11,7 +10,6 @@ public class MainViewModel implements PropertyChangeListener {
 
     private UserViewModel userViewModel;
     private ObservableModel model;
-    private MainView mainView;
     private ComparisonViewModel comparisonViewModel;
     private ProgramListViewModel programListViewModel;
     private ReportBugViewModel reportBugViewModel;
@@ -21,7 +19,7 @@ public class MainViewModel implements PropertyChangeListener {
 
         reportBugViewModel = new ReportBugViewModel(model);
         userViewModel = new UserViewModel(model);
-        mainView = MainView.getInstance(this);
+
         comparisonViewModel = new ComparisonViewModel(model);
         programListViewModel = new ProgramListViewModel(model);
         System.out.println("MainViewModel: Constructor: adding listener to ObservableModel");
@@ -37,16 +35,10 @@ public class MainViewModel implements PropertyChangeListener {
             if (evt.getPropertyName().equals("dataUpdate")) {
                 System.out.println("MainViewModel: propertyChange: loading userViewModel local data " + evt.getNewValue().toString());
                 userViewModel.loadLocalData(evt.getNewValue());
-                mainView.initialiseUserViewProperties();
-                mainView.bindUserViewProperties();
-                mainView.loadData();
             }
             else if (evt.getPropertyName().equals("Moredata")) {
                 System.out.println("MainViewModel: propertyChange: loading userViewModel local data " + evt.getNewValue().toString());
                 userViewModel.loadLocalData(evt.getNewValue());
-                mainView.initialiseUserViewProperties();
-                mainView.bindUserViewProperties();
-                mainView.loadData();
             }
             else if(evt.getPropertyName().equals("Globaldata")) {
                 System.out.println("MainViewModel: propertyChange: sending global data to the userViewModel,  value is:" + evt.getNewValue() );

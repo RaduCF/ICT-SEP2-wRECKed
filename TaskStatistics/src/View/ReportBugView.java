@@ -8,8 +8,6 @@ import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
-
 public class ReportBugView {
 
     private MainView parent;
@@ -51,9 +49,5 @@ public class ReportBugView {
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

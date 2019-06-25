@@ -1,6 +1,6 @@
-idea64,1.3287129
-java,1.2533826
-chrome,0.4880891
+idea64,1.3604001
+java,1.2864645
+chrome,0.4983741
 SceneBuilder,0.33023584
 ApplicationFrameHost,0.24894112
 explorer,0.13337252

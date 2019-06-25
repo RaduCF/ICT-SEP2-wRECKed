@@ -21,6 +21,7 @@ public class ProgramListView {
     private Scene scene;
     private String title;
     private int count;
+    private UpdateProgramList updateProgramList;
     private ArrayList<SimpleStringProperty> dataNameProperties;
 
     private ArrayList<String> usedDataNames;
@@ -32,6 +33,7 @@ public class ProgramListView {
         this.parent = parent;
         this.scene = scene;
         this.title = title;
+        updateProgramList= new UpdateProgramList(this);
 
         search.setText("");
 
@@ -43,14 +45,9 @@ public class ProgramListView {
 
         this.dataNameProperties = new ArrayList<>();
         this.dataNameProperties.addAll(parent.getUserView().getDataNameProperties());
-    }
 
-    public Scene getScene() {
-        return scene;
-    }
-
-    public String getTitle() {
-        return title;
+        Thread thread=new Thread(updateProgramList);
+        //thread.start();
     }
 
     @FXML
@@ -61,7 +58,6 @@ public class ProgramListView {
 
         ArrayList<String> sendableProgramNames = new ArrayList<>();
         ArrayList<Float> sendableProgramValues = new ArrayList<>();
-
         ArrayList<SimpleStringProperty> selected = new ArrayList<>();
 
         System.out.println("ProgramListView: submit: Selected program amount: " + programs.size());
@@ -83,7 +79,6 @@ public class ProgramListView {
                 }
             }
         }
-
         System.out.println("Sending program names and values to the ComparisonView");
         try {
             parent.getComparisonView().loadData(sendableProgramNames, sendableProgramValues);
@@ -159,5 +154,17 @@ public class ProgramListView {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             searchApp();
         }
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ProgramListViewModel getModel() {
+        return model;
     }
 }

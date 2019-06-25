@@ -18,7 +18,7 @@ public class Main extends Application {
 
         ObservableModel model = new ModelManager(client);
     	MainViewModel viewModel = new MainViewModel(model);
-        MainView view = MainView.getInstance(viewModel);
+        MainView view = new MainView(viewModel);
         view.start(primaryStage);
     }
 }
