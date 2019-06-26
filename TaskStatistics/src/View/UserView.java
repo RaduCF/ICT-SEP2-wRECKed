@@ -69,7 +69,7 @@ public class UserView {
             barChart.getData().clear();
         });
         for (int i = pageCount*5; i < (pageCount*5)+5; i++) {
-            System.out.println("Adding data to barchart: loop " + i+": " + dataNameProperties.get(i).getValue() + " + "+ dataValueProperties.get(i).getValue());
+            //System.out.println("Adding data to barchart: loop " + i+": " + dataNameProperties.get(i).getValue() + " + "+ dataValueProperties.get(i).getValue());
             try {
                 displaySet.getData().add(new XYChart.Data(dataNameProperties.get(i).getValue(),dataValueProperties.get(i).getValue()));
             } catch (IndexOutOfBoundsException exception) {

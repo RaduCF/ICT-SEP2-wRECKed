@@ -96,7 +96,7 @@ public class Client implements Runnable, ClientModel {
     public boolean connect() {
         System.out.println("Connecting...");
         try {
-            socket = new Socket("10.152.210.88", 5001);
+            socket = new Socket("10.152.210.33", 5001);
             stream = new DataOutputStream(socket.getOutputStream());
             istream = new DataInputStream(socket.getInputStream());
             System.out.println("Connected!");

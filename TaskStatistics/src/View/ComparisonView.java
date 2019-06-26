@@ -16,6 +16,7 @@ import javafx.scene.control.ToggleButton;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
 
 
 public class ComparisonView {
@@ -74,6 +75,11 @@ public class ComparisonView {
             bindGlobalProperties(dataNames);
 
             Platform.runLater(() -> {
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 handleBarChartData();
             });
         }
@@ -166,12 +172,14 @@ public class ComparisonView {
 
     @FXML
     public void clearSpecificPrograms() {
+        parent.closeProgramListView();
         parent.openProgramRemoveListView();
         parent.getRemoveProgramListView().loadData(usedLocalDataNames);
     }
 
     @FXML
     public void selectPrograms() {
+        parent.closeProgramRemoveListView();
         parent.openProgramListView();
         parent.getProgramListView().setUsedDataNames(usedLocalDataNames);
     }

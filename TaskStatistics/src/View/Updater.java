@@ -13,18 +13,9 @@ public class Updater implements Runnable {
 
     @Override
     public void run() {
-        /*System.out.println("Starting Update thread...");
-        counter=userView.getCounter().getValue();
-        System.out.println("counter equals: " + counter);
-        userView.initializeProperties();
-        System.out.println("Data initialised.");
-        userView.bindProperties();
-        System.out.println("Data bound.");
-        userView.handleBarChartData();
-        System.out.println("Data loaded.");*/
         while(true){
             try {
-                sleep(300);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -32,14 +23,14 @@ public class Updater implements Runnable {
                 System.out.println("Counter difference found. Starting to load new data...");
                 userView.initializeProperties();
                 try {
-                    sleep(300);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 System.out.println("Data initialised.");
                 userView.bindProperties();
                 try {
-                    sleep(300);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
